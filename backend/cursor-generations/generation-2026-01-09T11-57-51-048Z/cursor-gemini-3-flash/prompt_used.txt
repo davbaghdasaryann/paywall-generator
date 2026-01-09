@@ -1,0 +1,49 @@
+You are a designer and frontend developer recreating the exact design from a Figma file.
+
+IMPORTANT: All data files and images are in the PARENT directory (one level up).
+Use paths like ../data.json, ../images/main-frame.png
+
+You are inside a folder that already contains:
+- ../data.json (Figma design information and design tokens)
+- ../images/main-frame.png (The Figma design screenshot - USE THIS AS YOUR PRIMARY REFERENCE)
+- ../images/icon*.png (Additional images/icons from the design - use as needed)
+
+Use ONLY local files.
+Do not fetch anything from the internet.
+
+CRITICAL: Generate the HTML page to match EXACTLY what you see in ../images/main-frame.png.
+
+EXCLUDE SYSTEM UI ELEMENTS:
+- DO NOT include iPhone status bar (time, battery, signal icons at the top)
+- DO NOT include iPhone home indicator (bottom bar/gesture area)
+- DO NOT include any system UI elements, notches, or device chrome
+- ONLY recreate the actual app/website content from the Figma design
+- Focus on the core content area between any system UI elements
+
+CRITICAL REQUIREMENTS:
+- Dimensions: 402px × 874px
+- Type: MOBILE
+- Container Width: 402px
+- Mobile-first design - EXACT dimensions: 375px width. Body and main container MUST be exactly 375px wide with no overflow. Use box-sizing: border-box for all elements. Ensure no horizontal scrolling.
+
+DESIGN GUIDANCE:
+- Study ../images/main-frame.png carefully to understand the layout, colors, typography, and visual style
+- Match the Figma design EXACTLY - this is a direct recreation, not a new design
+- Use designTokens in data.json for colors, fonts, spacing, and other design values when available
+- Use semantic HTML5 elements
+- Recreate only the actual content, not any device/system UI that might appear in the screenshot
+
+IMAGES:
+- Reference ../images/main-frame.png to see where images should be placed
+- Use ../images/icon*.png files where appropriate in the design
+- Match the positioning and layout from the main-frame.png reference
+
+OUTPUT FORMAT:
+- Generate complete, standalone HTML file (index.html) with embedded CSS and JavaScript
+- Use semantic HTML5
+- Include all styles in <style> tag
+- Include all JavaScript in <script> tag
+- Make it visually match the Figma design from main-frame.png exactly
+- Ensure all images reference ../images/ paths correctly
+
+Generate the HTML file now.

@@ -1,0 +1,69 @@
+{
+  "appInfo": {
+    "name": "Snapchat",
+    "description": "Just a little tune-up to keep everything running smoothly! 👻",
+    "category": "Communication",
+    "developer": "",
+    "price": "0",
+    "icon": "https://play-lh.googleusercontent.com/KxeSAjPTKliCErbivNiXrd6cTwfbqUJcbSRPe_IBVK_YmwckfMRS1VIHz-5cgT09yMo=w240-h480-rw",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/xKCYMMuIshGmxLVckXnGYsdorvBxF0oI58Yt82Vkj_cn3Dby52gdrt4Lmr7BTYiVww=w526-h296-rw",
+      "https://play-lh.googleusercontent.com/yoN8h1j4M0Axz1UK2-iyPOmlQmIHqZ1tO8p7PjRicfmyPxj3-rztyB3YImG58zeMvOI=w526-h296-rw",
+      "https://play-lh.googleusercontent.com/3KtSEofVcRIQUWQnq814EYI7xo61uD6Cg1tvWdYTPUXweFMjv7HkA9b9FVmt3zYDkSau=w526-h296-rw",
+      "https://play-lh.googleusercontent.com/CHV1Yg5KonaNU_HHXG_Iol6zn7bAQ0b0o868LTPyh9bCLoZDu0GM8EJxBQ4zTcMfy90=w526-h296-rw",
+      "https://play-lh.googleusercontent.com/Mbz03v3wiyrsITveiF4UO9dj_XNo1WpGw7ZoTSISZZmu3Nl1fu1uuDK3k-WwmaLJYWY=w526-h296-rw"
+    ],
+    "theme": "Communication",
+    "colorPalette": {
+      "primary": "#7F7E63",
+      "secondary": "#7F7E63",
+      "accent": "#FFFC00",
+      "background": "#FFFD01",
+      "text": "#2C3E50",
+      "gradient": "linear-gradient(135deg, #7F7E63 0%, #7F7E63 100%)",
+      "styles": {
+        "borderRadius": "16px",
+        "buttonStyle": "rounded-full",
+        "cardStyle": "glassmorphism",
+        "spacing": "compact",
+        "layout": "horizontal"
+      }
+    }
+  },
+  "businessModels": {
+    "models": [
+      {
+        "type": "subscription",
+        "name": "Premium Subscription",
+        "tiers": [
+          {
+            "name": "Monthly",
+            "price": "$9.99/month",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support"
+            ],
+            "valueProposition": "Get full access to all features"
+          },
+          {
+            "name": "Annual",
+            "price": "$79.99/year",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support",
+              "Save 33%"
+            ],
+            "valueProposition": "Best value - save 33% with annual plan"
+          }
+        ],
+        "recommended": true
+      }
+    ],
+    "recommendations": "Based on the app category, a subscription model is recommended."
+  },
+  "timestamp": "2026-01-07T16:45:51.149Z"
+}

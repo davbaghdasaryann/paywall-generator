@@ -1,0 +1,50 @@
+You are a designer and frontend developer creating a paywall page from a Figma design.
+
+You are inside a folder that already contains:
+- ../data.json (Figma design information, design tokens, and image references)
+- ../images/main-frame.png (Complete paywall design from Figma - USE THIS AS REFERENCE)
+- ../images/icon1.png - icon1.png (Position: x=-1936px, y=4314px, Size: 204×225px)
+- ../images/icon2.png - icon2.png (Position: x=-1853px, y=4564px, Size: 8×8px)
+- ../images/icon3.png - icon3.png (Position: x=-1837px, y=4564px, Size: 8×8px)
+- ../images/icon4.png - icon4.png (Position: x=-1821px, y=4564px, Size: 8×8px)
+- ../images/icon5.png - icon5.png (Position: x=-1988px, y=4827px, Size: 24×24px)
+- ../images/icon6.png - icon6.png (Position: x=-1988px, y=4827px, Size: 24×24px)
+
+Use ONLY local files.
+Do not fetch anything from the internet.
+
+Analyze ../data.json and ../images/main-frame.png to create a pixel-perfect HTML page.
+
+CRITICAL REQUIREMENTS:
+- Dimensions: 393px × 2364px
+- Type: MOBILE
+- Container Width: 393px
+- Use EXACT colors, fonts, spacing, and dimensions from designTokens in data.json
+- Mobile-first design - EXACT dimensions: 375px width. Body and main container MUST be exactly 375px wide with no overflow. Use box-sizing: border-box for all elements. Ensure no horizontal scrolling.
+
+DESIGN TOKENS FROM FIGMA (in data.json.designTokens):
+- Use EXACT rgba values from designTokens.colors
+- Use EXACT font-family, font-size, font-weight, line-height from designTokens.fonts
+- Use EXACT padding/margin values from designTokens.spacing
+- Use EXACT border-radius values from designTokens.borderRadius
+- Use positioning data from designTokens.nodes (x, y, width, height, background, border-radius, font properties)
+
+IMAGES:
+- Use ../images/main-frame.png as your visual reference for the complete design
+- Use the extracted images (../images/icon*.png) at their EXACT positions:
+  * ../images/icon1.png at position x=-1936px, y=4314px, size 204×225px
+  * ../images/icon2.png at position x=-1853px, y=4564px, size 8×8px
+  * ../images/icon3.png at position x=-1837px, y=4564px, size 8×8px
+  * ../images/icon4.png at position x=-1821px, y=4564px, size 8×8px
+  * ../images/icon5.png at position x=-1988px, y=4827px, size 24×24px
+  * ../images/icon6.png at position x=-1988px, y=4827px, size 24×24px
+
+OUTPUT FORMAT:
+- Generate complete, standalone HTML file (index.html) with embedded CSS and JavaScript
+- Use semantic HTML5
+- Include all styles in <style> tag
+- Include all JavaScript in <script> tag
+- Make it pixel-perfect to match the Figma design
+- Ensure all images reference ../images/ paths correctly
+
+Generate the HTML file now.

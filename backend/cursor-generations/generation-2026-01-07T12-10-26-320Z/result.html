@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Swyped - Get More Girls</title>
+    <style>
+        :root {
+            --primary: #4A4D3C;
+            --secondary: #81856C;
+            --accent: #E0F370;
+            --background: #f8f9fa; /* Slightly softer than the bright lime in data.json for better readability */
+            --bg-bright: #E0FD47;
+            --text: #2C3E50;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #4A4D3C 0%, #81856C 100%);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0 auto;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            position: relative;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            margin: 0;
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        p {
+            margin: 0;
+            font-size: 16px;
+            color: #5d6d7e;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(74, 77, 60, 0.3);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(224, 243, 112, 0.4);
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 20px;
+            overflow: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 60px;
+            padding-bottom: 40px;
+            background: linear-gradient(180deg, rgba(224, 253, 71, 0.2) 0%, rgba(248, 249, 250, 0) 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 22px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .hero-image-container {
+            margin-top: 40px;
+            position: relative;
+            height: 400px;
+        }
+
+        .screenshot-main {
+            width: 200px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .screenshot-side {
+            width: 160px;
+            border-radius: 24px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 40px;
+            filter: blur(1px) brightness(0.9);
+            z-index: 1;
+        }
+
+        .screenshot-left {
+            left: -10px;
+            transform: rotate(-10deg);
+        }
+
+        .screenshot-right {
+            right: -10px;
+            transform: rotate(10deg);
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 32px;
+            color: var(--primary);
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(129, 133, 108, 0.1);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-bright);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary);
+        }
+
+        .feature-content h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .feature-content p {
+            font-size: 14px;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .benefits .section-title {
+            color: var(--accent);
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .benefit-check {
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .benefit-check svg {
+            width: 12px;
+            height: 12px;
+            fill: var(--primary);
+        }
+
+        .benefit-text {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Social Proof Section */
+        .social-proof {
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .star {
+            color: #FFD700;
+            font-size: 20px;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 16px;
+            padding: 0 20px;
+        }
+
+        .user-count {
+            display: inline-block;
+            background: var(--bg-bright);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 20px;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 60px 20px;
+            background: var(--gradient);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 32px;
+        }
+
+        .store-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        .store-badge {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(-50%); }
+            50% { transform: translateY(-10px) translateX(-50%); }
+            100% { transform: translateY(0px) translateX(-50%); }
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/65/2b/51/652b510f-066c-7a0c-339a-6f1ee6792180/AppIcon-0-0-1x_U007epad-0-1-0-P3-85-220.png/400x400ia-75.jpg" alt="Swyped Icon" class="app-icon animate">
+        <h1 class="animate delay-1">Swyped</h1>
+        <p class="animate delay-2">Master Your Dating Game & Level Up Your Social Life</p>
+        <a href="#download" class="btn btn-accent animate delay-3">Start Winning Now</a>
+        
+        <div class="hero-image-container animate delay-3">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/02/11/01/02110131-f991-38b3-cd46-9bc2cbde9182/1.png/460x996bb-60.jpg" alt="Screenshot 2" class="screenshot-side screenshot-left">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/61/6a/25/616a258e-436a-891b-d405-7cd173395a95/3.png/460x996bb.webp" alt="Screenshot 3" class="screenshot-side screenshot-right">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/02/11/01/02110131-f991-38b3-cd46-9bc2cbde9182/1.png/460x996bb.webp" alt="Screenshot 1" class="screenshot-main float">
+        </div>
+    </section>
+
+    <section class="features">
+        <h2 class="section-title animate">Pro Features</h2>
+        
+        <div class="feature-card animate">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+            </div>
+            <div class="feature-content">
+                <h3>AI Conversation Coach</h3>
+                <p>Never run out of things to say. Get real-time suggestions and replies that work.</p>
+            </div>
+        </div>
+
+        <div class="feature-card animate">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </div>
+            <div class="feature-content">
+                <h3>Profile Optimizer</h3>
+                <p>Learn exactly which photos and bio details attract the most attention.</p>
+            </div>
+        </div>
+
+        <div class="feature-card animate">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14h-2V9h-2V7h4v10z"/></svg>
+            </div>
+            <div class="feature-content">
+                <h3>Success Analytics</h3>
+                <p>Track your matches and improve your strategy with data-driven insights.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <h2 class="section-title animate">Why Swyped?</h2>
+        
+        <div class="benefit-item animate">
+            <div class="benefit-check">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <div class="benefit-text">Boost your confidence instantly</div>
+        </div>
+        
+        <div class="benefit-item animate">
+            <div class="benefit-check">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <div class="benefit-text">Higher quality matches daily</div>
+        </div>
+
+        <div class="benefit-item animate">
+            <div class="benefit-check">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <div class="benefit-text">Proven psychological techniques</div>
+        </div>
+
+        <div class="benefit-item animate">
+            <div class="benefit-check">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <div class="benefit-text">100% Private and Discreet</div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="rating animate">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+        </div>
+        <p class="review-text animate">"Honestly, I was skeptical, but the AI coach is a game changer. My response rate tripled in a week!"</p>
+        <p style="font-weight: 700; color: var(--primary);">- James K.</p>
+        
+        <div class="user-count animate">Join 50,000+ Men Winning Today</div>
+    </section>
+
+    <section id="download" class="cta">
+        <h2 class="animate">Ready to Swype?</h2>
+        <p class="animate">Download Swyped today and transform your dating life forever.</p>
+        
+        <div class="store-buttons animate">
+            <a href="#" class="btn btn-accent">Download for iOS</a>
+            <p style="font-size: 12px; margin-top: 8px; color: rgba(255,255,255,0.6);">Available on the App Store</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Tiny Desk Apps Inc. All rights reserved.</p>
+        <p style="margin-top: 8px;">Privacy Policy | Terms of Service</p>
+    </footer>
+
+    <script>
+        // Simple Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Once it's visible, we don't need to observe it anymore
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Update style for animate class to handle visibility
+        const style = document.createElement('style');
+        style.textContent = `
+            .animate {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+            .animate.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(style);
+
+        document.querySelectorAll('.animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

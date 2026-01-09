@@ -1,0 +1,436 @@
+{
+  "figmaInfo": {
+    "fileKey": "5ymTdJbbf2cbUkz9rRkkxl",
+    "nodeId": "1-3628",
+    "nodeName": "Unknown"
+  },
+  "designTokens": {
+    "colors": [
+      "rgba(13,13,13,1)",
+      "rgba(255,255,255,1)",
+      "rgba(125,71,255,1)"
+    ],
+    "fonts": [
+      {
+        "f": "Test Söhne",
+        "s": 26,
+        "w": 600,
+        "lh": 34
+      },
+      {
+        "f": "Test Söhne",
+        "s": 20,
+        "w": 900,
+        "lh": 26
+      },
+      {
+        "f": "Test Söhne",
+        "s": 14,
+        "w": 400,
+        "lh": 18
+      },
+      {
+        "f": "SF Pro",
+        "s": 14,
+        "w": 400,
+        "lh": 18
+      },
+      {
+        "f": "Test Söhne",
+        "s": 20,
+        "w": 700,
+        "lh": 26
+      }
+    ],
+    "spacing": [],
+    "borderRadius": [],
+    "nodes": [
+      {
+        "n": "iPhone 14 & 15 Pro - 141",
+        "t": "FRAME",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(13,13,13,1)"
+      },
+      {
+        "n": "Transform your life in 66 days",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)",
+        "font": {
+          "f": "Test Söhne",
+          "s": 26,
+          "w": 600,
+          "lh": 34
+        },
+        "txt": "Transform your life in 66 days"
+      },
+      {
+        "n": "image 437",
+        "t": "RECTANGLE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "img": true
+      },
+      {
+        "n": "WHAT YOU GET:",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)",
+        "font": {
+          "f": "Test Söhne",
+          "s": 20,
+          "w": 900,
+          "lh": 26
+        },
+        "txt": "WHAT YOU GET:"
+      },
+      {
+        "n": "heroicons-solid/check-circle",
+        "t": "INSTANCE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      },
+      {
+        "n": "heroicons-solid/check-circle",
+        "t": "INSTANCE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      {
+        "n": "Subtract",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      },
+      {
+        "n": "66-Day Life Reset Program",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)",
+        "font": {
+          "f": "Test Söhne",
+          "s": 14,
+          "w": 400,
+          "lh": 18
+        },
+        "txt": "66-Day Life Reset Program"
+      },
+      {
+        "n": "heroicons-solid/check-circle",
+        "t": "INSTANCE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      },
+      {
+        "n": "heroicons-solid/check-circle",
+        "t": "INSTANCE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      {
+        "n": "Subtract",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      },
+      {
+        "n": "Science-based task planning",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)",
+        "font": {
+          "f": "Test Söhne",
+          "s": 14,
+          "w": 400,
+          "lh": 18
+        },
+        "txt": "Science-based task planning"
+      },
+      {
+        "n": "heroicons-solid/check-circle",
+        "t": "INSTANCE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      },
+      {
+        "n": "heroicons-solid/check-circle",
+        "t": "INSTANCE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      {
+        "n": "Subtract",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      },
+      {
+        "n": "Daily rituals",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)",
+        "font": {
+          "f": "SF Pro",
+          "s": 14,
+          "w": 400,
+          "lh": 18
+        },
+        "txt": "Daily rituals"
+      },
+      {
+        "n": "heroicons-solid/check-circle",
+        "t": "INSTANCE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      },
+      {
+        "n": "heroicons-solid/check-circle",
+        "t": "INSTANCE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      {
+        "n": "Subtract",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      },
+      {
+        "n": "Improvement tracker",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)",
+        "font": {
+          "f": "Test Söhne",
+          "s": 14,
+          "w": 400,
+          "lh": 18
+        },
+        "txt": "Improvement tracker"
+      },
+      {
+        "n": "heroicons-solid/check-circle",
+        "t": "INSTANCE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      },
+      {
+        "n": "heroicons-solid/check-circle",
+        "t": "INSTANCE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      {
+        "n": "Subtract",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      },
+      {
+        "n": "Change your life forever!",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)",
+        "font": {
+          "f": "Test Söhne",
+          "s": 14,
+          "w": 400,
+          "lh": 18
+        },
+        "txt": "Change your life forever!"
+      },
+      {
+        "n": "Loved and highly-rated by thousands",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)",
+        "font": {
+          "f": "Test Söhne",
+          "s": 20,
+          "w": 700,
+          "lh": 26
+        },
+        "txt": "Loved and highly-rated by thousands"
+      },
+      {
+        "n": "Vector",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      {
+        "n": "Vector",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      {
+        "n": "Vector",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      {
+        "n": "Vector",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      {
+        "n": "Vector",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      }
+    ]
+  },
+  "dimensions": {
+    "width": 393,
+    "height": 2364,
+    "isMobile": true
+  },
+  "imageReferences": [
+    {
+      "index": 1,
+      "name": "icon1.png",
+      "path": "images/icon1.png",
+      "nodeId": "1:3631",
+      "x": -1936,
+      "y": 4314,
+      "width": 204,
+      "height": 225
+    },
+    {
+      "index": 2,
+      "name": "icon2.png",
+      "path": "images/icon2.png",
+      "nodeId": "1:3633",
+      "x": -1853,
+      "y": 4564,
+      "width": 8,
+      "height": 8
+    },
+    {
+      "index": 3,
+      "name": "icon3.png",
+      "path": "images/icon3.png",
+      "nodeId": "1:3634",
+      "x": -1837,
+      "y": 4564,
+      "width": 8,
+      "height": 8
+    },
+    {
+      "index": 4,
+      "name": "icon4.png",
+      "path": "images/icon4.png",
+      "nodeId": "1:3635",
+      "x": -1821,
+      "y": 4564,
+      "width": 8,
+      "height": 8
+    },
+    {
+      "index": 5,
+      "name": "icon5.png",
+      "path": "images/icon5.png",
+      "nodeId": "1:3639",
+      "x": -1988,
+      "y": 4827,
+      "width": 24,
+      "height": 24
+    },
+    {
+      "index": 6,
+      "name": "icon6.png",
+      "path": "images/icon6.png",
+      "nodeId": "I1:3639;1695:1006",
+      "x": -1988,
+      "y": 4827,
+      "width": 24,
+      "height": 24
+    }
+  ],
+  "pageType": "paywall",
+  "timestamp": "2026-01-09T11:36:08.260Z"
+}

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Builder - Page Generator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo" onclick="window.location.href='index.html'">
+          <div class="logo-box"></div>
+          <span class="logo-text">Page Generator</span>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="builder.html" class="nav-link active">Builder</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content builder-main">
+      <!-- IDE Style Builder -->
+      <div class="builder-ide">
+        <!-- Sidebar -->
+        <aside class="ide-sidebar">
+          <div class="sidebar-header">
+            <h2 class="sidebar-title">Page Generator</h2>
+          </div>
+          <nav class="sidebar-nav">
+            <button class="sidebar-tab active" data-builder="figma">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+              </svg>
+              <span>Figma</span>
+            </button>
+            <button class="sidebar-tab" data-builder="app">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              </svg>
+              <span>App Store</span>
+            </button>
+          </nav>
+        </aside>
+
+        <!-- Main Panel -->
+        <div class="ide-main-panel">
+          <div class="ide-panel-header">
+            <div class="panel-tabs">
+              <div class="panel-tab active">Configuration</div>
+            </div>
+          </div>
+          <div class="ide-panel-content" id="contentWrapper">
+            <div class="builder-content active ide-content" id="figma-builder">
+              <form id="figmaForm">
+                <div class="input-group">
+                  <label for="figmaUrl" class="input-label">
+                    <span>Figma File URL</span>
+                    <span class="label-hint"
+                      >Paste your Figma file or frame URL</span
+                    >
+                  </label>
+                  <div class="input-wrapper">
+                    <input
+                      type="url"
+                      id="figmaUrl"
+                      name="figmaUrl"
+                      placeholder="https://www.figma.com/file/..."
+                      class="figma-input"
+                    />
+                    <svg
+                      class="input-icon"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                      ></path>
+                      <path
+                        d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <label for="figmaGenerator" class="input-label">
+                    <span>AI Generator</span>
+                    <span class="label-hint"
+                      >Choose which AI to use for generation</span
+                    >
+                  </label>
+                  <div class="input-wrapper">
+                    <select
+                      id="figmaGenerator"
+                      name="generator"
+                      class="figma-input"
+                    >
+                      <option value="claude">
+                        Claude (Anthropic) - Fast API
+                      </option>
+                      <option value="cursor">
+                        Cursor Agent - Local Generation
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="examples-section">
+                  <div class="section-header">
+                    <label class="section-label"
+                      >Reference Examples (Optional)</label
+                    >
+                    <span class="help-text">
+                      Upload or paste HTML files to guide the AI generation
+                      style
+                    </span>
+                  </div>
+
+                  <div class="examples-tabs">
+                    <button
+                      type="button"
+                      class="tab-btn active"
+                      data-tab="upload"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                        ></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                      Upload Files
+                    </button>
+                    <button type="button" class="tab-btn" data-tab="paste">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+                        ></path>
+                        <rect
+                          x="8"
+                          y="2"
+                          width="8"
+                          height="4"
+                          rx="1"
+                          ry="1"
+                        ></rect>
+                      </svg>
+                      Paste Code
+                    </button>
+                  </div>
+
+                  <div class="tab-content active" id="upload-tab">
+                    <input
+                      type="file"
+                      id="exampleFiles"
+                      multiple
+                      accept=".html,.htm"
+                      class="file-input"
+                    />
+                    <label for="exampleFiles" class="file-label">
+                      <svg
+                        class="file-icon"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                        ></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                      <span>Choose HTML files (up to 5)</span>
+                    </label>
+                    <div id="fileList" class="file-list"></div>
+                  </div>
+
+                  <div class="tab-content" id="paste-tab">
+                    <textarea
+                      id="exampleCode"
+                      placeholder="Paste HTML code of a reference paywall here..."
+                      class="code-textarea"
+                      rows="8"
+                    ></textarea>
+                    <button
+                      type="button"
+                      id="addExampleBtn"
+                      class="add-example-btn"
+                    >
+                      Add Example
+                    </button>
+                    <div id="exampleList" class="example-list"></div>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  id="generateFigmaBtn"
+                  class="generate-btn"
+                >
+                  <span class="btn-text"> Generate from Figma </span>
+                  <span class="btn-loader" style="display: none">
+                    <span class="btn-spinner"></span>
+                    Generating...
+                  </span>
+                </button>
+              </form>
+            </div>
+
+            <div
+              class="builder-content ide-content"
+              id="app-builder"
+              style="display: none"
+            >
+              <form id="paywallForm">
+                <div class="input-group">
+                  <label class="input-label">
+                    <span>Page Type</span>
+                    <span class="label-hint"
+                      >Choose what type of page to generate</span
+                    >
+                  </label>
+                  <div class="input-wrapper">
+                    <select id="pageType" name="pageType" class="figma-input">
+                      <option value="paywall">Paywall (Subscription)</option>
+                      <option value="landing">Landing Page</option>
+                      <option value="about">About Page</option>
+                      <option value="features">Features Page</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="input-group" id="appInputGroup">
+                  <label for="appUrl" class="input-label">
+                    <span>App Store / Play Store URL</span>
+                    <span class="label-hint"
+                      >Paste your app URL from App Store or Google Play</span
+                    >
+                  </label>
+                  <div class="input-wrapper">
+                    <input
+                      type="url"
+                      id="appUrl"
+                      name="appUrl"
+                      placeholder="https://apps.apple.com/... or https://play.google.com/..."
+                      class="figma-input"
+                    />
+                    <svg
+                      class="input-icon"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <rect
+                        x="5"
+                        y="2"
+                        width="14"
+                        height="20"
+                        rx="2"
+                        ry="2"
+                      ></rect>
+                      <line x1="12" y1="18" x2="12" y2="18"></line>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="input-group" id="generatorGroup">
+                  <label for="generator" class="input-label">
+                    <span>AI Generator</span>
+                    <span class="label-hint"
+                      >Choose which AI to use for generation</span
+                    >
+                  </label>
+                  <div class="input-wrapper">
+                    <select id="generator" name="generator" class="figma-input">
+                      <option value="claude">
+                        Claude (Anthropic) - Fast API
+                      </option>
+                      <option value="cursor">
+                        Cursor Agent - Local Generation
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div
+                  class="input-group"
+                  id="businessModelGroup"
+                  style="display: none"
+                >
+                  <div class="section-header">
+                    <label class="section-label">
+                      <span>Business Model (Optional)</span>
+                      <button
+                        type="button"
+                        class="toggle-btn"
+                        id="toggleBusinessModel"
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </button>
+                    </label>
+                    <span class="help-text">
+                      Manually define pricing tiers if AI generation doesn't
+                      work. Leave empty to auto-generate.
+                    </span>
+                  </div>
+                  <div
+                    class="business-model-editor"
+                    id="businessModelEditor"
+                    style="display: none"
+                  >
+                    <div class="business-model-tabs">
+                      <button
+                        type="button"
+                        class="model-tab-btn active"
+                        data-tab="form"
+                      >
+                        Easy Form
+                      </button>
+                      <button
+                        type="button"
+                        class="model-tab-btn"
+                        data-tab="json"
+                      >
+                        JSON (Advanced)
+                      </button>
+                    </div>
+
+                    <!-- Form-based editor -->
+                    <div class="model-tab-content active" id="model-form-tab">
+                      <div id="businessModelForms">
+                        <!-- Models will be added here dynamically -->
+                      </div>
+                      <button
+                        type="button"
+                        id="addBusinessModel"
+                        class="add-model-btn"
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <line x1="12" y1="5" x2="12" y2="19"></line>
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add Pricing Model
+                      </button>
+                    </div>
+
+                    <!-- JSON editor -->
+                    <div
+                      class="model-tab-content"
+                      id="model-json-tab"
+                      style="display: none"
+                    >
+                      <textarea
+                        id="businessModelJson"
+                        placeholder='{
+  "models": [
+    {
+      "name": "Monthly",
+      "price": 9.99,
+      "currency": "USD",
+      "period": "month",
+      "description": "Billed monthly"
+    },
+    {
+      "name": "Yearly",
+      "price": 99.99,
+      "currency": "USD",
+      "period": "year",
+      "description": "Billed annually (Save 17%)"
+    }
+  ]
+}'
+                        class="code-textarea"
+                        rows="15"
+                      ></textarea>
+                      <div class="business-model-actions">
+                        <button
+                          type="button"
+                          id="validateBusinessModel"
+                          class="secondary-btn"
+                        >
+                          Validate JSON
+                        </button>
+                        <button
+                          type="button"
+                          id="syncFromJson"
+                          class="secondary-btn"
+                        >
+                          Load into Form
+                        </button>
+                        <button
+                          type="button"
+                          id="clearBusinessModel"
+                          class="secondary-btn"
+                        >
+                          Clear
+                        </button>
+                      </div>
+                    </div>
+
+                    <div
+                      id="businessModelError"
+                      class="business-model-error"
+                      style="display: none"
+                    ></div>
+                  </div>
+                </div>
+
+                <div class="examples-section">
+                  <div class="section-header">
+                    <label class="section-label"
+                      >Reference Examples (Optional)</label
+                    >
+                    <span class="help-text">
+                      Upload or paste HTML files to guide the AI generation
+                      style
+                    </span>
+                  </div>
+
+                  <div class="examples-tabs">
+                    <button
+                      type="button"
+                      class="tab-btn active"
+                      data-tab="upload"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                        ></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                      Upload Files
+                    </button>
+                    <button type="button" class="tab-btn" data-tab="paste">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+                        ></path>
+                        <rect
+                          x="8"
+                          y="2"
+                          width="8"
+                          height="4"
+                          rx="1"
+                          ry="1"
+                        ></rect>
+                      </svg>
+                      Paste Code
+                    </button>
+                  </div>
+
+                  <div class="tab-content active" id="upload-tab">
+                    <input
+                      type="file"
+                      id="exampleFiles"
+                      multiple
+                      accept=".html,.htm"
+                      class="file-input"
+                    />
+                    <label for="exampleFiles" class="file-label">
+                      <svg
+                        class="file-icon"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                        ></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                      <span>Choose HTML files (up to 5)</span>
+                    </label>
+                    <div id="fileList" class="file-list"></div>
+                  </div>
+
+                  <div class="tab-content" id="paste-tab">
+                    <textarea
+                      id="exampleCode"
+                      placeholder="Paste HTML code of a reference paywall here..."
+                      class="code-textarea"
+                      rows="8"
+                    ></textarea>
+                    <button
+                      type="button"
+                      id="addExampleBtn"
+                      class="add-example-btn"
+                    >
+                      Add Example
+                    </button>
+                    <div id="exampleList" class="example-list"></div>
+                  </div>
+                </div>
+
+                <button type="submit" id="generateBtn" class="generate-btn">
+                  <span class="btn-text"> Generate Paywall </span>
+                  <span class="btn-loader" style="display: none">
+                    <span class="btn-spinner"></span>
+                    Generating...
+                  </span>
+                </button>
+              </form>
+            </div>
+
+            <div
+              id="errorMessage"
+              class="error-message"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Preview Panel -->
+        <div
+          class="ide-preview-panel"
+          id="previewSection"
+          style="display: none"
+        >
+          <div class="ide-panel-header">
+            <div class="panel-tabs">
+              <div class="panel-tab active">Preview</div>
+            </div>
+            <button id="downloadBtn" class="ide-action-btn">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download
+            </button>
+          </div>
+          <div class="ide-panel-content">
+            <div id="paywallPreview" class="paywall-preview"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blurred Loading Overlay -->
+      <div
+        id="generationLoader"
+        class="generation-loader"
+        style="display: none"
+      >
+        <div class="loader-backdrop"></div>
+        <div class="loader-content">
+          <div class="loader-animation">
+            <div class="loader-pulse"></div>
+          </div>
+          <h3 class="loader-title">Generating Page</h3>
+          <p class="loader-subtitle">AI is crafting your perfect design...</p>
+          <div class="loader-progress">
+            <div class="loader-progress-bar"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+You are a designer and frontend developer creating a modern mobile app features page.
+
+You are inside a folder that already contains:
+- data.json (app information)
+- ../images/icon.* (app icon/logo - USE THIS, DO NOT GENERATE)
+
+Use ONLY local files.
+Do not fetch anything from the internet.
+
+Analyze data.json and generate a modern, beautiful features page HTML that showcases all app features.
+
+CONTENT SECTIONS:
+1. **Hero Section** - Features overview
+2. **Feature Grid** - Detailed feature cards with:
+   - Feature icons (SVG)
+   - Feature names
+   - Feature descriptions
+3. **Feature Categories** - Group related features
+4. **Visual Demonstrations** - Show features in action
+
+Use the same design constraints and styling as the landing page prompt.

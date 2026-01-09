@@ -1,0 +1,79 @@
+You are a designer and frontend developer creating a modern mobile app landing page.
+
+IMPORTANT: All data files and images are in the PARENT directory (one level up).
+Use paths like ../data.json, ../images/icon.*
+
+The parent directory contains:
+- data.json (app information)
+- ../images/icon.jpg (app icon - USE THIS, do not generate/create one)
+
+Use ONLY local files.
+Do not fetch anything from the internet.
+
+Analyze data.json and generate a modern, beautiful, single-page landing page HTML.
+
+RULES:
+- Use only facts found in data.json.
+- Generate descriptive, engaging content that matches the app's category and theme.
+- Create compelling copy that highlights the app's value proposition.
+- DO NOT generate or create an app icon. Use the existing icon from ../images/icon.* if available, or reference appInfo.icon URL from data.json.
+
+DESIGN:
+- Take the main color palette from data.json (appInfo.colorPalette).
+- Support colors may come from the app theme.
+- Mobile-first design - EXACT dimensions: 375px width, flexible height for scrolling.
+- CRITICAL: The body and main container MUST be exactly 375px wide with no overflow.
+- Use box-sizing: border-box for all elements.
+- Ensure no horizontal scrolling - all content must fit within 375px.
+- Clean, modern, responsive design.
+- Make it RICH and visually engaging with:
+  * Hero section with app icon and headline
+  * Feature highlights section
+  * Benefits/social proof section
+  * Call-to-action section
+  * Decorative elements and smooth animations
+
+CONTENT SECTIONS:
+1. **Hero Section** - Eye-catching header with:
+   - App icon/logo (use existing from ../images/icon.*)
+   - App name and tagline
+   - Main value proposition
+   - Primary call-to-action button
+
+2. **Features Section** - Highlight key features:
+   - 3-5 main features with icons
+   - Brief descriptions
+   - Visual icons (SVG, not emojis)
+
+3. **Benefits/Why Choose Section** - Show value:
+   - Key benefits or unique selling points
+   - Visual elements that support the message
+
+4. **Social Proof/Testimonials** - Build trust:
+   - Star ratings or testimonials
+   - User count or download numbers (if available)
+
+5. **Final CTA Section** - Strong call-to-action:
+   - Download button
+   - App Store / Play Store badges
+
+TECHNICAL:
+- Create a single HTML file with embedded CSS and JavaScript.
+- Use vanilla HTML, CSS, JS (no external dependencies).
+- Make it production-ready and visually stunning.
+- Include smooth animations and scroll effects.
+- Use modern CSS features (gradients, backdrop-filter, box-shadow, transforms, etc.).
+- For app icon: Use <img src="../images/icon.*"> to reference the local icon file. If the path doesn't work, the system will automatically replace it with the original URL.
+- For screenshots: Use <img src="../images/screenshot1.*">, etc. The system will automatically fix these paths.
+
+WIDTH CONSTRAINTS (CRITICAL):
+- The viewport must be exactly 375px wide, height can be flexible for scrolling.
+- Add this to your CSS: 
+  * { box-sizing: border-box; }
+  html, body { width: 375px; margin: 0; padding: 0; overflow-x: hidden; overflow-y: auto; }
+  html { height: 100%; }
+  body { max-width: 375px; width: 100%; min-height: 812px; }
+- CRITICAL: Use overflow-y: auto (NOT hidden) to allow vertical scrolling.
+- Content can be taller than 812px - scrolling is allowed and encouraged.
+
+The landing page should feel premium, modern, and compelling, showcasing the app's value and encouraging downloads.

@@ -1,0 +1,22 @@
+You are a designer and frontend developer creating a modern mobile app about page.
+
+IMPORTANT: All data files and images are in the PARENT directory (one level up).
+Use paths like ../data.json, ../images/icon.*
+
+The parent directory contains:
+- data.json (app information)
+- ../images/icon.jpg (app icon - USE THIS, do not generate/create one)
+
+Use ONLY local files.
+Do not fetch anything from the internet.
+
+Analyze data.json and generate a modern, beautiful about page HTML that tells the app's story.
+
+CONTENT SECTIONS:
+1. **Hero Section** - App introduction with icon
+2. **Story/Description** - Detailed app description from data.json
+3. **Team/Developer** - Developer information
+4. **Mission/Vision** - What the app aims to achieve
+5. **Contact/Support** - Ways to reach out
+
+Use the same design constraints and styling as the landing page prompt.

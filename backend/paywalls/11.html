@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1D212B;
+            color: #fff;
+            font-family: 'Red Hat Display', sans-serif;
+            position: relative;
+            text-align: center;
+        }
+
+        .oval1,
+        .oval2 {
+            position: fixed;
+            z-index: -1;
+        }
+
+        .oval1 {
+            top: 0;
+            left: 0;
+        }
+
+        .oval2 {
+            right: 0;
+            bottom: 0;
+        }
+
+        .cancelButton {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            cursor: pointer;
+        }
+
+        .restoreButton {
+            position: fixed;
+            top: 22px;
+            right: 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            color: #A1A19F;
+            text-align: center;
+        }
+
+        .headingBox {
+            margin-top: 10vh;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+
+        .offerHeading {
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 14px;
+            text-align: center;
+        }
+
+        .offerText {
+            color: #FFFFFFE5;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 4px;
+        }
+
+        .pricebox {
+            background: #2D313A;
+            height: 100px;
+            width: calc(100% - 64px);
+            padding: 10px;
+            margin: 20px;
+            border: 2px solid #4E70D2;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .lowestprice {
+            font-size: 14px;
+            font-weight: 900;
+            line-height: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .primary {
+            font-size: 18px;
+            font-weight: 900;
+            line-height: 7px;
+            text-align: center;
+        }
+
+        .secondary {
+            font-size: 19px;
+            font-weight: 400;
+            line-height: 7px;
+            text-align: center;
+            opacity: 0.84;
+            color: #A1A19F;
+        }
+
+        .timertext {
+            width: 42px;
+            height: 42px;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 42px;
+            text-align: center;
+            border-radius: 8px;
+            background: #2D313A;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .timercounttext {
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 0;
+            text-align: center;
+            color: #A1A19F;
+        }
+
+        .starttrial {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 12px 24px 0px #0000000F;
+            background: #4E70D2;
+            border-radius: 50px / 100%;
+            width: calc(100% - 80px);
+            height: 48px;
+            margin-top: 10%;
+            margin-left: 40px;
+            margin-right: 40px;
+            transition: all 0.9s ease;
+        }
+
+        .starttrialtext {
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .canceltext {
+            color: #FFFFFFE5;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 21px;
+            letter-spacing: 0em;
+            text-align: center;
+        }
+
+        .termstext {
+            color: #A1A19F;
+            font-size: 11px;
+            font-weight: 500;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cancelButton" onclick="closePage()"><img src="darkclose.svg"></div>
+    <div class="restoreButton">Restore</div>
+
+    <img class="oval1" src="oval1.svg">
+    <img class="oval2" src="oval2.svg">
+
+    <div class="headingBox">
+        <h1 class="offerHeading">One time offer</h1>
+    </div>
+
+    <span class="offerText">
+        You will never see this again
+    </span>
+
+    <div style="margin-top: 60px;">
+        <img style="width: 100%;" src="saledark.svg">
+    </div>
+
+    <div class="pricebox">
+        <p class="lowestprice">Lowest Price Now!</p>
+        <p class="primary">Only $0.99/month</p>
+        <p class="secondary">$19.99/year(<del>$39.99</del>)</p>
+    </div>
+
+    <p style="margin-top: 30px;" class="canceltext">Time is limited!</p>
+
+    <div class="timer">
+        <div class="timertext" id="hours">00</div>
+        <p>:</p>
+        <div class="timertext" id="minutes">00</div>
+        <p>:</p>
+        <div class="timertext" id="seconds">00</div>
+    </div>
+    <div style="gap:38px; margin-left: -1%;" class="timer">
+        <p class="timercounttext">MIN</p>
+        <p class="timercounttext">SEC</p>
+        <p class="timercounttext">CS</p>
+    </div>
+
+    <div class="starttrial" id="animateButton">
+        <span class="starttrialtext">Claim your limited offer now!</span>
+    </div>
+
+    <p class="termstext"><u>Terms of service</u> and <u>privacy policy</u></p>
+
+    <script>
+        function closePage() {
+            window.close();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const button = document.getElementById('animateButton');
+            let isIncreasing = true;
+
+            setInterval(function () {
+                if (isIncreasing) {
+                    // Increase size
+                    button.style.transform = 'scale(1)';
+                } else {
+                    // Decrease size
+                    button.style.transform = 'scale(1.1)';
+                }
+                // Toggle direction
+                isIncreasing = !isIncreasing;
+            }, 600); // Change the interval duration (in milliseconds) as needed
+        });
+
+
+
+
+        function startTimer(duration) {
+            var timer = duration;
+            setInterval(function () {
+                var hours = Math.floor(timer / 3600);
+                var minutes = Math.floor((timer % 3600) / 60);
+                var seconds = Math.floor(timer % 60);
+
+                document.getElementById("hours").textContent = (hours < 10) ? "0" + hours : hours;
+                document.getElementById("minutes").textContent = (minutes < 10) ? "0" + minutes : minutes;
+                document.getElementById("seconds").textContent = (seconds < 10) ? "0" + seconds : seconds;
+
+                --timer;
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var durationInSeconds = 3600; // Change this to set the timer duration in seconds
+            startTimer(durationInSeconds);
+        };
+    </script>
+</body>
+
+</html>

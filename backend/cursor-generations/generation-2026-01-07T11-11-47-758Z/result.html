@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Upgrade to Premium - WhatsApp Messenger</title>
+    <style>
+        :root {
+            --primary-color: #0BBB22;
+            --secondary-color: #2CD345;
+            --accent-color: #49E762;
+            --bg-color: #EDEFEE;
+            --text-color: #2C3E50;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #0BBB22 0%, #2CD345 100%);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            --border-radius: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            position: relative;
+        }
+
+        /* Decorative Background Elements */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(60px);
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary-color);
+            top: -100px;
+            right: -100px;
+            animation: move-1 20s infinite alternate;
+        }
+
+        .blob-2 {
+            width: 250px;
+            height: 250px;
+            background: var(--accent-color);
+            bottom: 50px;
+            left: -80px;
+            animation: move-2 15s infinite alternate;
+        }
+
+        @keyframes move-1 {
+            from { transform: translate(0, 0); }
+            to { transform: translate(-50px, 100px); }
+        }
+
+        @keyframes move-2 {
+            from { transform: translate(0, 0); }
+            to { transform: translate(30px, -50px); }
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* App Header */
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            margin-top: 20px;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 187, 34, 0.2);
+            margin-bottom: 16px;
+            background-color: white;
+            padding: 0px;
+            object-fit: cover;
+        }
+
+        .app-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0;
+            color: var(--text-color);
+            letter-spacing: -0.5px;
+        }
+
+        .app-tagline {
+            font-size: 15px;
+            color: #666;
+            margin-top: 8px;
+            line-height: 1.4;
+            max-width: 280px;
+        }
+
+        /* Feature List */
+        .features {
+            width: 100%;
+            margin-bottom: 32px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .feature-item:active {
+            transform: scale(0.98);
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 16px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        /* Pricing Tiers */
+        .tiers {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .tier-card {
+            position: relative;
+            width: 100%;
+            padding: 20px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .tier-card.selected {
+            border-color: var(--primary-color);
+            background: #f0fff4;
+            box-shadow: 0 10px 30px rgba(11, 187, 34, 0.15);
+        }
+
+        .tier-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tier-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .tier-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .tier-price {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .tier-desc {
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* Action Buttons */
+        .actions {
+            width: 100%;
+            margin-top: auto;
+            padding-bottom: 40px;
+        }
+
+        .btn-subscribe {
+            width: 100%;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(11, 187, 34, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .btn-subscribe:active {
+            transform: scale(0.96);
+            box-shadow: 0 4px 15px rgba(11, 187, 34, 0.2);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: #999;
+            text-decoration: none;
+        }
+
+        /* Trust indicator */
+        .trust {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            opacity: 0.7;
+        }
+
+        .trust span {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glass Divider */
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 2px;
+            margin: 0 auto 32px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="close-btn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 1L1 13M1 1L13 13" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <div class="container">
+        <div class="header fade-in">
+            <img src="../images/icon.jpg" alt="App Icon" class="app-icon" onerror="this.src='https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/f1/c5/62/f1c56259-e7f6-1533-3039-71a5840e74b0/Placeholder.mill/400x400bb-75.jpg'">
+            <h1 class="app-name">WhatsApp Messenger</h1>
+            <p class="app-tagline">Personalize your wallpaper and chat bubble colors with Chat Themes.</p>
+        </div>
+
+        <div class="divider fade-in delay-1"></div>
+
+        <div class="features fade-in delay-2">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="10" r="10" fill="#0BBB22" fill-opacity="0.1"/>
+                        <path d="M14.6667 6.5L8.25 12.9167L5.33333 10" stroke="#0BBB22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="feature-text">Full access to all themes</div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="10" r="10" fill="#0BBB22" fill-opacity="0.1"/>
+                        <path d="M10 3L11.8541 7.1459L16.4049 7.60845L12.973 10.6416L13.9511 15.1416L10 12.8541L6.04894 15.1416L7.02703 10.6416L3.59513 7.60845L8.1459 7.1459L10 3Z" stroke="#0BBB22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="feature-text">Exclusive Premium features</div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="10" r="10" fill="#0BBB22" fill-opacity="0.1"/>
+                        <path d="M10 6V14M10 6L7 9M10 6L13 9" stroke="#0BBB22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="feature-text">No intrusive advertisements</div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="10" r="10" fill="#0BBB22" fill-opacity="0.1"/>
+                        <path d="M10 5.83333V14.1667M5.83333 10H14.1667" stroke="#0BBB22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="rotate(45 10 10)"/>
+                        <circle cx="10" cy="10" r="6" stroke="#0BBB22" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="feature-text">24/7 Priority support</div>
+            </div>
+        </div>
+
+        <div class="tiers fade-in delay-3">
+            <div class="tier-card" onclick="selectTier(this)" data-price="Monthly">
+                <div class="tier-header">
+                    <span class="tier-name">Monthly</span>
+                    <span class="tier-price">$9.99</span>
+                </div>
+                <div class="tier-desc">Full access to all features</div>
+            </div>
+
+            <div class="tier-card selected" onclick="selectTier(this)" data-price="Annual">
+                <div class="tier-badge">Best Value</div>
+                <div class="tier-header">
+                    <span class="tier-name">Annual</span>
+                    <span class="tier-price">$79.99</span>
+                </div>
+                <div class="tier-desc">Save 33% with our yearly plan</div>
+            </div>
+        </div>
+
+        <div class="actions fade-in delay-4">
+            <button class="btn-subscribe" onclick="handleSubscribe()">Continue</button>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Restore</a>
+            </div>
+            
+            <div class="trust">
+                <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 1L1 3.5V7.5C1 11.23 3.55 14.71 7 15.5C10.45 14.71 13 11.23 13 7.5V3.5L7 1Z" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 8L6.5 9.5L9.5 6.5" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Secured with App Store</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectTier(element) {
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        function handleSubscribe() {
+            const selectedTier = document.querySelector('.tier-card.selected .tier-name').innerText;
+            const price = document.querySelector('.tier-card.selected .tier-price').innerText;
+            
+            // Visual feedback
+            const btn = document.querySelector('.btn-subscribe');
+            const originalText = btn.innerText;
+            btn.innerText = 'Processing...';
+            btn.disabled = true;
+            btn.style.opacity = '0.8';
+
+            setTimeout(() => {
+                alert(`Thank you for choosing the ${selectedTier} plan at ${price}!`);
+                btn.innerText = originalText;
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            }, 1500);
+        }
+
+        // Handle close button
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            if(confirm('Are you sure you want to dismiss? Premium features will be locked.')) {
+                // In a real app, this would dismiss the paywall
+                console.log('Paywall dismissed');
+            }
+        });
+    </script>
+</body>
+</html>

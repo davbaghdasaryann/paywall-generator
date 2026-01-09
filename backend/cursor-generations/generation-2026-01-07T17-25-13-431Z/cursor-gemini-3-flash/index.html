@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>My-Viva Premium</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #3D2C2D;
+            color: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background: #3D2C2D;
+        }
+
+        /* Decorative Elements */
+        .bg-decor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .circle-1 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #E30512 0%, transparent 70%);
+            top: -150px;
+            right: -100px;
+            opacity: 0.3;
+            filter: blur(60px);
+        }
+
+        .circle-2 {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #F66F76 0%, transparent 70%);
+            bottom: 50px;
+            left: -100px;
+            opacity: 0.2;
+            filter: blur(60px);
+        }
+
+        /* Header */
+        .header {
+            padding: 48px 24px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .app-icon-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .app-icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 22px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            object-fit: cover;
+        }
+
+        .app-icon-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 88px;
+            height: 88px;
+            border-radius: 22px;
+            background: #E30512;
+            filter: blur(20px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .app-name {
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.8px;
+            background: linear-gradient(to bottom, #FFFFFF, #FDE3E5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 16px;
+            color: rgba(253, 227, 229, 0.8);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features-grid {
+            padding: 12px 24px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+        }
+
+        .feature-icon-wrapper {
+            width: 32px;
+            height: 32px;
+            background: rgba(227, 5, 18, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 14px;
+            color: #F66F76;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 24px 20px;
+        }
+
+        .pricing-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .pricing-card.selected {
+            background: rgba(227, 5, 18, 0.12);
+            border-color: #E30512;
+            box-shadow: 0 12px 32px rgba(227, 5, 18, 0.25);
+            transform: scale(1.02);
+        }
+
+        .pricing-card:not(.selected):active {
+            transform: scale(0.98);
+        }
+
+        .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #E30512;
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-bottom-left-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .plan-main {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .plan-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .plan-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
+            max-width: 180px;
+        }
+
+        .plan-price-info {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plan-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: #FFFFFF;
+        }
+
+        .plan-period {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8px 24px 32px;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: linear-gradient(135deg, #E30512 0%, #F66F76 100%);
+            color: white;
+            border: none;
+            height: 64px;
+            border-radius: 32px;
+            font-size: 19px;
+            font-weight: 700;
+            box-shadow: 0 12px 28px rgba(227, 5, 18, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            margin-bottom: 16px;
+        }
+
+        .cta-button:active {
+            transform: scale(0.96) translateY(2px);
+            box-shadow: 0 6px 16px rgba(227, 5, 18, 0.3);
+        }
+
+        .legal-row {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .legal-link {
+            color: rgba(255, 255, 255, 0.35);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .legal-link:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .no-commitment {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 500;
+        }
+
+        /* SVG Icons */
+        .svg-icon {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-item {
+            animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.15s; }
+        .delay-3 { animation-delay: 0.2s; }
+        .delay-4 { animation-delay: 0.25s; }
+        .delay-5 { animation-delay: 0.3s; }
+        .delay-6 { animation-delay: 0.4s; }
+
+        /* Custom Radio */
+        .radio-dot {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            margin-right: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .pricing-card.selected .radio-dot {
+            border-color: #E30512;
+        }
+
+        .radio-dot::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #E30512;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .pricing-card.selected .radio-dot::after {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decor">
+        <div class="circle-1"></div>
+        <div class="circle-2"></div>
+    </div>
+
+    <header class="header animate-item">
+        <div class="app-icon-container">
+            <div class="app-icon-glow"></div>
+            <img src="../images/icon.jpg" alt="My-Viva Icon" class="app-icon">
+        </div>
+        <h1 class="app-name">My-Viva</h1>
+        <p class="tagline">Premium Experience Awaits</p>
+    </header>
+
+    <div class="features-grid">
+        <div class="feature-card animate-item delay-1">
+            <div class="feature-icon-wrapper">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <span class="feature-title">Full Access & Premium Features</span>
+            </div>
+        </div>
+        <div class="feature-card animate-item delay-2">
+            <div class="feature-icon-wrapper" style="color: #FDE3E5;">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <span class="feature-title">No Advertisements</span>
+            </div>
+        </div>
+        <div class="feature-card animate-item delay-3">
+            <div class="feature-icon-wrapper">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <span class="feature-title">Priority Support</span>
+            </div>
+        </div>
+        <div class="feature-card animate-item delay-4">
+            <div class="feature-icon-wrapper" style="color: #E30512;">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <span class="feature-title">Exclusive Value Proposition</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="pricing-section">
+        <!-- Monthly Tier -->
+        <div class="pricing-card animate-item delay-5" onclick="selectTier('Monthly')" id="tier-Monthly">
+            <div style="display: flex; align-items: center;">
+                <div class="radio-dot"></div>
+                <div class="plan-main">
+                    <span class="plan-name">Monthly</span>
+                    <span class="plan-desc">Get full access to all features</span>
+                </div>
+            </div>
+            <div class="plan-price-info">
+                <span class="plan-price">$9.99</span>
+                <span class="plan-period">per month</span>
+            </div>
+        </div>
+
+        <!-- Annual Tier -->
+        <div class="pricing-card selected animate-item delay-6" onclick="selectTier('Annual')" id="tier-Annual">
+            <div class="badge">Best Value</div>
+            <div style="display: flex; align-items: center;">
+                <div class="radio-dot"></div>
+                <div class="plan-main">
+                    <span class="plan-name">Annual</span>
+                    <span class="plan-desc">Best value - save 33% with annual plan</span>
+                </div>
+            </div>
+            <div class="plan-price-info">
+                <span class="plan-price">$79.99</span>
+                <span class="plan-period">per year</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-section animate-item" style="animation-delay: 0.5s">
+        <button class="cta-button" id="main-cta">
+            Continue to Premium
+        </button>
+        <span class="no-commitment">Cancel anytime. No hidden fees.</span>
+        
+        <div class="legal-row">
+            <a href="#" class="legal-link">Terms</a>
+            <a href="#" class="legal-link">Privacy</a>
+            <a href="#" class="legal-link">Restore</a>
+        </div>
+    </div>
+
+    <script>
+        let selectedTier = 'Annual';
+
+        function selectTier(tierName) {
+            selectedTier = tierName;
+            
+            // UI Updates
+            document.querySelectorAll('.pricing-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById('tier-' + tierName).classList.add('selected');
+
+            // Feedback
+            if ('vibrate' in navigator) {
+                navigator.vibrate(8);
+            }
+        }
+
+        document.getElementById('main-cta').addEventListener('click', function() {
+            const btn = this;
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Initializing...';
+            btn.style.opacity = '0.9';
+            btn.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                alert('Proceeding with ' + selectedTier + ' subscription.');
+                btn.innerText = originalText;
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

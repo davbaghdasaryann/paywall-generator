@@ -1,0 +1,69 @@
+{
+  "appInfo": {
+    "name": "Private Photo Vault - Pic Safe",
+    "description": "In the last update or the second to last update I am no longer able to open my application. I am on an iPhone 11 Pro running iOS 13.5. I’ve been a long time user and premium subscriber of your application, and I’ve never had issues with compatibility in the past. In most cases when apps are updated and require a newer version of iOS, the software developer will disable updates for devices that don’t need the specified iOS version. I was not given a warning, and I was dumbfounded went out of nowhere my app is unable to open.I’m not sure why this is happening, but if I am no longer able to use this application, I’m going to have to cancel my premium subscription. I’m sure there are other users of your application on lower iOS devices that are also running into this issue. My biggest problem is that I am unable to access my pictures now because I’m unable to open the application. If you could provide me instructions on how to retrieve my photos and videos that are currently locked inside of the application, I would really appreciate it. I’m hoping that this issue is resolved, but in the meantime I would hope you are able to help me retrieve my images and videos.",
+    "category": "General",
+    "developer": "",
+    "price": "Free",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ac/f7/84/acf7845c-b76e-ae0b-14b9-631a9a541d5f/AppIcon-0-0-1x_U007emarketing-0-8-0-0-0-85-220.png/400x400ia-75.jpg",
+    "screenshots": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource115/v4/91/9f/ae/919fae9e-9570-d491-550c-7ffb19eaf5b9/c510408d-be2e-4429-be6c-92cda482f379_iPhone_11_Pro_Max_-_1.jpg/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource115/v4/91/9f/ae/919fae9e-9570-d491-550c-7ffb19eaf5b9/c510408d-be2e-4429-be6c-92cda482f379_iPhone_11_Pro_Max_-_1.jpg/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource115/v4/48/78/d8/4878d873-3c40-d450-1a3e-54dd5f4cbe65/8c9a84bb-12a0-4994-858b-0c95f776c7e9_iPhone_11_Pro_Max_-_2.jpg/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource115/v4/48/78/d8/4878d873-3c40-d450-1a3e-54dd5f4cbe65/8c9a84bb-12a0-4994-858b-0c95f776c7e9_iPhone_11_Pro_Max_-_2.jpg/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource115/v4/00/8d/ed/008ded85-1baf-edbb-d9d5-1f9ab6751ed2/de1ed8fd-b865-4927-b807-d04517ca3c08_iPhone_11_Pro_Max_-_3.jpg/460x996bb.webp"
+    ],
+    "theme": "General",
+    "colorPalette": {
+      "primary": "#919192",
+      "secondary": "#696766",
+      "accent": "#BDAD8A",
+      "background": "#12206F",
+      "text": "#FFFFFF",
+      "gradient": "linear-gradient(135deg, #919192 0%, #696766 100%)",
+      "styles": {
+        "borderRadius": "16px",
+        "buttonStyle": "rounded-full",
+        "cardStyle": "glassmorphism",
+        "spacing": "compact",
+        "layout": "horizontal"
+      }
+    }
+  },
+  "businessModels": {
+    "models": [
+      {
+        "type": "subscription",
+        "name": "Premium Subscription",
+        "tiers": [
+          {
+            "name": "Monthly",
+            "price": "$9.99/month",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support"
+            ],
+            "valueProposition": "Get full access to all features"
+          },
+          {
+            "name": "Annual",
+            "price": "$79.99/year",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support",
+              "Save 33%"
+            ],
+            "valueProposition": "Best value - save 33% with annual plan"
+          }
+        ],
+        "recommended": true
+      }
+    ],
+    "recommendations": "Based on the app category, a subscription model is recommended."
+  },
+  "timestamp": "2026-01-07T10:45:47.925Z"
+}

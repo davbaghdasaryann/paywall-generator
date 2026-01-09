@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Swyped Premium</title>
+    <style>
+        :root {
+            --primary: #4C4F3E;
+            --secondary: #83876D;
+            --accent: #E0F370;
+            --bg-neon: #E1FE47;
+            --text-dark: #2C3E50;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--primary);
+            color: var(--white);
+            line-height: 1.5;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Mobile Container */
+        .app-container {
+            width: 375px;
+            height: 812px;
+            background: linear-gradient(135deg, #4C4F3E 0%, #83876D 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        /* Decorative Elements */
+        .decor-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--bg-neon);
+            top: -100px;
+            right: -100px;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            bottom: -50px;
+            left: -50px;
+        }
+
+        /* Content Wrapper */
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 40px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .content::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .app-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 22px;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 2px solid var(--glass-border);
+        }
+
+        .app-title {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .app-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* Features List */
+        .features {
+            width: 100%;
+            margin-bottom: 32px;
+            text-align: left;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+            padding: 12px 16px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-neon);
+        }
+
+        .feature-text {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Subscription Tiers */
+        .tiers {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .tier-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1.5px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tier-card.selected {
+            border-color: var(--bg-neon);
+            background: rgba(225, 254, 71, 0.1);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(225, 254, 71, 0.15);
+        }
+
+        .tier-info {
+            text-align: left;
+        }
+
+        .tier-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .tier-price {
+            font-size: 15px;
+            opacity: 0.8;
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--bg-neon);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .radio-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .selected .radio-check {
+            border-color: var(--bg-neon);
+            background: var(--bg-neon);
+        }
+
+        .selected .radio-check svg {
+            display: block;
+            color: var(--primary);
+        }
+
+        .radio-check svg {
+            display: none;
+            width: 14px;
+            height: 14px;
+        }
+
+        /* CTA Button */
+        .cta-container {
+            width: 100%;
+            padding: 0 0 20px 0;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: var(--bg-neon);
+            color: var(--primary);
+            border: none;
+            padding: 18px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(225, 254, 71, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 15px rgba(225, 254, 71, 0.2);
+        }
+
+        /* Footer Links */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 12px;
+            opacity: 0.6;
+            margin-top: 10px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Micro-interactions */
+        .tier-card:hover {
+            border-color: rgba(225, 254, 71, 0.5);
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            background: var(--glass);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Background Elements -->
+        <div class="decor-circle circle-1"></div>
+        <div class="decor-circle circle-2"></div>
+
+        <div class="close-btn" onclick="window.history.back()">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 1L1 13M1 1L13 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <div class="content">
+            <header class="header">
+                <img src="../images/icon.jpg" alt="Swyped Icon" class="app-icon" onerror="this.src='https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/65/2b/51/652b510f-066c-7a0c-339a-6f1ee6792180/AppIcon-0-0-1x_U007epad-0-1-0-P3-85-220.png/400x400ia-75.jpg'">
+                <h1 class="app-title">Swyped Premium</h1>
+                <p class="app-subtitle">Level up your dating game instantly</p>
+            </header>
+
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span class="feature-text">AI-Powered Opening Lines</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <span class="feature-text">Unlimited Matches & Chats</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <span class="feature-text">Profile Optimization Hacks</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                    </div>
+                    <span class="feature-text">Ad-Free Experience</span>
+                </div>
+            </div>
+
+            <div class="tiers" id="tierContainer">
+                <div class="tier-card" data-plan="annual" onclick="selectTier(this)">
+                    <div class="badge">Save 33%</div>
+                    <div class="tier-info">
+                        <div class="tier-name">Annual Access</div>
+                        <div class="tier-price">$79.99/year (Best Value)</div>
+                    </div>
+                    <div class="radio-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                </div>
+
+                <div class="tier-card selected" data-plan="monthly" onclick="selectTier(this)">
+                    <div class="tier-info">
+                        <div class="tier-name">Monthly Plan</div>
+                        <div class="tier-price">$9.99/month</div>
+                    </div>
+                    <div class="radio-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-container">
+                <button class="cta-button" onclick="handleContinue()">Start My Trial</button>
+                <div class="footer-links">
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Restore Purchase</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectTier(element) {
+            // Remove selected class from all tiers
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            // Add selected class to clicked tier
+            element.classList.add('selected');
+
+            // Haptic feedback simulation
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(10);
+            }
+        }
+
+        function handleContinue() {
+            const selectedPlan = document.querySelector('.tier-card.selected').getAttribute('data-plan');
+            const button = document.querySelector('.cta-button');
+            
+            // Loading state
+            button.innerText = "Processing...";
+            button.style.opacity = "0.7";
+            button.disabled = true;
+
+            setTimeout(() => {
+                alert(`Successfully subscribed to the ${selectedPlan} plan!`);
+                button.innerText = "Start My Trial";
+                button.style.opacity = "1";
+                button.disabled = false;
+            }, 1500);
+        }
+
+        // Add some subtle parallax on mouse move (for desktop preview)
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 500) {
+                const moveX = (e.clientX - window.innerWidth / 2) / 50;
+                const moveY = (e.clientY - window.innerHeight / 2) / 50;
+                
+                document.querySelector('.circle-1').style.transform = `translate(${moveX}px, ${moveY}px)`;
+                document.querySelector('.circle-2').style.transform = `translate(${-moveX}px, ${-moveY}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

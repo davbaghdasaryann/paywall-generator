@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=402, initial-scale=1.0">
+    <title>Sway AI</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { 
+          width: 100%; 
+          height: 100%; 
+          overflow-x: hidden;
+          margin: 0;
+          padding: 0;
+        }
+        body { 
+          font-family: "SF UI Display", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          background: #ffffff;
+          min-height: 100vh;
+        }
+        .container {
+          width: 402px;
+          max-width: 402px;
+          min-height: 874px;
+          position: relative;
+          background: rgba(1, 1, 1, 1);
+          margin: 0;
+          padding: 0;
+          overflow-x: hidden;
+          overflow-y: hidden;
+        }
+
+        .logo {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 36px;
+            color: rgba(224, 254, 70, 1);
+            text-align: center;
+            z-index: 10;
+            letter-spacing: -0.5px;
+        }
+
+        .bg-icon {
+            position: absolute;
+            top: 102px;
+            left: -68px;
+            width: 539px;
+            height: 539px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .main-icon {
+            position: absolute;
+            top: 150px;
+            left: 99px;
+            width: 205px;
+            height: 421px;
+            z-index: 2;
+        }
+
+        .text-section {
+            position: absolute;
+            top: 591px;
+            left: 40px;
+            right: 40px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .title {
+            font-size: 27px;
+            font-weight: 600;
+            line-height: 32px;
+            color: rgba(255, 255, 255, 1);
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 21px;
+            color: rgba(255, 255, 255, 1);
+            opacity: 0.9;
+        }
+
+        .button-container {
+            position: absolute;
+            top: 763px;
+            left: 20px;
+            width: 362px;
+            height: 57px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .button-container:active {
+            transform: scale(0.98);
+        }
+
+        .button-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: contain;
+        }
+
+        .button-text {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 21px;
+            color: rgba(0, 6, 0, 1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">swyped</div>
+        
+        <img src="../images/icon1.png" alt="" class="bg-icon">
+        <img src="../images/icon3.png" alt="" class="main-icon">
+
+        <div class="text-section">
+            <h1 class="title">Welcome to Sway AI.<br>Get more matches.</h1>
+            <p class="subtitle">Take the first steps towards attracting more matches on Hinge, Bumble, and Tinder.</p>
+        </div>
+
+        <div class="button-container">
+            <img src="../images/icon2.png" alt="" class="button-bg">
+            <span class="button-text">Get Started</span>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.button-container').addEventListener('click', () => {
+            console.log('Get Started clicked');
+        });
+    </script>
+</body>
+</html>

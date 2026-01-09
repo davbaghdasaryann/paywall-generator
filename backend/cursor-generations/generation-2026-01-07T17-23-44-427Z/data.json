@@ -1,0 +1,69 @@
+{
+  "appInfo": {
+    "name": "My-Viva",
+    "description": "After the last update the app is crashing when I trying to enter to \"my cabinet\", I've tried to reinstall the app several times and there is no difference, please fix it.Thank you.",
+    "category": "General",
+    "developer": "",
+    "price": "Free",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/3b/1a/b1/3b1ab1d9-3e1b-494c-9e19-35f35a59977e/Placeholder.mill/400x400bb-75.jpg",
+    "screenshots": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/3b/1a/b1/3b1ab1d9-3e1b-494c-9e19-35f35a59977e/Placeholder.mill/400x400bb-75.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/3b/1a/b1/3b1ab1d9-3e1b-494c-9e19-35f35a59977e/Placeholder.mill/400x400bb-75.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/71/95/80/71958060-8d6a-3028-ece6-6c62cb263c41/6237bb86-d113-404f-94f2-3373ce83fe57_iPhone11_eng_main_12.09.23.jpg/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/71/95/80/71958060-8d6a-3028-ece6-6c62cb263c41/6237bb86-d113-404f-94f2-3373ce83fe57_iPhone11_eng_main_12.09.23.jpg/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/67/7e/24/677e2402-17a5-b941-c4a1-7b559f24e674/0b8f7fd5-9603-4531-b716-c848503e53bb_2.jpg/460x996bb.webp"
+    ],
+    "theme": "General",
+    "colorPalette": {
+      "primary": "#E30512",
+      "secondary": "#F4545B",
+      "accent": "#FEE5E7",
+      "background": "#3D2C2D",
+      "text": "#FFFFFF",
+      "gradient": "linear-gradient(135deg, #E30512 0%, #F4545B 100%)",
+      "styles": {
+        "borderRadius": "16px",
+        "buttonStyle": "rounded-full",
+        "cardStyle": "glassmorphism",
+        "spacing": "compact",
+        "layout": "horizontal"
+      }
+    }
+  },
+  "businessModels": {
+    "models": [
+      {
+        "type": "subscription",
+        "name": "Premium Subscription",
+        "tiers": [
+          {
+            "name": "Monthly",
+            "price": "$9.99/month",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support"
+            ],
+            "valueProposition": "Get full access to all features"
+          },
+          {
+            "name": "Annual",
+            "price": "$79.99/year",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support",
+              "Save 33%"
+            ],
+            "valueProposition": "Best value - save 33% with annual plan"
+          }
+        ],
+        "recommended": true
+      }
+    ],
+    "recommendations": "Based on the app category, a subscription model is recommended."
+  },
+  "timestamp": "2026-01-07T17:23:44.806Z"
+}

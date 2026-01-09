@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kinodaran Premium</title>
+    <style>
+        :root {
+            --primary-color: #F4D202;
+            --bg-color: #2A291E;
+            --accent-color: #42433D;
+            --secondary-color: #7E8187;
+            --text-color: #FFFFFF;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Decorative Background Elements */
+        .bg-decor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(60px);
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .blob-1 {
+            width: 250px;
+            height: 250px;
+            background: var(--primary-color);
+            top: -50px;
+            right: -50px;
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary-color);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .container {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        /* Header */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .hero {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .icon-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .app-icon {
+            width: 84px;
+            height: 84px;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .icon-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: var(--primary-color);
+            filter: blur(25px);
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .app-name {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to bottom, #FFFFFF 50%, #BDBDBD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .premium-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--bg-color);
+            font-size: 10px;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 16px;
+            color: var(--secondary-color);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        /* Features List */
+        .features-card {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-icon-wrapper {
+            width: 26px;
+            height: 26px;
+            background: rgba(244, 210, 2, 0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+
+        .feature-text-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        /* Pricing Tiers */
+        .pricing-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .tier-card {
+            width: 100%;
+            padding: 20px;
+            background: var(--card-bg);
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .tier-card.selected {
+            background: rgba(244, 210, 2, 0.08);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px rgba(244, 210, 2, 0.1);
+        }
+
+        .tier-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tier-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .tier-vprop {
+            font-size: 13px;
+            color: var(--secondary-color);
+            margin-top: 2px;
+        }
+
+        .tier-pricing-info {
+            text-align: right;
+        }
+
+        .tier-price {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .savings-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--primary-color);
+            color: var(--bg-color);
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .selection-indicator {
+            width: 22px;
+            height: 22px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .tier-card.selected .selection-indicator {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+        }
+
+        .tier-card.selected .selection-indicator::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--bg-color);
+            border-radius: 50%;
+        }
+
+        /* Action */
+        .cta-container {
+            width: 100%;
+            margin-top: auto;
+            padding-bottom: 20px;
+        }
+
+        .subscribe-button {
+            width: 100%;
+            height: 64px;
+            background: var(--primary-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 32px;
+            font-size: 19px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(244, 210, 2, 0.25);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .subscribe-button:active {
+            transform: scale(0.97);
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        /* Icon Styles */
+        svg.check { stroke-dasharray: 20; stroke-dashoffset: 20; animation: drawCheck 0.5s 0.8s ease forwards; }
+        @keyframes drawCheck { to { stroke-dashoffset: 0; } }
+
+    </style>
+</head>
+<body>
+    <div class="bg-decor">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="close-btn">
+        <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+            <path d="M13 1L1 13M1 1L13 13" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <div class="container">
+        <header class="hero animate">
+            <div class="icon-container">
+                <div class="icon-glow"></div>
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e9/83/c1/e983c165-be67-9ab6-5168-2d968f714e2f/Placeholder.mill/400x400bb-75.jpg" alt="Kinodaran" class="app-icon">
+            </div>
+            <h1 class="app-name">Kinodaran<span class="premium-badge">PRO</span></h1>
+            <p class="tagline">The Best of Armenian Cinema</p>
+        </header>
+
+        <section class="features-card animate delay-1">
+            <div class="feature-item">
+                <div class="feature-icon-wrapper">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <div class="feature-text-content">
+                    <span class="feature-title">Unlimited Access</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon-wrapper">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </div>
+                <div class="feature-text-content">
+                    <span class="feature-title">Exclusive Premium Features</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon-wrapper">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <div class="feature-text-content">
+                    <span class="feature-title">No Ads, No Interruptions</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon-wrapper">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <div class="feature-text-content">
+                    <span class="feature-title">24/7 Priority Support</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing-section animate delay-2">
+            <!-- Monthly -->
+            <div class="tier-card" onclick="selectTier(this, 'Monthly')">
+                <div class="tier-info">
+                    <span class="tier-name">Monthly</span>
+                    <span class="tier-vprop">Full access to all features</span>
+                </div>
+                <div class="tier-pricing-info">
+                    <div class="tier-price">$9.99</div>
+                    <div class="tier-vprop">per month</div>
+                </div>
+                <div class="selection-indicator"></div>
+            </div>
+
+            <!-- Annual -->
+            <div class="tier-card selected" onclick="selectTier(this, 'Annual')">
+                <div class="savings-badge">BEST VALUE</div>
+                <div class="tier-info">
+                    <span class="tier-name">Annual</span>
+                    <span class="tier-vprop">Save 33% on premium</span>
+                </div>
+                <div class="tier-pricing-info">
+                    <div class="tier-price">$79.99</div>
+                    <div class="tier-vprop">per year</div>
+                </div>
+                <div class="selection-indicator"></div>
+            </div>
+        </section>
+
+        <div class="cta-container animate delay-3">
+            <button class="subscribe-button" onclick="subscribe()">
+                <span>Get Premium</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+            <nav class="footer-nav">
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Restore</a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        let currentTier = 'Annual';
+
+        function selectTier(element, name) {
+            document.querySelectorAll('.tier-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            currentTier = name;
+        }
+
+        function subscribe() {
+            const btn = document.querySelector('.subscribe-button');
+            const originalContent = btn.innerHTML;
+            
+            btn.style.pointerEvents = 'none';
+            btn.innerHTML = `
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="animation: spin 1s linear infinite">
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                </svg>
+            `;
+
+            setTimeout(() => {
+                alert('Success! You are now subscribed to the ' + currentTier + ' plan.');
+                btn.innerHTML = originalContent;
+                btn.style.pointerEvents = 'auto';
+            }, 1500);
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

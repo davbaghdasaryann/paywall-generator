@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1D212B;
+            color: #fff;
+            font-family: 'Red Hat Display', sans-serif;
+            position: relative;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .oval1,
+        .oval2 {
+            position: fixed;
+            z-index: -1;
+        }
+
+        .oval1 {
+            top: 0;
+            left: 0;
+        }
+
+        .oval2 {
+            right: 0;
+            bottom: 0;
+        }
+
+        .cancelButton {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            cursor: pointer;
+        }
+
+        .headingBox {
+            margin-top: 8vh;
+            margin-left: 5%;
+            text-align: left;
+            justify-content: left;
+            align-items: center;
+            display: flex;
+        }
+
+        .first-line,
+        .second-line {
+            display: block;
+            text-align: left;
+        }
+
+        .offerHeading {
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 12px;
+            text-align: left;
+        }
+
+        .offerText {
+            margin-left: 5%;
+            text-align: left;
+            justify-content: left;
+            display: flex;
+            color: #FFFFFFE5;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 14px;
+        }
+
+        .pricebox {
+            background: #FFFFFF0A;
+            height: 72px;
+            width: 100%;
+            border: 2px solid #6E7285;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .box-active {
+            background: #4E70D242;
+            border: 2px solid #4E70D2;
+        }
+
+        .priceboxtext {
+            margin: 12px;
+        }
+
+
+        .yearlyplan {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 0px;
+            text-align: left;
+        }
+
+        .yearlyplanfirstprice {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 0px;
+            text-align: left;
+        }
+
+        .yearlyplansecondprice {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 16px;
+            text-align: left;
+        }
+
+        .pricecontainer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .weektrial {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 14px;
+            text-align: left;
+        }
+
+        .aslowtext {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 14px;
+            text-align: right;
+            opacity: 0.6;
+        }
+
+        .starttrial {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 12px 24px 0px #0000000F;
+            background: #4E70D2;
+            border-radius: 50px / 100%;
+            width: calc(100% - 80px);
+            height: 48px;
+            margin-top: 8%;
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+
+        .gotit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 12px 24px 0px #0000000F;
+            background: #4E70D2;
+            border-radius: 50px / 100%;
+            width: calc(100% - 40px);
+            height: 48px;
+            margin-top: 8%;
+            margin-bottom: 5%;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .starttrialtext {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .trialicon {
+            margin: 10px;
+        }
+
+        .d-flex {
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            gap: 10px;
+        }
+
+        .center-vertical {
+            align-items: center;
+        }
+
+        .progress {
+            margin-left: 35px;
+        }
+
+        .progress .content {
+            margin-top: 15px;
+            margin-left: 2px;
+        }
+
+        .progress h2 {
+            text-align: left;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 20px;
+            margin-bottom: 6px;
+            margin-top: 10px;
+        }
+
+        .progress p {
+            text-align: left;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 19px;
+            opacity: 0.6;
+            margin-top: 5px;
+            max-width: 232px;
+        }
+
+        .progress .button {
+            width: 252px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+            line-height: 18px;
+            font-weight: 600;
+            border: 1px solid #4E70D2;
+            background-color: #4E70D242;
+            border-radius: 20px;
+        }
+
+        .activate {
+            margin-top: 28px;
+        }
+
+        .activate p {
+            font-size: 16px;
+            line-height: 10px;
+            font-weight: 700;
+            text-align: Center;
+        }
+
+        .cancel {
+            font-size: 14px;
+            text-align: Center;
+            font-weight: 400;
+            opacity: 0.6;
+            max-width: 296px;
+            margin: auto;
+            margin-top: 8%;
+        }
+
+        .popup-container {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2D313A;
+            border-radius: 20px 20px 0 0;
+            z-index: 999;
+        }
+
+        .popup-content {
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+
+        .popup-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .popup-content .benefit {
+            font-size: 18px;
+            /* margin-bottom: 10%; */
+            font-weight: 700;
+            margin: 6px 0 12px 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 600px) {
+            .popup-container {
+                display: block;
+                animation: slideIn 0.5s forwards;
+            }
+
+            @keyframes slideIn {
+                from {
+                    transform: translateY(100%);
+                }
+
+                to {
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes slideOut {
+                from {
+                    transform: translateY(0);
+                }
+
+                to {
+                    transform: translateY(100%);
+                }
+            }
+        }
+
+        .photovault {
+            width: 343px;
+            height: 127px;
+            left: calc(50% - 343px/2);
+
+            background: #21252F;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cancelButton" onclick="closePage()"><img src="darkclose.svg"></div>
+
+
+    <div style="display: none;" class="popup-container" id="popupContainer1">
+        <div class="popup-content">
+            <img src="darkclose.svg" class="popup-close" onclick="closePopup1()">
+            <h2>What is PhotoVault?</h2>
+            <img src="photovault.svg" class="photovault">
+            <h3>Go Premium and get access to:</h3>
+            <div class="d-flex center-vertical">
+                <div><img src="1.svg"></div>
+                <h6 class="benefit">Create Unlimited Photo Albums</h6>
+            </div>
+            <div class="d-flex center-vertical">
+                <div><img src="2.svg"></div>
+                <h6 class="benefit">Completely Ad Free Experience</h6>
+            </div>
+            <div class="d-flex center-vertical">
+                <div><img src="3.svg"></div>
+                <h6 class="benefit">Claud Vault</h6>
+                <div><img src="new.svg"></div>
+            </div>
+            <div class="d-flex center-vertical">
+                <div><img src="4.svg"></div>
+                <h6 class="benefit">Face Down Lock</h6>
+                <div><img src="new.svg"></div>
+            </div>
+            <div class="d-flex center-vertical">
+                <div><img src="5.svg"></div>
+                <h6 class="benefit">Break-in Report: Photo & GPS</h6>
+            </div>
+            <div class="d-flex center-vertical">
+                <div><img src="6.svg"></div>
+                <h6 class="benefit">10+ Other Features</h6>
+            </div>
+            <div class="gotit" onclick="closePopup1()">
+                <span class="starttrialtext">Got it</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: none;" class="popup-container" id="popupContainer2">
+        <div class="popup-content">
+            <img src="darkclose.svg" class="popup-close" onclick="closePopup2()">
+            <div id="firstoption" class="pricebox box-active" style="margin-top: 15%;" onclick="swapactive('first')">
+                <div class="priceboxtext">
+                    <div class="pricecontainer">
+                        <div class="left">
+                            <p class="yearlyplan">Yearly</p>
+                            <p class="weektrial">$59.99</p>
+                        </div>
+                        <div class="right">
+                            <p class="yearlyplanfirstprice">only $4.99/month</p>
+                            <p class="aslowtext">Free for 1 week</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="secondoption" class="pricebox" style="margin-top: 5%;" onclick="swapactive('second')">
+                <div class="priceboxtext">
+                    <div class="pricecontainer">
+                        <div class="left">
+                            <p class="yearlyplan">Monthly</p>
+                            <p class="weektrial">$19.99</p>
+                        </div>
+                        <div class="right">
+                            <p style="line-height: 16px;" class="yearlyplanfirstprice">Only $0.16/day</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gotit">
+                <span class="starttrialtext" id="claimtext">Continue</span>
+            </div>
+        </div>
+    </div>
+
+    <img class="oval1" src="oval1.svg">
+    <img class="oval2" src="oval2.svg">
+
+    <div class="headingBox">
+        <div class="trialicon">
+            <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.1"
+                    d="M45.1839 37.3964C43.6782 41.4758 41.4011 45.0228 38.415 47.9379C35.016 51.2559 30.5652 53.8924 25.1861 55.7731C25.0096 55.8347 24.8254 55.8851 24.6404 55.9222C24.3959 55.9705 24.1472 55.9966 23.9006 56H23.8523C23.5894 56 23.3253 55.9735 23.0633 55.9222C22.8783 55.8851 22.6966 55.8347 22.521 55.7744C17.1355 53.8967 12.6792 51.2614 9.27678 47.9434C6.28937 45.0283 4.01269 41.4834 2.50916 37.4041C-0.224819 29.9871 -0.0692516 21.8164 0.0559718 15.2505L0.0581087 15.1497C0.0833244 14.6075 0.0995649 14.038 0.10854 13.4091C0.15427 10.3214 2.61002 7.76688 5.69915 7.5947C12.1398 7.23539 17.1223 5.13547 21.3794 0.987336L21.4166 0.953157C22.1235 0.305024 23.0142 -0.0128473 23.9006 0.000397349C24.7553 0.0115058 25.6067 0.32895 26.2884 0.953157L26.3247 0.987336C30.5827 5.13547 35.5652 7.23539 42.0058 7.5947C45.095 7.76688 47.5507 10.3214 47.5965 13.4091C47.6054 14.0423 47.6217 14.6109 47.6469 15.1497L47.6482 15.1924C47.773 21.7707 47.9277 29.9576 45.1839 37.3964Z"
+                    fill="white" />
+                <path opacity="0.2"
+                    d="M41.1669 36.0091C39.9448 39.3279 38.0965 42.2136 35.6727 44.5853C32.9138 47.2847 29.3011 49.4297 24.935 50.9598C24.7917 51.0099 24.6422 51.0509 24.492 51.0812C24.2936 51.1204 24.0917 51.1416 23.8915 51.1444H23.8523C23.639 51.1444 23.4246 51.1229 23.2119 51.0812C23.0617 51.0509 22.9143 51.0099 22.7717 50.9609C18.4004 49.4332 14.7832 47.2892 12.0216 44.5898C9.59671 42.2182 7.74875 39.3342 6.52835 36.0153C4.30922 29.9811 4.43549 23.3337 4.53713 17.9918L4.53887 17.9098C4.55933 17.4687 4.57251 17.0053 4.5798 16.4937C4.61692 13.9816 6.61022 11.9033 9.11763 11.7633C14.3455 11.4709 18.3896 9.7625 21.8451 6.3877L21.8753 6.35989C22.4491 5.83259 23.172 5.57397 23.8915 5.58475C24.5853 5.59379 25.2764 5.85205 25.8297 6.35989L25.8591 6.3877C29.3153 9.7625 33.3595 11.4709 38.5874 11.7633C41.0948 11.9033 43.0881 13.9816 43.1252 16.4937C43.1325 17.0088 43.1457 17.4715 43.1661 17.9098L43.1672 17.9445C43.2685 23.2965 43.394 29.9571 41.1669 36.0091Z"
+                    fill="white" />
+                <path
+                    d="M37.5079 34.0126C36.547 36.6229 35.0939 38.8926 33.1883 40.7579C31.0192 42.8811 28.1789 44.5681 24.7462 45.7716C24.6336 45.811 24.516 45.8432 24.3979 45.867C24.2419 45.8979 24.0832 45.9146 23.9258 45.9168H23.895C23.7272 45.9168 23.5587 45.8998 23.3915 45.867C23.2734 45.8432 23.1575 45.811 23.0454 45.7724C19.6086 44.5709 16.7648 42.8846 14.5935 40.7615C12.6871 38.8961 11.2342 36.6278 10.2747 34.0175C8.52999 29.2714 8.62927 24.0431 8.70918 19.8416L8.71054 19.7771C8.72664 19.4302 8.737 19.0658 8.74273 18.6633C8.77191 16.6875 10.3391 15.0529 12.3104 14.9428C16.4206 14.7129 19.6002 13.3691 22.3169 10.7148L22.3406 10.6929C22.7918 10.2782 23.3601 10.0748 23.9258 10.0833C24.4713 10.0904 25.0146 10.2935 25.4496 10.6929L25.4728 10.7148C28.1901 13.3691 31.3696 14.7129 35.4798 14.9428C37.4512 15.0529 39.0183 16.6875 39.0475 18.6633C39.0532 19.0685 39.0636 19.4324 39.0797 19.7771L39.0805 19.8045C39.1601 24.0139 39.2589 29.2526 37.5079 34.0126Z"
+                    fill="white" />
+                <g clip-path="url(#clip0_1_408)">
+                    <path
+                        d="M30.4159 20.3002H28.7978C28.7662 19.6617 28.2377 19.1561 27.5925 19.1561H20.1026C19.4574 19.1561 18.9289 19.6617 18.8972 20.3002H17.2791C16.623 20.3002 16.0893 20.8404 16.0893 21.5045V24.5738C16.0893 25.0084 16.3005 25.5265 16.6028 25.8338L17.4446 26.6892C17.7503 26.9999 18.2687 27.2169 18.7051 27.2169H18.8932V27.6342C18.8932 28.2443 19.2914 28.9872 19.7983 29.3256L22.3893 31.0501L22.0184 33.3015H20.3189C20.0551 33.3015 19.803 33.4986 19.7324 33.7531L19.0395 36.253C18.999 36.3991 19.0249 36.5474 19.1107 36.6604C19.1965 36.7734 19.3325 36.8379 19.4839 36.8379H28.2111C28.3625 36.8379 28.4985 36.7747 28.5844 36.6617C28.6701 36.5486 28.6961 36.4008 28.6556 36.2547L27.9627 33.7526C27.8921 33.4981 27.6399 33.3015 27.3762 33.3015H25.6766L25.305 31.0502L27.9012 29.3231C28.408 28.9847 28.8107 28.2443 28.8107 27.6343V27.2169H28.9899C29.4277 27.2169 29.947 26.9999 30.2521 26.6899L31.0968 25.8337C31.4017 25.5238 31.6146 25.0057 31.6146 24.5738V21.5045C31.6145 20.8404 31.0769 20.3002 30.4159 20.3002ZM18.8932 25.6567H18.712C18.6693 25.6512 18.5829 25.6152 18.5488 25.5888L17.7171 24.7436C17.6894 24.7071 17.652 24.6137 17.647 24.5683V21.8604H18.8931V25.6567H18.8932ZM26.5002 24.1974L25.3253 25.0586C25.1404 25.1931 25.0469 25.4842 25.1176 25.7019L25.5662 27.0868C25.6369 27.3045 25.5434 27.3732 25.3585 27.2387L24.1837 26.3841C23.9989 26.2497 23.6964 26.2498 23.5116 26.3843L22.3364 27.2394C22.1515 27.3739 22.0581 27.3059 22.1287 27.0883L22.5775 25.7049C22.6481 25.4873 22.5547 25.1992 22.3698 25.0647L21.1948 24.1974C21.0099 24.0629 21.0456 23.9405 21.2741 23.9405H22.7264C22.9549 23.9405 23.1996 23.7748 23.2702 23.5572L23.7192 22.1799C23.7898 21.9623 23.9053 21.9654 23.976 22.183L24.4246 23.5556C24.4952 23.7733 24.7399 23.9405 24.9684 23.9405H26.4208C26.6494 23.9406 26.685 24.0629 26.5002 24.1974ZM30.0568 24.5667C30.0509 24.6127 30.0118 24.7063 29.9832 24.7427L29.1489 25.5884C29.1141 25.615 29.0266 25.6512 28.9832 25.6567H28.8107V21.8604H30.0568V24.5667Z"
+                        fill="#D79A65" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_1_408">
+                        <rect width="17.6541" height="17.6818" fill="white" transform="translate(15.0249 19.1561)" />
+                    </clipPath>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="multiline-text">
+            <h1 class="first-line offerHeading">How your free trial</h1>
+            <h1 class="second-line offerHeading">works</h1>
+        </div>
+    </div>
+
+    <div class="d-flex progress">
+        <img src="progress.svg">
+        <div class="content">
+            <div>
+                <h2>Now</h2>
+                <p>Unlock unlimited access to Private Photo Vault and never
+                    worry about anyone
+                    seeing your private
+                    photos again</p>
+            </div>
+            <div>
+                <h2>In 5 Days</h2>
+                <p>Get a reminder when your trial period is about to end.
+                </p>
+                <div onclick="openPopup1()" class="button">See What's Included in Premium</div>
+            </div>
+            <div>
+                <h2>In 7 Days</h2>
+                <p>You’ll be charged on this day. Cancel anytime before,
+                    hassle free.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="activate">
+        <p>7 days FREE and then $59.99/year</p>
+        <p>($4.99 per month)</p>
+        <div class="starttrial">
+            <span class="starttrialtext" id="claimtext">Start Free Trial</span>
+        </div>
+        <p style="text-decoration: underline" onclick="openPopup2()">View all plans</p>
+    </div>
+
+    <p class="cancel">Cancel anytime before your trial ends. You will only be charged after 7 days</p>
+
+
+    <script>
+        function closePage() {
+            window.close();
+        }
+
+        function openPopup1() {
+            var popup = document.getElementById('popupContainer1');
+            popup.style.display = 'block';
+            popup.style.animation = 'slideIn 0.5s forwards';
+        }
+
+        function closePopup1() {
+            var popup = document.getElementById('popupContainer1');
+            popup.style.animation = 'slideOut 0.5s forwards';
+            setTimeout(function () {
+                popup.style.display = 'none';
+            }, 500); // Wait for animation to finish before hiding
+        }
+
+        function openPopup2() {
+            var popup = document.getElementById('popupContainer2');
+            popup.style.display = 'block';
+            popup.style.animation = 'slideIn 0.5s forwards';
+        }
+
+        function closePopup2() {
+            var popup = document.getElementById('popupContainer2');
+            popup.style.animation = 'slideOut 0.5s forwards';
+            setTimeout(function () {
+                popup.style.display = 'none';
+            }, 500); // Wait for animation to finish before hiding
+        }
+
+        function swapactive(option) {
+            if (option == "first") {
+                document.getElementById('firstoption').classList.add('box-active')
+                document.getElementById('secondoption').classList.remove('box-active')
+            }
+            else {
+                document.getElementById('firstoption').classList.remove('box-active')
+                document.getElementById('secondoption').classList.add('box-active')
+            }
+        }
+    </script>
+</body>
+
+</html>

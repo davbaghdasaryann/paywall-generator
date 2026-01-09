@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Coding game: Python Java Learn - Premium</title>
+    <style>
+        :root {
+            --primary: #2A45C0;
+            --secondary: #EEB84A;
+            --background: #1C2239;
+            --accent: #EDEDED;
+            --text: #FFFFFF;
+            --gradient: linear-gradient(135deg, #2A45C0 0%, #EEB84A 100%);
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(42, 69, 192, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(238, 184, 74, 0.15) 0%, transparent 40%);
+        }
+
+        .phone-container {
+            width: 375px;
+            height: 812px;
+            background-color: var(--background);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Decorative Background Elements */
+        .decor-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        .decor-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: -100px;
+            right: -100px;
+            opacity: 0.3;
+        }
+
+        .decor-2 {
+            width: 250px;
+            height: 250px;
+            background: var(--secondary);
+            bottom: -50px;
+            left: -100px;
+            opacity: 0.2;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            background: var(--glass);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.2s;
+        }
+
+        .close-btn:active { transform: scale(0.9); }
+
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .app-icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 22px;
+            margin-bottom: 16px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+            border: 1px solid var(--glass-border);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        .features-list {
+            margin-bottom: 32px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            animation: slideIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .pricing-section {
+            margin-top: auto;
+        }
+
+        .tier-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .tier-card.selected {
+            border-color: var(--secondary);
+            background: rgba(238, 184, 74, 0.1);
+            transform: scale(1.02);
+        }
+
+        .tier-card.recommended {
+            overflow: hidden;
+        }
+
+        .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--secondary);
+            color: var(--background);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-bottom-left-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .tier-info h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .tier-info p {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .tier-price {
+            text-align: right;
+        }
+
+        .price-main {
+            font-size: 20px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .cta-button {
+            width: 100%;
+            height: 60px;
+            background: var(--gradient);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(42, 69, 192, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+            box-shadow: 0 5px 10px rgba(42, 69, 192, 0.3);
+        }
+
+        footer {
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-around;
+            opacity: 0.5;
+            font-size: 12px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Responsive adjustments for desktop viewing */
+        @media (max-width: 400px) {
+            body { background: var(--background); }
+            .phone-container { width: 100%; height: 100vh; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="decor-circle decor-1"></div>
+        <div class="decor-circle decor-2"></div>
+
+        <div class="content">
+            <div class="close-btn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 1L13 13M1 13L13 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <header>
+                <img src="../images/icon.jpg" alt="Coding game icon" class="app-icon" onerror="this.src='https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/46/c6/5d/46c65d34-fd0d-b843-58d5-2b7896ca0009/AppIcon-0-0-1x_U007ephone-0-0-sRGB-85-220.png/400x400ia-75.jpg'">
+                <h1>Level Up Your<br>Coding Skills</h1>
+                <p class="subtitle">Master Python, Java & more</p>
+            </header>
+
+            <div class="features-list">
+                <div class="feature-item" style="animation-delay: 0.1s">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2.5">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="var(--secondary)"/>
+                        </svg>
+                    </div>
+                    <span class="feature-text">Unlimited access to all languages</span>
+                </div>
+                <div class="feature-item" style="animation-delay: 0.2s">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <span class="feature-text">Interactive hands-on challenges</span>
+                </div>
+                <div class="feature-item" style="animation-delay: 0.3s">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2.5">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="var(--secondary)"/>
+                        </svg>
+                    </div>
+                    <span class="feature-text">Offline learning mode</span>
+                </div>
+                <div class="feature-item" style="animation-delay: 0.4s">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <span class="feature-text">No ads & Priority support</span>
+                </div>
+                <div class="feature-item" style="animation-delay: 0.5s">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2.5">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                        </svg>
+                    </div>
+                    <span class="feature-text">Expert-verified certificates</span>
+                </div>
+            </div>
+
+            <div class="pricing-section">
+                <div class="tier-card" onclick="selectTier(this)" data-price="Monthly">
+                    <div class="tier-info">
+                        <h3>Monthly</h3>
+                        <p>Flexible, cancel anytime</p>
+                    </div>
+                    <div class="tier-price">
+                        <span class="price-main">$9.99</span>
+                        <p>/ month</p>
+                    </div>
+                </div>
+
+                <div class="tier-card selected recommended" onclick="selectTier(this)" data-price="Annual">
+                    <div class="badge">Best Value</div>
+                    <div class="tier-info">
+                        <h3>Annual</h3>
+                        <p>Full year of learning</p>
+                    </div>
+                    <div class="tier-price">
+                        <span class="price-main">$79.99</span>
+                        <p>/ year</p>
+                    </div>
+                </div>
+
+                <button class="cta-button" onclick="handleSubscribe()">Continue</button>
+            </div>
+
+            <footer>
+                <a href="#">Restore</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Privacy Policy</a>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function selectTier(element) {
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            // Haptic feedback simulation
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(10);
+            }
+        }
+
+        function handleSubscribe() {
+            const selected = document.querySelector('.tier-card.selected');
+            const tier = selected.getAttribute('data-price');
+            const button = document.querySelector('.cta-button');
+            
+            button.innerText = 'Processing...';
+            button.style.opacity = '0.8';
+            button.disabled = true;
+
+            setTimeout(() => {
+                alert(`Thank you for subscribing to the ${tier} plan!`);
+                button.innerText = 'Continue';
+                button.style.opacity = '1';
+                button.disabled = false;
+            }, 1500);
+        }
+
+        // Add some interaction when clicking items
+        document.querySelectorAll('.feature-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.transform = 'scale(1.05)';
+                setTimeout(() => item.style.transform = 'scale(1)', 200);
+            });
+        });
+    </script>
+</body>
+</html>

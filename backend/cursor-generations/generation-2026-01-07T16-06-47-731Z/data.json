@@ -1,0 +1,69 @@
+{
+  "appInfo": {
+    "name": "gg - Transportation Service",
+    "description": "1. Make an opportunity to plan a ride (e.g. I order taxi each morning at the same time. Would be nice if app reminds me (in case I miss the time)2. Are there any system of categorizing loyal customers? (Don’t bean bonuses or free rides. Simply to be verified and considered as good customer). 3. Might be a good option to have an opportunity to block a driver that picks the order and after 4-5 minutes just decides to cancel. After it whole info about him just disappears. So might be useful to give us an option to pick between “call the driver and check up why he canceled” and “delete the info  and never show him your orders”.",
+    "category": "General",
+    "developer": "",
+    "price": "Free",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/3c/c1/af/3cc1af35-4ab4-f810-4b36-112c5d1371c9/AppIcon-0-0-1x_U007epad-0-11-0-85-220.png/400x400ia-75.jpg",
+    "screenshots": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/50/bd/f9/50bdf908-7a6d-655d-3b62-de436cb444e1/1Home.png/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/50/bd/f9/50bdf908-7a6d-655d-3b62-de436cb444e1/1Home.png/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/3b/de/d7/3bded76c-508f-67c8-ca78-1a9f1b8e94cc/1New_3DMap.png/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/3b/de/d7/3bded76c-508f-67c8-ca78-1a9f1b8e94cc/1New_3DMap.png/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f6/fa/63/f6fa63c0-7b54-f74e-f35d-a384ba040475/Tariff.png/460x996bb.webp"
+    ],
+    "theme": "General",
+    "colorPalette": {
+      "primary": "#D6D6D6",
+      "secondary": "#6F6F6F",
+      "accent": "#262626",
+      "background": "#EDF0F7",
+      "text": "#2C3E50",
+      "gradient": "linear-gradient(135deg, #D6D6D6 0%, #6F6F6F 100%)",
+      "styles": {
+        "borderRadius": "16px",
+        "buttonStyle": "rounded-full",
+        "cardStyle": "glassmorphism",
+        "spacing": "compact",
+        "layout": "horizontal"
+      }
+    }
+  },
+  "businessModels": {
+    "models": [
+      {
+        "type": "subscription",
+        "name": "Premium Subscription",
+        "tiers": [
+          {
+            "name": "Monthly",
+            "price": "$9.99/month",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support"
+            ],
+            "valueProposition": "Get full access to all features"
+          },
+          {
+            "name": "Annual",
+            "price": "$79.99/year",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support",
+              "Save 33%"
+            ],
+            "valueProposition": "Best value - save 33% with annual plan"
+          }
+        ],
+        "recommended": true
+      }
+    ],
+    "recommendations": "Based on the app category, a subscription model is recommended."
+  },
+  "timestamp": "2026-01-07T16:06:48.959Z"
+}

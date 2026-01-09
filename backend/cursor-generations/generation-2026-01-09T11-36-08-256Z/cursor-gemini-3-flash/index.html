@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>66-Day Life Reset Paywall</title>
+    <style>
+        /* Design Tokens */
+        :root {
+            --color-black: rgba(13, 13, 13, 1);
+            --color-white: rgba(255, 255, 255, 1);
+            --color-purple: rgba(125, 71, 255, 1);
+            
+            --font-main: "Test Söhne", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-alt: "SF Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--color-black);
+            color: var(--color-white);
+            font-family: var(--font-main);
+            width: 375px;
+            margin: 0 auto;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .main-container {
+            width: 375px;
+            height: 2364px;
+            position: relative;
+            background-color: var(--color-black);
+        }
+
+        /* Hero Section */
+        .hero-title {
+            position: absolute;
+            top: 64px;
+            left: 20px;
+            right: 20px;
+            font-size: 26px;
+            font-weight: 600;
+            line-height: 34px;
+            text-align: center;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 195px; /* Scaled from 204 */
+            height: 215px; /* Scaled from 225 */
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .pagination-dots {
+            position: absolute;
+            top: 410px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+        }
+
+        /* Features Section */
+        .what-you-get {
+            position: absolute;
+            top: 480px;
+            left: 32px;
+            font-size: 20px;
+            font-weight: 900;
+            line-height: 26px;
+            text-transform: uppercase;
+        }
+
+        .features-list {
+            position: absolute;
+            top: 530px;
+            left: 32px;
+            right: 32px;
+            list-style: none;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 18px;
+        }
+
+        .feature-item.sf-pro {
+            font-family: var(--font-alt);
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 16px;
+            background-color: var(--color-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .check-icon::after {
+            content: "";
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            margin-top: -2px;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            position: absolute;
+            top: 850px;
+            left: 20px;
+            right: 20px;
+            text-align: center;
+        }
+
+        .reviews-title {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 26px;
+            margin-bottom: 24px;
+        }
+
+        .review-icon {
+            width: 24px;
+            height: 24px;
+            margin: 0 auto 16px;
+        }
+
+        .review-stars {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 24px;
+        }
+
+        /* CTA Section */
+        .cta-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 375px;
+            padding: 24px;
+            background: linear-gradient(to top, rgba(13,13,13,1) 80%, rgba(13,13,13,0));
+            z-index: 100;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            height: 58px;
+            background-color: var(--color-purple);
+            color: white;
+            text-align: center;
+            line-height: 58px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 100px;
+            box-shadow: 0 4px 20px rgba(125, 71, 255, 0.3);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 16px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="hero-title">Transform your life in 66 days</h1>
+        
+        <div class="hero-image">
+            <img src="../images/icon1.png" alt="66 Days Visualization">
+        </div>
+
+        <div class="pagination-dots">
+            <img src="../images/icon2.png" alt="" class="dot">
+            <img src="../images/icon3.png" alt="" class="dot">
+            <img src="../images/icon4.png" alt="" class="dot">
+        </div>
+
+        <div class="what-you-get">WHAT YOU GET:</div>
+
+        <ul class="features-list">
+            <li class="feature-item">
+                <div class="check-icon"></div>
+                <span>66-Day Life Reset Program</span>
+            </li>
+            <li class="feature-item">
+                <div class="check-icon"></div>
+                <span>Science-based task planning</span>
+            </li>
+            <li class="feature-item sf-pro">
+                <div class="check-icon"></div>
+                <span>Daily rituals</span>
+            </li>
+            <li class="feature-item">
+                <div class="check-icon"></div>
+                <span>Improvement tracker</span>
+            </li>
+            <li class="feature-item">
+                <div class="check-icon"></div>
+                <span>Change your life forever!</span>
+            </li>
+        </ul>
+
+        <div class="reviews-section">
+            <div class="review-icon">
+                <img src="../images/icon5.png" alt="" width="24" height="24">
+            </div>
+            <h2 class="reviews-title">Loved and highly-rated by thousands</h2>
+            <!-- Additional review content would go here if available -->
+        </div>
+
+        <div class="cta-container">
+            <a href="#" class="cta-button">START MY TRANSFORMATION</a>
+            <div class="footer-links">
+                <span>Privacy Policy</span>
+                <span>Terms of Service</span>
+                <span>Restore</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll or interaction logic if needed
+        document.querySelector('.cta-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('CTA Clicked');
+            // Add subscription logic here
+        });
+    </script>
+</body>
+</html>

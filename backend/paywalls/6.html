@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: grid;
+            background: url('bg.png') no-repeat center center fixed;
+            color: #fff;
+            font-family: 'Red Hat Display', sans-serif;
+            /* position: relative; */
+            text-align: center;
+            /* justify-content: center; */
+        }
+
+        .cancelButton {
+            position: fixed;
+            top: 22px;
+            right: 22px;
+            cursor: pointer;
+        }
+
+        .headingBox {
+            margin-top: 10vh;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+
+        .offerHeading {
+            font-size: 54px;
+            margin: 8px;
+            font-weight: 900;
+            /* line-height: 71.44px; */
+            color: #5BEEB5;
+            text-align: center;
+        }
+
+        .secondaryHeading {
+            font-size: 36px;
+            font-weight: 700;
+            /* line-height: 47.63px; */
+            margin-top: 0px;
+            text-align: center;
+        }
+
+        .offerText {
+            color: #FFFFFFE5;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 4px;
+        }
+
+        .multiline-text {
+            margin: auto;
+            padding-left: 40px;
+        }
+
+        .shield {
+            position: absolute;
+            margin-left: 5%;
+        }
+
+        .first-line,
+        .second-line {
+            display: block;
+            text-align: left;
+        }
+
+        .enableTrialText {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 10px;
+            text-align: center;
+        }
+
+        .pricebox {
+            background: #F1F4FB;
+            height: 100px;
+            width: calc(100% - 44px);
+            border: 2px solid #61646B2E;
+            margin: auto;
+            margin-top: 12px;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .secondarypricebox {
+            background: #F1F4FB;
+            height: 50px;
+            width: calc(100% - 44px);
+            margin: auto;
+            margin-top: 12px;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: space-between;
+            border: 2px solid #61646B2E;
+        }
+
+        .boxtitletext {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 18px;
+            text-align: center;
+        }
+
+        .blueBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30%;
+            background-color: #30C288;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .priceboxtext {
+            margin: 12px;
+        }
+
+        .yearlyplan {
+            margin-bottom: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 10px;
+            text-align: left;
+        }
+
+        .pricecontainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            vertical-align: middle;
+        }
+
+        .starttrial {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 12px 24px 0px #0000000F;
+            background: #FFFFFF;
+            border-radius: 50px / 100%;
+            width: 334px;
+            height: 48px;
+            margin: auto;
+            margin-bottom: 5%;
+        }
+
+        .starttrialtext {
+            font-size: 16px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        .canceltext {
+            color: #FFFFFFFF;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-align: center;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+        }
+
+        .popup-container {
+            display: block;
+            position: relative;
+            margin-top: 10%;
+            overflow-y: auto;
+            padding-bottom: 10%;
+            padding-top: 3%;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            color: #1E212B;
+            background-color: #2B5FF5;
+            box-sizing: border-box;
+            border-radius: 40px 40px 0 0;
+            z-index: 999;
+            box-shadow: 0 -40px 20px rgba(255, 255, 255, 0.7);
+        }
+
+
+        .vault {
+            z-index: 10000;
+            width: 98px;
+            height: 92px;
+            margin: auto;
+        }
+
+        .popup-content {
+            /* padding: 20px; */
+            justify-content: center;
+            color: #FFFFFF;
+        }
+
+        .popup-content h3 {
+            font-family: Red Hat Display;
+            font-weight: 645;
+            margin-top: 5px;
+            font-size: 28px;
+            letter-spacing: 0px;
+            text-align: center;
+        }
+
+        .popup-content h4 {
+            font-family: Red Hat Display;
+            font-weight: 900;
+            font-size: 20px;
+            margin: 5px;
+            letter-spacing: 0px;
+            vertical-align: middle;
+        }
+
+        .popup-container small {
+            font-family: Red Hat Display;
+            font-weight: 467;
+            font-size: 15px;
+            letter-spacing: 0px;
+            vertical-align: middle;
+            color: linear-gradient(348.27deg, #D0E9FF 8.82%, #C3E3FF 51.02%, #FFFFFF 91.56%);
+        }
+
+
+        .free-trial-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2B60F6;
+            margin-top: 10px;
+            padding: 15px 20px;
+            color: white;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .free-trial-text {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Toggle switch styling with updated size */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            /* Updated width */
+            height: 28px;
+            /* Updated height */
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 28px;
+            /* Making it fully rounded */
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 25px;
+            /* Adjusted for new total height */
+            width: 25px;
+            /* Making circle proportional */
+            left: 1px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #27AE60;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #27AE60;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(18px);
+            /* Adjusted translation for new width */
+        }
+
+        .footer {
+            color: white;
+            text-align: center;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: underline;
+            margin: 0;
+            font-family: Red Hat Display;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 100%;
+            letter-spacing: 0px;
+            vertical-align: middle;
+        }
+
+        .separator {
+            margin: 0 10px;
+            font-size: 20px;
+            vertical-align: middle;
+        }
+
+        @media screen and (min-height: 800px) {
+            .popup-container {
+                padding-bottom: 16%;
+            }
+        }
+
+        @media screen and (min-height: 840px) {
+            .popup-container {
+                padding-bottom: 24%;
+            }
+        }
+
+        @media screen and (min-height: 900px) {
+            .popup-container {
+                padding-top: 8%;
+                padding-bottom: 30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="cancelButton" onclick="closePage()"><img src="close.svg"></div> -->
+
+    <div class="content" style="width: 80%; margin: auto; margin-top: 25%;">
+        <img src="1.svg">
+        <img src="2.svg">
+        <img src="3.svg">
+        <img src="4.svg">
+        <img src="5.svg">
+    </div>
+
+
+
+    <div class="popup-container" id="popupContainer2">
+        <img src="vault.png" class="vault">
+        <div class="popup-content">
+            <h3>Choose Your Plan</h3>
+            <h4>Just $39.99 per year</h4>
+            <small>Auto- renewable. Cancel anytime</small>
+            <div class="free-trial-container">
+                <div class="free-trial-text">Free Trial Enabled</div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="starttrial">
+                <span class="starttrialtext" id="claimtext">Continue</span>
+            </div>
+            <div class="footer">
+                <a href="#">Privacy Policy</a>
+                <span class="separator">•</span>
+                <a href="#">Restore Purchase</a>
+                <span class="separator">•</span>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script>
+        function closePage() {
+            window.close();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paywall Generator</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { 
+      width: 100%; 
+      height: 100%; 
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: #ffffff;
+      min-height: 100vh;
+    }
+    .container {
+      width: 402px;
+      max-width: 402px;
+      height: 874px;
+      position: relative;
+      background: #010101; /* rgba(1,1,1,1) */
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* Logo at the top */
+    .logo {
+      position: absolute;
+      width: 100%;
+      top: 73px; /* Slightly adjusted */
+      text-align: center;
+      color: #E0FE46;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 36px;
+      letter-spacing: -1px;
+    }
+
+    /* Images stack */
+    .image-stack {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .bg-blob {
+      position: absolute;
+      left: -68.5px; /* Centering based on 402px width */
+      top: 102px;
+      width: 539px;
+      height: 539px;
+    }
+    .phone-img {
+      position: absolute;
+      left: 98.5px; /* (402 - 205) / 2 */
+      top: 150px;
+      width: 205px;
+      height: 421px;
+      z-index: 2;
+    }
+
+    /* Footer text and button */
+    .footer {
+      position: absolute;
+      bottom: 54px;
+      width: 100%;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .title {
+      color: #FFFFFF;
+      font-size: 27px;
+      font-weight: 600;
+      line-height: 32px;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: #FFFFFF;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 21px;
+      margin-bottom: 36px;
+      padding: 0 10px;
+      opacity: 0.9;
+    }
+
+    .button-container {
+      width: 362px;
+      height: 57px;
+      position: relative;
+    }
+
+    .btn-bg-img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    .cta-button {
+      width: 100%;
+      height: 100%;
+      background: #E0FE46;
+      border: none;
+      border-radius: 20px;
+      color: #000600;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 21px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">swyped</div>
+    
+    <div class="image-stack">
+      <img src="../images/icon1.png" alt="" class="bg-blob">
+      <img src="../images/icon3.png" alt="" class="phone-img">
+    </div>
+
+    <div class="footer">
+      <h1 class="title">Welcome to Sway AI.<br>Get more matches.</h1>
+      <p class="subtitle">Take the first steps towards attracting more matches on Hinge, Bumble, and Tinder.</p>
+      
+      <div class="button-container">
+        <!-- Using icon2 as background if it has specific styling, but also a fallback button style -->
+        <img src="../images/icon2.png" alt="" class="btn-bg-img">
+        <button class="cta-button">Get Started</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.cta-button').addEventListener('click', () => {
+      console.log('Button clicked');
+    });
+  </script>
+</body>
+</html>

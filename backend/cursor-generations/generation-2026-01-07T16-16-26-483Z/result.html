@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Varpet Premium</title>
+    <style>
+        :root {
+            --primary: #0198F9;
+            --secondary: #78CFF8;
+            --accent: #007DE0;
+            --background: #E2DCE0;
+            --text: #2C3E50;
+            --gradient: linear-gradient(135deg, #0198F9 0%, #78CFF8 100%);
+            --glass: rgba(255, 255, 255, 0.7);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            position: relative;
+            background: var(--gradient);
+            background-attachment: fixed;
+        }
+
+        /* Decorative background elements */
+        .bg-circle {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .bg-circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            right: -50px;
+            background: var(--secondary);
+        }
+
+        .bg-circle-2 {
+            width: 250px;
+            height: 250px;
+            bottom: -50px;
+            left: -50px;
+            background: var(--primary);
+        }
+
+        .container {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 0;
+        }
+
+        .close-button {
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .close-button:active {
+            transform: scale(0.9);
+        }
+
+        .app-icon-container {
+            margin-top: 10px;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            background: white;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .app-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .app-name {
+            margin-top: 16px;
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tagline {
+            margin-top: 4px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            font-weight: 500;
+            max-width: 280px;
+        }
+
+        .features-list {
+            width: 100%;
+            margin: 32px 0;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            animation: slideIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .pricing-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .pricing-card {
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: var(--border-radius);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .pricing-card.selected {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.02);
+            box-shadow: 0 12px 30px rgba(1, 152, 249, 0.2);
+        }
+
+        .pricing-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .pricing-value {
+            font-size: 13px;
+            color: rgba(44, 62, 80, 0.7);
+            margin-top: 2px;
+        }
+
+        .pricing-cost {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .price-text {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #FFD700;
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .cta-button {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(1, 152, 249, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .cta-button:active {
+            transform: scale(0.96);
+            background: var(--accent);
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px 0 40px;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .divider {
+            width: 1px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* SVG Icon styles */
+        .icon-svg {
+            fill: var(--primary);
+        }
+
+        /* Animation delays */
+        .feature-item:nth-child(1) { animation-delay: 0.1s; }
+        .feature-item:nth-child(2) { animation-delay: 0.2s; }
+        .feature-item:nth-child(3) { animation-delay: 0.3s; }
+        .feature-item:nth-child(4) { animation-delay: 0.4s; }
+        .feature-item:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+
+    <div class="container">
+        <div class="header">
+            <button class="close-button" onclick="window.history.back()">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 1L1 13M1 1L13 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="app-icon-container">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d4/2b/54/d42b54cb-290f-7530-f464-86311ea12bbe/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/400x400ia-75.jpg" alt="Varpet Icon" class="app-icon" onerror="this.src='https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d4/2b/54/d42b54cb-290f-7530-f464-86311ea12bbe/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/400x400ia-75.jpg'">
+        </div>
+
+        <h1 class="app-name">Varpet</h1>
+        <p class="tagline">Upgrade to Premium and unlock all professional features</p>
+
+        <div class="features-list">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
+                <div class="feature-text">Full access to all services</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <div class="feature-text">Exclusive Premium features</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41 15.59 7z"/></svg>
+                </div>
+                <div class="feature-text">Ad-free experience</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                </div>
+                <div class="feature-text">Priority 24/7 support</div>
+            </div>
+        </div>
+
+        <div class="pricing-container" id="pricing-options">
+            <!-- Annual Plan (Recommended) -->
+            <div class="pricing-card selected" onclick="selectPlan(this, 'Annual')" id="plan-annual">
+                <div class="badge">Best Value</div>
+                <div class="pricing-info">
+                    <div class="pricing-name">Annual</div>
+                    <div class="pricing-value">Best value - save 33% with annual plan</div>
+                </div>
+                <div class="pricing-cost">
+                    <div class="price-text">$79.99/year</div>
+                </div>
+            </div>
+
+            <!-- Monthly Plan -->
+            <div class="pricing-card" onclick="selectPlan(this, 'Monthly')" id="plan-monthly">
+                <div class="pricing-info">
+                    <div class="pricing-name">Monthly</div>
+                    <div class="pricing-value">Get full access to all features</div>
+                </div>
+                <div class="pricing-cost">
+                    <div class="price-text">$9.99/month</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="cta-button" id="subscribe-btn">Continue</button>
+
+        <div class="footer">
+            <a href="#" class="footer-link">Terms of Use</a>
+            <div class="divider"></div>
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <div class="divider"></div>
+            <a href="#" class="footer-link">Restore</a>
+        </div>
+    </div>
+
+    <script>
+        let selectedPlan = 'Annual';
+
+        function selectPlan(element, plan) {
+            // Remove selected class from all cards
+            document.querySelectorAll('.pricing-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked card
+            element.classList.add('selected');
+            selectedPlan = plan;
+
+            // Update button text or state if needed
+            const btn = document.getElementById('subscribe-btn');
+            if (plan === 'Annual') {
+                btn.innerText = 'Start Annual Plan';
+            } else {
+                btn.innerText = 'Start Monthly Plan';
+            }
+        }
+
+        document.getElementById('subscribe-btn').addEventListener('click', () => {
+            console.log('Subscribing to:', selectedPlan);
+            // Add haptic feedback or transition
+            document.getElementById('subscribe-btn').style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                document.getElementById('subscribe-btn').style.transform = 'scale(1)';
+                alert('Thank you for choosing Varpet ' + selectedPlan + '!');
+            }, 100);
+        });
+
+        // Initialize button text
+        document.getElementById('subscribe-btn').innerText = 'Start Annual Plan';
+    </script>
+</body>
+</html>

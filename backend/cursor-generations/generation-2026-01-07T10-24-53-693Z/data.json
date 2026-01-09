@@ -1,0 +1,134 @@
+{
+  "appInfo": {
+    "name": "Swyped - Get More Girls",
+    "description": "The developer, Tiny Desk Apps Inc., indicated that the app’s privacy practices may include handling of data as described below. This information has not been verified by Apple. For more information, see the   developer’s privacy policy   .Learn how the developer lets you   manage your privacy choices   .",
+    "category": "General",
+    "developer": "",
+    "price": "Free",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/65/2b/51/652b510f-066c-7a0c-339a-6f1ee6792180/AppIcon-0-0-1x_U007epad-0-1-0-P3-85-220.png/400x400ia-75.jpg",
+    "screenshots": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/02/11/01/02110131-f991-38b3-cd46-9bc2cbde9182/1.png/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/02/11/01/02110131-f991-38b3-cd46-9bc2cbde9182/1.png/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/61/6a/25/616a258e-436a-891b-d405-7cd173395a95/3.png/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/61/6a/25/616a258e-436a-891b-d405-7cd173395a95/3.png/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d3/52/6d/d3526d53-b6ae-ffe2-bb25-a5c5992aab92/2.png/460x996bb.webp"
+    ],
+    "theme": "General",
+    "colorPalette": {
+      "primary": "#474A38",
+      "secondary": "#7C8069",
+      "accent": "#E0F270",
+      "background": "#DFFC46",
+      "text": "#2C3E50",
+      "gradient": "linear-gradient(135deg, #474A38 0%, #7C8069 100%)",
+      "styles": {
+        "borderRadius": "16px",
+        "buttonStyle": "rounded-full",
+        "cardStyle": "glassmorphism",
+        "spacing": "compact",
+        "layout": "horizontal"
+      }
+    }
+  },
+  "businessModels": {
+    "models": [
+      {
+        "type": "freemium",
+        "name": "Freemium Dating Coach",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "Free",
+            "features": [
+              "Basic conversation tips",
+              "3 profile reviews per month",
+              "Limited messaging templates",
+              "Basic confidence building exercises"
+            ],
+            "valueProposition": "Get started with essential dating advice and see immediate improvements"
+          },
+          {
+            "name": "Premium",
+            "price": "$9.99/month or $59.99/year",
+            "features": [
+              "Unlimited profile optimization",
+              "Advanced conversation starters",
+              "Personalized dating strategy",
+              "Photo analysis and suggestions",
+              "Success tracking and analytics",
+              "Priority support"
+            ],
+            "valueProposition": "Complete dating transformation with personalized guidance and unlimited access to all tools"
+          }
+        ],
+        "recommended": true
+      },
+      {
+        "type": "subscription",
+        "name": "Tiered Dating Mastery",
+        "tiers": [
+          {
+            "name": "Starter",
+            "price": "$6.99/month or $49.99/year",
+            "features": [
+              "Profile optimization guide",
+              "Weekly conversation tips",
+              "Basic confidence building",
+              "Community access"
+            ],
+            "valueProposition": "Perfect for beginners looking to improve their dating game with structured guidance"
+          },
+          {
+            "name": "Pro",
+            "price": "$14.99/month or $99.99/year",
+            "features": [
+              "Everything in Starter",
+              "Personalized coaching sessions",
+              "Advanced social skills training",
+              "Date planning assistance",
+              "Real-time conversation analysis",
+              "Success metrics tracking"
+            ],
+            "valueProposition": "Comprehensive dating mastery for serious users wanting accelerated results"
+          },
+          {
+            "name": "Elite",
+            "price": "$24.99/month or $199.99/year",
+            "features": [
+              "Everything in Pro",
+              "1-on-1 expert coaching calls",
+              "Custom dating action plans",
+              "Premium photo shoot guidance",
+              "Exclusive masterclasses",
+              "VIP community access"
+            ],
+            "valueProposition": "Premium experience with personal coaching and exclusive content for maximum dating success"
+          }
+        ],
+        "recommended": false
+      },
+      {
+        "type": "one-time",
+        "name": "Complete Dating Toolkit",
+        "tiers": [
+          {
+            "name": "Lifetime Access",
+            "price": "$79.99 one-time",
+            "features": [
+              "Complete dating guide library",
+              "Profile optimization templates",
+              "Conversation starter database",
+              "Confidence building program",
+              "Social skills masterclass",
+              "Lifetime updates"
+            ],
+            "valueProposition": "One-time investment for lifetime access to all dating improvement resources"
+          }
+        ],
+        "recommended": false
+      }
+    ],
+    "recommendations": "For dating/relationship apps, freemium models work best as they allow users to try basic features before committing. The $9.99/month premium tier is competitive in this market. Focus on providing genuine value through actionable advice, confidence building, and social skills development. Ensure content is respectful and promotes healthy relationship building. Consider adding features like progress tracking, community support, and personalized recommendations to increase retention."
+  },
+  "timestamp": "2026-01-07T10:24:55.571Z"
+}

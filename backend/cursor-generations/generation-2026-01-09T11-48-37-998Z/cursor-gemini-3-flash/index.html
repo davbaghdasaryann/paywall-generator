@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Paywall</title>
+    <style>
+        :root {
+            --primary-color: rgba(224, 254, 70, 1);
+            --bg-color: rgba(1, 1, 1, 1);
+            --text-white: rgba(255, 255, 255, 1);
+            --text-black: rgba(0, 6, 0, 1);
+            --font-family: -apple-system, BlinkMacSystemFont, "SF UI Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: var(--font-family);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            width: 375px;
+            height: 812px; /* Standard iPhone height */
+            background-color: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* Status Bar */
+        .status-bar {
+            width: 100%;
+            height: 44px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 20;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status-bar .icons {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .status-bar .icon {
+            width: 18px;
+            height: 10px;
+            background-color: var(--text-white);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .status-bar .battery {
+            width: 22px;
+            height: 11px;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 3px;
+            padding: 1px;
+        }
+
+        .status-bar .battery::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: var(--text-white);
+            border-radius: 1px;
+        }
+
+        /* Background Glow */
+        .bg-decoration {
+            position: absolute;
+            width: 503px; /* 539 * S */
+            height: 503px;
+            left: -63px;  /* -68 * S */
+            top: 95px;    /* 102 * S */
+            z-index: 1;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 0.6;
+        }
+
+        .header {
+            margin-top: 20px;
+            z-index: 10;
+        }
+
+        .logo {
+            color: var(--primary-color);
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 36px;
+            letter-spacing: -1px;
+        }
+
+        .main-graphic {
+            position: absolute;
+            width: 191px; /* 205 * S */
+            height: 393px; /* 421 * S */
+            left: 92px;   /* 99 * S */
+            top: 140px;   /* 150 * S */
+            z-index: 5;
+            object-fit: contain;
+        }
+
+        .content {
+            position: absolute;
+            bottom: 140px;
+            width: 100%;
+            padding: 0 35px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .title {
+            font-size: 27px;
+            font-weight: 600;
+            line-height: 32px;
+            margin-bottom: 16px;
+            color: var(--text-white);
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 24px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 50px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 15;
+        }
+
+        .get-started-btn {
+            width: 338px;
+            height: 53px;
+            background-image: url('../images/icon2.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: transparent; /* Use the image */
+            border: none;
+            color: var(--text-black);
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.1s;
+        }
+
+        /* If icon2.png is just the background, we might need to fallback to solid color if it fails */
+        .get-started-btn:empty::before {
+            content: 'Get Started';
+        }
+
+        .get-started-btn:active {
+            transform: scale(0.98);
+        }
+
+        .home-indicator {
+            position: absolute;
+            bottom: 8px;
+            width: 134px;
+            height: 5px;
+            background-color: var(--text-white);
+            border-radius: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.4;
+            z-index: 20;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="time">9:41</div>
+            <div class="icons">
+                <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 10H3V11H1V10ZM4 7H6V11H4V7ZM7 4H9V11H7V4ZM10 1H12V11H10V1Z" fill="white"/></svg>
+                <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 0C4.5 0 1.8 1.2 0 3.1L7.5 11L15 3.1C13.2 1.2 10.5 0 7.5 0Z" fill="white"/></svg>
+                <div class="battery"></div>
+            </div>
+        </div>
+
+        <!-- Background decoration -->
+        <img src="../images/icon1.png" alt="" class="bg-decoration">
+
+        <!-- Header / Logo -->
+        <div class="header">
+            <h1 class="logo">swyped</h1>
+        </div>
+
+        <!-- Main Graphic -->
+        <img src="../images/icon3.png" alt="Sway AI" class="main-graphic">
+
+        <!-- Text Content -->
+        <div class="content">
+            <h2 class="title">Welcome to Sway AI.<br>Get more matches.</h2>
+            <p class="subtitle">Take the first steps towards attracting more matches on Hinge, Bumble, and Tinder.</p>
+        </div>
+
+        <!-- Button -->
+        <div class="footer">
+            <a href="#" class="get-started-btn">Get Started</a>
+        </div>
+        
+        <!-- Home Indicator -->
+        <div class="home-indicator"></div>
+    </div>
+
+    <script>
+        // Any interactive elements can be added here
+        document.querySelector('.get-started-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Get Started clicked');
+        });
+    </script>
+</body>
+</html>

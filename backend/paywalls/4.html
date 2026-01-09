@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Photo Vault - Keeping your photos private</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Red Hat Display", sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-placeholder {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: -2px;
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #4F5561;
+            font-weight: 500;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: #333;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #2563eb;
+            margin-bottom: 20px;
+            letter-spacing: 0px;
+        }
+
+        .hero-description {
+            font-family: 'Poppins', sans-serif;
+            max-width: 750px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+            color: #4F5561;
+            line-height: 1.7;
+        }
+
+        .download-section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A283A;
+            margin-bottom: 50px;
+        }
+
+        .qr-download-container {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-bottom: 100px;
+            flex-wrap: wrap;
+        }
+
+        .download-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .qr-placeholder {
+            width: 160px;
+            height: 160px;
+            background: white;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            padding: 0px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .store-button {
+            width: 180px;
+            height: 60px;
+            background: #000;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .store-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .google-play {
+            background: linear-gradient(135deg, #1a73e8, #4285f4);
+        }
+
+        .footer {
+            background: white;
+            border-top: 1px solid #e5e5e5;
+            padding: 30px 0;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright {
+            font-family: 'Poppins', sans-serif;
+            color: #4F5561;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            color: #4F5561;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .qr-download-container {
+                gap: 40px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 60px 20px;
+            }
+
+            .qr-download-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logo.png" style="height: 55px;">
+            </div>
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#support">Support</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="hero-title">Welcome to PhotoVault!</h1>
+
+        <p class="hero-description">
+            Keep your photos and videos safe, secure, and private with PhotoVault.<br>
+            Protect your memories with advanced encryption, hidden access, and complete<br>
+            privacy.
+        </p>
+
+        <h2 class="download-section-title">Download PhotoVault by Scanning the QR Code</h2>
+
+        <div class="qr-download-container">
+            <div class="download-option">
+                <img class="qr-placeholder" src="qr.png">
+                <img src="appstore.png" class="store-button">
+            </div>
+
+            <!-- <div class="download-option">
+                <img class="qr-placeholder" src="qr.png">
+                <img src="googleplay.png" class="store-button">
+            </div> -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="copyright">
+                Copyright © 2011-2024 Legendary Software Labs LLC
+            </div>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Snapchat - Communication Redefined</title>
+    <style>
+        :root {
+            /* Colors from data.json */
+            --primary: #7F7E63;
+            --accent: #FFFC00;
+            --bg: #FFFD01;
+            --text: #2C3E50;
+            --secondary: #7F7E63;
+            --radius: 16px; /* from data.json styles */
+            --gradient: linear-gradient(135deg, #7F7E63 0%, #7F7E63 100%);
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            line-height: 1.4; /* compact spacing */
+        }
+
+        /* Glassmorphism - from data.json styles */
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius);
+        }
+
+        /* Buttons - rounded-full from data.json */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: none;
+            border-radius: 9999px;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: var(--text);
+            color: var(--bg);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--text);
+            box-shadow: 0 4px 15px rgba(255, 252, 0, 0.4);
+            border: 2px solid var(--text);
+        }
+
+        .btn:active {
+            transform: scale(0.92);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 24px 40px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--bg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: var(--accent);
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .app-icon {
+            width: 110px;
+            height: 110px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 900;
+            margin: 0 0 8px 0;
+            letter-spacing: -1px;
+            color: var(--text);
+        }
+
+        .tagline {
+            font-size: 19px;
+            color: var(--text);
+            opacity: 0.9;
+            margin-bottom: 32px;
+            font-weight: 600;
+            max-width: 280px;
+        }
+
+        /* Screenshots Slider */
+        .screenshot-container {
+            width: 100%;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .screenshots {
+            display: flex;
+            gap: 12px;
+            padding: 0 24px 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .screenshots::-webkit-scrollbar {
+            display: none;
+        }
+
+        .screenshot-img {
+            width: 200px;
+            height: auto;
+            border-radius: 24px;
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            border: 4px solid var(--white);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 30px 20px;
+            background: var(--white);
+            border-radius: 32px 32px 0 0;
+            margin-top: -20px;
+            z-index: 2;
+            position: relative;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .features-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .feature-card {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-icon-wrapper {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            background: var(--gradient);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            box-shadow: 0 8px 15px rgba(127, 126, 99, 0.3);
+        }
+
+        .feature-content h3 {
+            margin: 0 0 4px 0;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .feature-content p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.7;
+            line-height: 1.3;
+        }
+
+        /* Benefits / Social Proof */
+        .social-proof {
+            padding: 40px 24px;
+            text-align: center;
+            background: var(--bg);
+        }
+
+        .stat-card {
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+        .update-note {
+            font-size: 13px;
+            font-style: italic;
+            opacity: 0.6;
+            margin-top: 24px;
+            padding: 0 20px;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 30px 20px;
+            background: #f8f9fa;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.recommended {
+            border-color: var(--primary);
+            position: relative;
+        }
+
+        .badge-premium {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: 800;
+            margin: 12px 0;
+        }
+
+        .tier-features {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .tier-features li {
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tier-features li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: var(--text);
+            color: var(--white);
+            padding: 60px 24px;
+            text-align: center;
+            border-radius: 40px 40px 0 0;
+        }
+
+        .final-cta h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .app-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            margin-top: 32px;
+        }
+
+        .store-btn {
+            width: 200px;
+            height: 60px;
+            background: #000;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+            border: 1px solid #333;
+        }
+
+        .store-btn-text span {
+            display: block;
+            font-size: 10px;
+            text-align: left;
+        }
+
+        .store-btn-text strong {
+            display: block;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Decorative blobs */
+        .blob {
+            position: absolute;
+            z-index: -1;
+            filter: blur(40px);
+            opacity: 0.4;
+            border-radius: 50%;
+        }
+
+        .blob-1 {
+            width: 150px;
+            height: 150px;
+            background: var(--primary);
+            top: 20%;
+            left: -50px;
+        }
+
+        .blob-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            bottom: 10%;
+            right: -80px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <section class="hero">
+        <img src="https://play-lh.googleusercontent.com/KxeSAjPTKliCErbivNiXrd6cTwfbqUJcbSRPe_IBVK_YmwckfMRS1VIHz-5cgT09yMo=w240-h480-rw" alt="Snapchat Icon" class="app-icon">
+        <h1>Snapchat</h1>
+        <p class="tagline">Communication made fast, fun, and personal.</p>
+        <a href="#download" class="btn btn-primary">Get Started</a>
+        <div style="margin-top: 16px; font-size: 13px; font-weight: 600; opacity: 0.7;">Free • Communication</div>
+    </section>
+
+    <div class="screenshot-container">
+        <div class="screenshots">
+            <img src="https://play-lh.googleusercontent.com/xKCYMMuIshGmxLVckXnGYsdorvBxF0oI58Yt82Vkj_cn3Dby52gdrt4Lmr7BTYiVww=w526-h296-rw" alt="Snapchat Interface" class="screenshot-img">
+            <img src="https://play-lh.googleusercontent.com/yoN8h1j4M0Axz1UK2-iyPOmlQmIHqZ1tO8p7PjRicfmyPxj3-rztyB3YImG58zeMvOI=w526-h296-rw" alt="Snapchat Camera" class="screenshot-img">
+            <img src="https://play-lh.googleusercontent.com/3KtSEofVcRIQUWQnq814EYI7xo61uD6Cg1tvWdYTPUXweFMjv7HkA9b9FVmt3zYDkSau=w526-h296-rw" alt="Snapchat Chat" class="screenshot-img">
+        </div>
+    </div>
+
+    <section class="features">
+        <h2 class="section-title">Experience More</h2>
+        <div class="features-grid">
+            <div class="feature-card glass reveal">
+                <div class="feature-icon-wrapper">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Visual Stories</h3>
+                    <p>Express yourself through photos and videos that disappear.</p>
+                </div>
+            </div>
+            <div class="feature-card glass reveal">
+                <div class="feature-icon-wrapper">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Fast Messaging</h3>
+                    <p>Stay connected with friends in real-time, anytime.</p>
+                </div>
+            </div>
+            <div class="feature-card glass reveal">
+                <div class="feature-icon-wrapper">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Safe & Secure</h3>
+                    <p>Your privacy is built-in from the ground up.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof reveal">
+        <div class="stat-card glass">
+            <span class="stat-number">4.5 ★</span>
+            <span class="stat-label">Communication Leader</span>
+        </div>
+        <p style="font-weight: 600; font-size: 16px;">Trusted by millions worldwide.</p>
+        <p class="update-note">"Just a little tune-up to keep everything running smoothly! 👻"</p>
+    </section>
+
+    <section class="pricing reveal">
+        <h2 class="section-title" style="margin-bottom: 8px;">Premium Tiers</h2>
+        <p style="text-align: center; font-size: 14px; opacity: 0.6; margin-bottom: 24px;">Enhance your Snapchat experience.</p>
+        
+        <div class="pricing-card glass">
+            <h3>Monthly Plan</h3>
+            <div class="price">$9.99<span style="font-size: 14px; font-weight: 500;">/month</span></div>
+            <ul class="tier-features">
+                <li>Full access</li>
+                <li>Premium features</li>
+                <li>No ads</li>
+                <li>Priority support</li>
+            </ul>
+            <a href="#" class="btn btn-primary" style="width: 100%; border-radius: 12px;">Select Plan</a>
+        </div>
+
+        <div class="pricing-card glass recommended">
+            <div class="badge-premium">RECOMMENDED</div>
+            <h3>Annual Plan</h3>
+            <div class="price">$79.99<span style="font-size: 14px; font-weight: 500;">/year</span></div>
+            <p style="font-size: 13px; font-weight: 700; color: var(--primary); margin-top: -8px; margin-bottom: 16px;">Save 33%</p>
+            <ul class="tier-features">
+                <li>Full access</li>
+                <li>Premium features</li>
+                <li>No ads</li>
+                <li>Priority support</li>
+            </ul>
+            <a href="#" class="btn btn-accent" style="width: 100%; border-radius: 12px;">Get Best Value</a>
+        </div>
+    </section>
+
+    <section id="download" class="final-cta">
+        <h2 class="reveal">Ready to join the conversation?</h2>
+        <p class="reveal" style="opacity: 0.8;">Download Snapchat now and see what's happening.</p>
+        
+        <div class="app-badges reveal">
+            <a href="#" class="store-btn">
+                <svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M17.05 20.28c-.96.95-2.06 1.72-3.32 1.72-1.22 0-1.63-.75-3.08-.75-1.46 0-1.92.73-3.08.73-1.23 0-2.31-.75-3.26-1.7-1.94-1.94-3.41-5.49-3.41-8.73 0-3.24 1.47-6.79 3.41-8.73.95-.95 2.03-1.7 3.26-1.7 1.16 0 1.62.73 3.08.73 1.45 0 1.86-.75 3.08-.75 1.26 0 2.36.77 3.32 1.72 1.05 1.05 1.72 2.3 1.72 3.65 0 1.35-.67 2.6-1.72 3.65z"/></svg>
+                <div class="store-btn-text">
+                    <span>Download on the</span>
+                    <strong>App Store</strong>
+                </div>
+            </a>
+            <a href="#" class="store-btn">
+                <svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M3,20.5V3.5C3,2.67 3.67,2 4.5,2H19.5C20.33,2 21,2.67 21,3.5V20.5C21,21.33 20.33,22 19.5,22H4.5C3.67,22 3,21.33 3,20.5M5,4V20H19V4H5Z"/></svg>
+                <div class="store-btn-text">
+                    <span>GET IT ON</span>
+                    <strong>Google Play</strong>
+                </div>
+            </a>
+        </div>
+        
+        <p class="reveal" style="margin-top: 60px; font-size: 12px; opacity: 0.4;">© 2026 Snapchat. All rights reserved.</p>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(revealCallback, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Horizontal scroll parallax effect for screenshots
+        const scroller = document.querySelector('.screenshots');
+        scroller.addEventListener('scroll', () => {
+            const items = scroller.querySelectorAll('.screenshot-img');
+            const center = scroller.scrollLeft + scroller.offsetWidth / 2;
+            
+            items.forEach(item => {
+                const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+                const dist = Math.abs(center - itemCenter);
+                const scale = Math.max(0.9, 1 - dist / 1000);
+                item.style.transform = `scale(${scale})`;
+            });
+        });
+
+        // Trigger initial check
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>

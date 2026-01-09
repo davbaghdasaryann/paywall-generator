@@ -1,0 +1,69 @@
+{
+  "appInfo": {
+    "name": "Sooty eSIM Travel & Internet",
+    "description": "I had an amazing experience using this eSIM application! The setup process was incredibly smooth and user-friendly. Activating my eSIM took only a few minutes, and the app provided clear instructions at every step.What stood out the most was the convenience—no need to wait for physical SIM cards or deal with complicated procedures. The app also offers fantastic features, like managing multiple eSIMs and tracking data usage effortlessly.It worked perfectly on my trip abroad, and I didn’t have to worry about finding a local SIM card. The support team was quick to respond when I had a question, which made the experience even better.Highly recommend this app to anyone looking for a hassle-free eSIM solution!",
+    "category": "General",
+    "developer": "",
+    "price": "Free",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c5/ce/fc/c5cefcff-c2b5-dc00-f727-b09f69c655f8/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/400x400ia-75.jpg",
+    "screenshots": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/0d/f9/10/0df91076-5a64-4de7-d27b-f665ff1f263e/Screen_1.png/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/0d/f9/10/0df91076-5a64-4de7-d27b-f665ff1f263e/Screen_1.png/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/b9/60/eb/b960eb21-faab-89f8-b309-0b9c1d5a56ca/Screen_2__U00284_U0029.png/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/b9/60/eb/b960eb21-faab-89f8-b309-0b9c1d5a56ca/Screen_2__U00284_U0029.png/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/b1/10/89/b11089fe-a132-ef5f-d5d3-572850f0f6de/Screen_3.png/460x996bb.webp"
+    ],
+    "theme": "General",
+    "colorPalette": {
+      "primary": "#545357",
+      "secondary": "#9B9B9D",
+      "accent": "#545357",
+      "background": "#D5DCDD",
+      "text": "#2C3E50",
+      "gradient": "linear-gradient(135deg, #545357 0%, #9B9B9D 100%)",
+      "styles": {
+        "borderRadius": "16px",
+        "buttonStyle": "rounded-full",
+        "cardStyle": "glassmorphism",
+        "spacing": "compact",
+        "layout": "horizontal"
+      }
+    }
+  },
+  "businessModels": {
+    "models": [
+      {
+        "type": "subscription",
+        "name": "Premium Subscription",
+        "tiers": [
+          {
+            "name": "Monthly",
+            "price": "$9.99/month",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support"
+            ],
+            "valueProposition": "Get full access to all features"
+          },
+          {
+            "name": "Annual",
+            "price": "$79.99/year",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support",
+              "Save 33%"
+            ],
+            "valueProposition": "Best value - save 33% with annual plan"
+          }
+        ],
+        "recommended": true
+      }
+    ],
+    "recommendations": "Based on the app category, a subscription model is recommended."
+  },
+  "timestamp": "2026-01-07T16:42:31.166Z"
+}

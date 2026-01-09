@@ -1,0 +1,69 @@
+{
+  "appInfo": {
+    "name": "Coding game: Python Java Learn",
+    "description": "It says there’s multiple languages in this app but it only covers Python and does a very poor job at actually teaching anything. Then there’s the tracking. Way too much info collected by this app. And why in the world does it connect to a Facebook domain when using the app? Waste of time, just stay away from this.",
+    "category": "General",
+    "developer": "",
+    "price": "Free",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/46/c6/5d/46c65d34-fd0d-b843-58d5-2b7896ca0009/AppIcon-0-0-1x_U007ephone-0-0-sRGB-85-220.png/400x400ia-75.jpg",
+    "screenshots": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/03/cd/92/03cd928d-4943-9b8e-b5de-a282865fdf6e/291f6c37-25b1-4448-a5af-74438de9dbba_Screenshot01.jpg/460x998bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/03/cd/92/03cd928d-4943-9b8e-b5de-a282865fdf6e/291f6c37-25b1-4448-a5af-74438de9dbba_Screenshot01.jpg/460x998bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/80/29/08/802908e3-583c-bdc0-ff1a-ab0d5ab5bc50/84871089-8f76-4bca-bb8f-ab73bc97460c_Screenshot02.jpg/460x998bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/80/29/08/802908e3-583c-bdc0-ff1a-ab0d5ab5bc50/84871089-8f76-4bca-bb8f-ab73bc97460c_Screenshot02.jpg/460x998bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/bd/8a/04/bd8a04d5-5b1d-8e3d-994d-fbf5d173a0fe/827603ec-3b8b-490f-9bad-7a80761c46b2_Screenshot03.jpg/460x998bb.webp"
+    ],
+    "theme": "General",
+    "colorPalette": {
+      "primary": "#2A45C0",
+      "secondary": "#EEB84A",
+      "accent": "#EDEDED",
+      "background": "#1C2239",
+      "text": "#FFFFFF",
+      "gradient": "linear-gradient(135deg, #2A45C0 0%, #EEB84A 100%)",
+      "styles": {
+        "borderRadius": "16px",
+        "buttonStyle": "rounded-full",
+        "cardStyle": "glassmorphism",
+        "spacing": "compact",
+        "layout": "horizontal"
+      }
+    }
+  },
+  "businessModels": {
+    "models": [
+      {
+        "type": "subscription",
+        "name": "Premium Subscription",
+        "tiers": [
+          {
+            "name": "Monthly",
+            "price": "$9.99/month",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support"
+            ],
+            "valueProposition": "Get full access to all features"
+          },
+          {
+            "name": "Annual",
+            "price": "$79.99/year",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support",
+              "Save 33%"
+            ],
+            "valueProposition": "Best value - save 33% with annual plan"
+          }
+        ],
+        "recommended": true
+      }
+    ],
+    "recommendations": "Based on the app category, a subscription model is recommended."
+  },
+  "timestamp": "2026-01-07T10:31:59.189Z"
+}

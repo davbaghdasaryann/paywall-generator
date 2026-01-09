@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: grid;
+            background: linear-gradient(111.11deg, #6B1F8D, #4A3C99, #1A2F8E, #0D1E4B);
+            color: #fff;
+            font-family: 'Red Hat Display', sans-serif;
+            /* position: relative; */
+            text-align: center;
+            /* justify-content: center; */
+        }
+
+        .oval1 {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.2;
+            top: 0;
+            left: 0;
+        }
+
+        .oval2 {
+            position: fixed;
+            opacity: 0.2;
+            z-index: -1;
+            top: 0;
+            right: 0;
+        }
+
+        .cancelButton {
+            position: fixed;
+            top: 22px;
+            left: 22px;
+            cursor: pointer;
+        }
+
+        .restoreButton {
+            position: fixed;
+            top: 22px;
+            right: 22px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 21.17px;
+            text-align: center;
+        }
+
+        .headingBox {
+            margin-top: 10vh;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+
+        .offerHeading {
+            width: 188px;
+            height: 188px;
+            border-radius: 20px;
+            border: 2.08px solid #FFFFFF33;
+            margin: auto;
+            background-color: #FFFFFF;
+        }
+
+        .offerHeading h1 {
+            font-size: 70px;
+            font-weight: 900;
+            line-height: 70px;
+            background-image: linear-gradient(111.11deg, #2B60F6 -22.33%, #7547CA 102.41%);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .offerHeading h3 {
+            font-size: 24px;
+            margin-top: -25%;
+            font-weight: 900;
+            line-height: 24px;
+            background-image: linear-gradient(111.11deg, #2B60F6 -22.33%, #7547CA 102.41%);
+            text-align: center;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .secondaryHeading h2 {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 34px;
+            text-align: center;
+        }
+
+        .secondaryHeading h4 {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .offerText {
+            color: #FFFFFFE5;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 4px;
+        }
+
+        .multiline-text {
+            margin: auto;
+            padding-left: 40px;
+        }
+
+        .shield {
+            position: absolute;
+            margin-left: 5%;
+        }
+
+        .first-line,
+        .second-line {
+            display: block;
+            text-align: left;
+        }
+
+        .enableTrialText {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 10px;
+            text-align: center;
+        }
+
+        .pricebox {
+            background: #F1F4FB;
+            height: 124px;
+            width: calc(100% - 44px);
+            border: 2px solid #61646B2E;
+            margin: auto;
+            margin-top: 12px;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .secondarypricebox {
+            background: #F1F4FB;
+            height: 50px;
+            width: calc(100% - 44px);
+            margin: auto;
+            margin-top: 12px;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: space-between;
+            border: 2px solid #61646B2E;
+        }
+
+        .boxtitletext {
+            font-size: 14px;
+            font-weight: 700;
+            color: #FAFBFD;
+            line-height: 18px;
+            text-align: center;
+        }
+
+        .blueBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30%;
+            background: linear-gradient(111.11deg, #2B60F6 -22.33%, #7547CA 102.41%);
+            border-radius: 5px 5px 0 0;
+        }
+
+        .priceboxtext {
+            margin: 12px;
+        }
+
+        .yearlyplan {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 5px;
+            text-align: left;
+        }
+
+        .renew {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 0px;
+            text-align: left;
+        }
+
+        .pricecontainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            vertical-align: middle;
+        }
+
+        .starttrial {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 12px 24px 0px #0000000F;
+            background: linear-gradient(111.11deg, #2B60F6 -22.33%, #7547CA 102.41%);
+            border-radius: 50px / 100%;
+            width: 327px;
+            height: 56px;
+            margin: auto;
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+
+        .starttrialtext {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 21px;
+            text-align: center;
+        }
+
+        .canceltext {
+            color: #FFFFFFFF;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-align: center;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+        }
+
+
+
+
+        .popup-container {
+            display: block;
+            position: relative;
+            margin-top: 5%;
+            overflow-y: auto;
+            padding-bottom: 5%;
+            padding-top: 15%;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            color: #1E212B;
+            background-color: #FFFFFF;
+            box-sizing: border-box;
+            z-index: 999;
+        }
+
+
+
+
+
+        .popup-content {
+            /* padding: 20px; */
+            justify-content: center;
+        }
+
+        .box-active {
+            background: #4E70D214;
+            border: 2px solid #2B60F6;
+        }
+
+        .horizontal-container {
+            display: flex;
+            align-items: center;
+            /* Align items vertically centered */
+            gap: 10px;
+            /* Adjust the space between the elements as needed */
+            margin: 10px 0;
+            /* Optional: Add some spacing between rows */
+        }
+
+        .horizontal-container img {
+            height: 24px;
+            /* Adjust the size of the image as needed */
+        }
+
+        .horizontal-container p {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+            /* line-height: 20px; */
+            text-align: left;
+        }
+
+        .newicon {
+            width: 40px;
+            height: 20px;
+            border-radius: 56px;
+            opacity: 0px;
+            background-color: #FFAA45;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 12px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            color: #1D212B;
+        }
+
+        .newicon.coming {
+            width: 96px;
+        }
+
+        .yearlyplanfirstprice {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 10px;
+            text-align: center;
+            opacity: 0.75;
+        }
+
+        .advantages {
+            margin: auto;
+            margin-top: 20px;
+            /* overflow-y: auto; */
+        }
+
+
+        .carousel-container {
+            width: 100%;
+            /* Full width */
+            overflow: hidden;
+            position: relative;
+            padding: 0 40px;
+            /* Padding for removed buttons */
+            box-sizing: border-box;
+            margin-bottom: 8%;
+            margin-top: 3%;
+            /* Include padding in width calculation */
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .card {
+            width: 100%;
+            flex-shrink: 0;
+            /* display: flex; */
+            flex-direction: column;
+            padding: 13px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.6;
+            transform: scale(0.9);
+            box-sizing: border-box;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .card p {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 22px;
+            text-align: left;
+            color: #474B51;
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 1;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: flex-start;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .stars img {
+            height: 16px;
+            width: auto;
+        }
+
+        .userText {
+            position: absolute;
+            right: 30px;
+            bottom: 0;
+            /* Adjust as needed */
+            margin-top: auto;
+            text-align: right;
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 22px;
+            text-align: right;
+            color: #89919C;
+        }
+
+
+
+        .indicatorBox {
+            background: #FFFFFF;
+            border-radius: 2px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .indicator {
+            background-image: linear-gradient(111.11deg, #2B60F6 -22.33%, #7547CA 102.41%);
+            text-align: center;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+
+
+        @media screen and (min-height: 840px) {
+            .popup-container {
+                padding-top: 15%;
+                padding-bottom: 25%;
+            }
+        }
+
+        @media screen and (min-height: 900px) {
+            .popup-container {
+                padding-top: 15%;
+                padding-bottom: 30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cancelButton" onclick="closePage()"><img src="close.svg"></div>
+    <div class="restoreButton">Restore</div>
+
+
+
+    <div class="headingBox">
+        <div class="secondaryHeading">
+            <h2>Over <span class="indicatorBox"><span class="indicator">1,000,000</span></span> ratings averaging 4.8
+            </h2>
+        </div>
+    </div>
+
+    <div class="carousel-container">
+        <div class="carousel" id="myCarousel">
+            <div class="card" data-index="0">
+                <div class="stars">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                </div>
+                <p style="margin-bottom: 20px;">Love it! A great sense of security. Keeps photos personal. I've never
+                    lost photos and the app hasn't
+                    locked me out for any reason. I have one friend who also has this app and also loves it. Easy to
+                    import photos.</p>
+                <p class="userText">Photo Vault User</p>
+
+            </div>
+            <div class="card active" data-index="1">
+                <div class="stars">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                </div>
+                <p style="margin-bottom: 20px;">Love it! A great sense of security. Keeps photos personal. I've never
+                    lost photos and the app hasn't
+                    locked me out for any reason. I have one friend who also has this app and also loves it. Easy to
+                    import photos.</p>
+                <p class="userText">Photo Vault User</p>
+
+            </div>
+            <div class="card" data-index="2">
+                <div class="stars">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                    <img src="star.svg" alt="star">
+                </div>
+                <p style="margin-bottom: 20px;">Love it! A great sense of security. Keeps photos personal. I've never
+                    lost photos and the app hasn't
+                    locked me out for any reason. I have one friend who also has this app and also loves it. Easy to
+                    import photos.</p>
+                <p class="userText">Photo Vault User</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popup-container" id="popupContainer2">
+        <div class="popup-content">
+            <div id="firstoption" class="pricebox box-active" onclick="swapactive('first')">
+                <div class="blueBox">
+                    <span id="text" class="boxtitletext">YOUR PREMIUM OFFER</span>
+                </div>
+
+                <div class="priceboxtext">
+                    <p id="plantext" class="yearlyplan">Renew and save XX%</p>
+                    <p class="renew">Hurry, this offer won’t last long!</p>
+
+                    <div class="pricecontainer">
+                        <span class="left yearlyplanfirstprice">12 mo $xx.xx</span>
+                        <span class="right yearlyplanfirstprice">$xx.xx / mo</span>
+                    </div>
+                </div>
+            </div>
+            <div id="secondoption" class="secondarypricebox" onclick="swapactive('second')">
+                <div class="pricecontainer" style="padding: 0px 16px 0px 16px">
+                    <div class="left">
+                        <p class="yearlyplanfirstprice" style="line-height: 22px;">Monthly</p>
+                    </div>
+                    <div class="right">
+                        <p style="line-height: 22px;" class="yearlyplanfirstprice">$xx.xx / mo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="starttrial">
+                <span class="starttrialtext" id="claimtext">Get XX% off</span>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let isTextVisible = true;
+
+        function toggleText() {
+            isTextVisible = !isTextVisible;
+            updateText();
+        }
+
+        function updateText() {
+            const enableTrialText = document.getElementById('enableTrialText');
+            const text = document.getElementById('text');
+            const optiontext = document.getElementById('optiontext')
+            const plantext = document.getElementById('plantext')
+
+            if (isTextVisible) {
+                enableTrialText.classList.remove("active")
+                text.textContent = "POPULAR";
+                optiontext.textContent = "Enable special offer"
+                plantext.textContent = "Yearly Plan"
+            } else {
+                enableTrialText.classList.add("active")
+                text.textContent = "Exclusive extra 14-day free trial offer";
+                optiontext.textContent = "Special offer enabled"
+                plantext.textContent = "Extra 14-day trial"
+            }
+        }
+
+        function swapactive(option) {
+            if (option == "first") {
+                document.getElementById('firstoption').classList.add('box-active')
+                document.getElementById('secondoption').classList.remove('box-active')
+            }
+            else {
+                document.getElementById('firstoption').classList.remove('box-active')
+                document.getElementById('secondoption').classList.add('box-active')
+            }
+        }
+
+        const carousel = document.getElementById('myCarousel');
+        const cards = carousel.querySelectorAll('.card');
+        let currentIndex = 0;
+
+        function showCard(index) {
+            cards.forEach((card, i) => {
+                if (i === index) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        }
+
+        function updateCarousel() {
+            const cardWidth = cards[0].offsetWidth;
+            const carouselWidth = carousel.offsetWidth;
+            const totalCards = cards.length;
+
+            let translateX = -currentIndex * cardWidth + (carouselWidth - cardWidth) / 2;
+            carousel.style.transform = `translateX(${translateX}px)`;
+            showCard(currentIndex);
+        }
+
+        updateCarousel();
+
+        // Automatic rotation (every 3 seconds)
+        let autoRotateInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % cards.length;
+            updateCarousel();
+        }, 3000);
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                clearInterval(autoRotateInterval); // Stop auto-rotation on click
+
+                let clickedIndex = parseInt(card.dataset.index);
+                let currentRealIndex = currentIndex % 3;
+                let clickedRealIndex = clickedIndex % 3;
+
+                if (clickedRealIndex === currentRealIndex) {
+                    autoRotateInterval = setInterval(() => {
+                        currentIndex = (currentIndex + 1) % cards.length;
+                        updateCarousel();
+                    }, 3000);
+                    return;
+                }
+
+                if (clickedRealIndex > currentRealIndex || (currentRealIndex === 2 && clickedRealIndex === 0)) {
+                    currentIndex++;
+                } else {
+                    currentIndex--;
+                }
+
+                currentIndex = currentIndex % cards.length;
+                updateCarousel();
+
+                autoRotateInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % cards.length;
+                    updateCarousel();
+                }, 3000); // Restart auto-rotation after click
+            });
+        });
+    </script>
+
+</body>
+
+</html>

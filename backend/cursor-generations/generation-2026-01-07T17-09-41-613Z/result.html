@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Swyped - Get More Girls</title>
+    <style>
+        :root {
+            --primary: #787B68;
+            --secondary: #444733;
+            --accent: #DFF270;
+            --bg: #DDFB45;
+            --text: #2C3E50;
+            --white: #FFFFFF;
+            --glass: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --gradient: linear-gradient(135deg, #787B68 0%, #444733 100%);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            line-height: 1.4;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            margin: 0;
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            margin: 0;
+            font-size: 15px;
+            opacity: 0.85;
+        }
+
+        .container {
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 50px;
+            padding-bottom: 40px;
+            text-align: center;
+            background: var(--gradient);
+            color: var(--white);
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(223, 242, 112, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .app-icon {
+            width: 110px;
+            height: 110px;
+            border-radius: 28px;
+            margin: 0 auto 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            display: block;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E0E0E0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 19px;
+            margin-bottom: 35px;
+            padding: 0 15px;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--secondary);
+            padding: 20px 40px;
+            border-radius: 100px; /* rounded-full from data.json */
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 18px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:active {
+            transform: scale(0.92);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 50px 0;
+            background: var(--bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 30px;
+            color: var(--secondary);
+        }
+
+        .feature-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--secondary);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--accent);
+        }
+
+        .feature-content h3 {
+            font-size: 20px;
+            margin-bottom: 6px;
+            color: var(--secondary);
+        }
+
+        .feature-content p {
+            font-size: 14px;
+            color: var(--secondary);
+            opacity: 0.8;
+        }
+
+        /* Screenshots Section */
+        .screenshots-section {
+            padding: 20px 0 50px;
+        }
+
+        .screenshots-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 0 20px 30px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .screenshots-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .screenshot-img {
+            width: 260px;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            flex-shrink: 0;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 60px 20px;
+            background: var(--secondary);
+            color: var(--white);
+            border-radius: 40px;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .benefit-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .benefit-val {
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 4px;
+            line-height: 1;
+        }
+
+        .benefit-text {
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 60px 20px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 28px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--bg);
+            font-family: serif;
+            opacity: 0.5;
+            line-height: 1;
+        }
+
+        .stars {
+            color: #FFB800;
+            margin-bottom: 15px;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 800;
+            font-size: 14px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .testimonial-author::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 80px 20px;
+            text-align: center;
+            background: var(--gradient);
+            color: var(--white);
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+        }
+
+        .final-cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .store-badges {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .badge {
+            height: 52px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .badge:active {
+            transform: scale(0.95);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.7;
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .footer-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        /* Float animation for app icon */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="container">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/65/2b/51/652b510f-066c-7a0c-339a-6f1ee6792180/AppIcon-0-0-1x_U007epad-0-1-0-P3-85-220.png/400x400ia-75.jpg" alt="Swyped Icon" class="app-icon floating">
+            <h1>Swyped</h1>
+            <p>Master the dating game with AI-powered conversation coaching.</p>
+            <a href="#cta" class="cta-button">Join the Waitlist</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Upgrade Your Social Life</h2>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20,2H4C2.9,2,2,2.9,2,4v18l4-4h14c1.1,0,2-0.9,2-2V4C22,2.9,21.1,2,20,2z M15,11h-2v2h-2v-2H9V9h2V7h2v2h2V11z"/></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Winning Openers</h3>
+                    <p>AI-generated openers that actually get replies. Say goodbye to "Hey".</p>
+                </div>
+            </div>
+
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12,12c2.21,0,4-1.79,4-4s-1.79-4-4-4s-4,1.79-4,4S9.79,12,12,12z M12,14c-2.67,0-8,1.34-8,4v2h16v-2C20,15.34,14.67,14,12,14z"/></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Profile Doctor</h3>
+                    <p>Optimized bios and photo selection to boost your match rate instantly.</p>
+                </div>
+            </div>
+
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z"/></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Ghost-Proof Chat</h3>
+                    <p>Smart reply suggestions to keep the conversation flowing smoothly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="screenshots-section">
+        <div class="screenshots-scroll">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/02/11/01/02110131-f991-38b3-cd46-9bc2cbde9182/1.png/460x996bb.webp" alt="App Screenshot 1" class="screenshot-img">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/02/11/01/02110131-f991-38b3-cd46-9bc2cbde9182/1.png/460x996bb-60.jpg" alt="App Screenshot 2" class="screenshot-img">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/61/6a/25/616a258e-436a-891b-d405-7cd173395a95/3.png/460x996bb.webp" alt="App Screenshot 3" class="screenshot-img">
+        </div>
+    </div>
+
+    <section class="benefits">
+        <div class="benefit-item fade-in">
+            <span class="benefit-val">320%</span>
+            <span class="benefit-text">More Matches</span>
+        </div>
+        <div class="benefit-item fade-in">
+            <span class="benefit-val">92%</span>
+            <span class="benefit-text">Success Rate</span>
+        </div>
+        <div class="benefit-item fade-in">
+            <span class="benefit-val">24/7</span>
+            <span class="benefit-text">AI Coaching</span>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="section-title">Results that Talk</h2>
+        
+        <div class="testimonial-card fade-in">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"I used to struggle with what to say after the match. Swyped gave me the perfect lines and now I'm going on dates every week."</p>
+            <div class="testimonial-author">Alex, 26</div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"The profile optimizer is a game changer. My matches tripled in just 3 days. Highly recommend!"</p>
+            <div class="testimonial-author">David, 29</div>
+        </div>
+    </section>
+
+    <section class="final-cta" id="cta">
+        <h2>Start Winning.</h2>
+        <p>Don't leave your social life to chance. Level up with Swyped today.</p>
+        <div class="store-badges">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="App Store" class="badge">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="badge">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Tiny Desk Apps Inc.<br>Engineered for Success.</p>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Support</a>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth reveal for app icon on load
+        window.addEventListener('load', () => {
+            const icon = document.querySelector('.app-icon');
+            icon.style.opacity = '0';
+            icon.style.transform = 'scale(0.8) translateY(20px)';
+            setTimeout(() => {
+                icon.style.transition = 'all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                icon.style.opacity = '1';
+                icon.style.transform = 'scale(1) translateY(0)';
+            }, 200);
+        });
+
+        // CTA Button Click Effect
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

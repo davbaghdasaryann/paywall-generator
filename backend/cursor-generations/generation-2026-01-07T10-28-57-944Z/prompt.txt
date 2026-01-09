@@ -1,0 +1,79 @@
+You are a designer and frontend developer creating a mobile app paywall.
+
+You are inside a folder that already contains:
+- data.json (app information and business models)
+- ../images/icon.* (app icon/logo - USE THIS, DO NOT GENERATE)
+
+Use ONLY local files.
+Do not fetch anything from the internet.
+
+Analyze data.json and generate a modern, beautiful, rich paywall HTML page.
+
+RULES:
+- Use only facts found in data.json.
+- Generate descriptive text that matches the app's category and theme.
+- If factual data is missing, use reasonable defaults based on the app category.
+- DO NOT generate or create an app icon. Use the existing icon from ../images/icon.* if available, or reference appInfo.icon URL from data.json.
+
+DESIGN:
+- Take the main color palette from data.json (appInfo.colorPalette).
+- Support colors may come from the app theme.
+- Reduce colors into a minimal, beautiful palette.
+- Mobile-first design (375px width, 812px height).
+- Clean, modern, responsive design.
+- Make it RICH and visually engaging with:
+  * Decorative elements (subtle shapes, patterns, or gradients)
+  * Visual hierarchy with typography
+  * Layered design with depth (shadows, overlays)
+  * Smooth micro-interactions
+
+CONTENT:
+- Create subscription tiers based on businessModels in data.json.
+- Display pricing prominently.
+- Add key features for each tier.
+- Use SVG ICONS for feature bullet points (checkmark, star, arrow, shield, etc.) - mix icons with text bullets for visual interest.
+- Keep tone natural and engaging.
+- Add visual interest with:
+  * Icons for feature lists (use inline SVG - checkmark, star, arrow-right, shield, zap, heart, etc.)
+  * Subtle badges or tags (e.g., "Most Popular", "Best Value")
+  * Trust indicators or social proof elements
+  * Visual separators or dividers between sections
+  * Decorative accents that complement the design
+
+FEATURE LIST DESIGN:
+- Use SVG icons for SOME bullet points (mix icons with regular bullets for variety):
+  * Checkmark icons for features
+  * Star icons for premium features
+  * Arrow or sparkle icons for special highlights
+  * Shield icons for security/trust features
+- Keep icons simple, clean SVG (not emojis, use actual SVG paths).
+- Use icons inline with text for better visual appeal.
+- Alternate between icon bullets and regular bullets for rhythm.
+
+TECHNICAL:
+- Create a single HTML file with embedded CSS and JavaScript.
+- Use vanilla HTML, CSS, JS (no external dependencies).
+- Make it production-ready and visually stunning.
+- Include smooth animations and transitions.
+- Use modern CSS features (gradients, backdrop-filter, box-shadow, transforms, etc.).
+- For app icon: Reference ../images/icon.* if it exists (use relative path), or use appInfo.icon URL from data.json as <img src="...">. DO NOT create/generate an icon.
+
+RICH DESIGN ELEMENTS:
+- Add subtle background patterns or gradients
+- Use decorative shapes (circles, curves) as accents
+- Implement glassmorphism or card-based design
+- Add hover effects and interactive states
+- Include smooth scroll animations
+- Use typography hierarchy (different font sizes, weights)
+- Add subtle borders, dividers, or separators
+- Include visual feedback on interactions
+
+OUTPUT:
+- Create exactly 1 file: index.html
+- Include all CSS in <style> tags.
+- Include all JavaScript in <script> tags.
+- Output code only - complete, valid HTML.
+- The HTML should be a complete, standalone paywall page.
+- Use the existing app icon from ../images/icon.* OR appInfo.icon from data.json - DO NOT create/generate one.
+
+The paywall should feel premium, rich, visually engaging and match the app's brand identity from data.json.

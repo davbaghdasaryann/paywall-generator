@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sooty eSIM - Travel & Internet Landing Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #858487;
+            --secondary: #414144;
+            --accent: #858487;
+            --bg-color: #4A2A30;
+            --text-color: #FFFFFF;
+            --gradient: linear-gradient(135deg, #858487 0%, #414144 100%);
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --radius: 16px;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            position: relative;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Layout Sections */
+        section {
+            padding: 40px 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 60px;
+            padding-bottom: 40px;
+            background: radial-gradient(circle at top right, rgba(133, 132, 135, 0.3), transparent),
+                        radial-gradient(circle at bottom left, rgba(65, 65, 68, 0.3), transparent);
+            text-align: center;
+        }
+
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 22px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 24px;
+            animation: float 6s ease-in-out infinite;
+            border: 1px solid var(--glass-border);
+        }
+
+        .app-name {
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to bottom, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 16px;
+            opacity: 0.8;
+            margin-top: 8px;
+            margin-bottom: 32px;
+            max-width: 280px;
+        }
+
+        .cta-button {
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Screenshot Slider */
+        .screenshot-container {
+            width: 100%;
+            overflow-x: auto;
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .screenshot-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .screenshot-container img {
+            width: 220px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            scroll-snap-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 24px;
+            border-radius: var(--radius);
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .feature-content h3 {
+            margin: 0 0 4px 0;
+            font-size: 18px;
+        }
+
+        .feature-content p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: rgba(0,0,0,0.2);
+        }
+
+        .benefit-item {
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .benefit-number {
+            font-size: 48px;
+            font-weight: 800;
+            opacity: 0.2;
+            margin-bottom: -20px;
+        }
+
+        .benefit-text h4 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: var(--gradient);
+            padding: 24px;
+            border-radius: var(--radius);
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 80px;
+            opacity: 0.1;
+            font-family: serif;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        /* App Badges */
+        .badges {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .badge-img {
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.5;
+        }
+
+        h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 32px;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <img src="../images/icon.jpg" alt="Sooty eSIM Icon" class="app-icon">
+        <h1 class="app-name">Sooty eSIM</h1>
+        <p class="tagline">Travel & Internet without boundaries. Hassle-free global connectivity in minutes.</p>
+        <a href="#download" class="cta-button">Get Started</a>
+    </section>
+
+    <div class="screenshot-container">
+        <img src="../images/screenshot1.webp" alt="Screenshot 1">
+        <img src="../images/screenshot2.jpg" alt="Screenshot 2">
+        <img src="../images/screenshot3.webp" alt="Screenshot 3">
+    </div>
+
+    <section class="features">
+        <h2 class="reveal">Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Fast Activation</h3>
+                    <p>Activate your eSIM in just a few minutes with smooth, clear instructions.</p>
+                </div>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14h-4v-4h4v4zm0-6h-4V7h4v4z"/></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Multi-eSIM Manager</h3>
+                    <p>Effortlessly manage multiple eSIMs for different destinations in one app.</p>
+                </div>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Data Tracking</h3>
+                    <p>Keep an eye on your data usage effortlessly so you're never caught off guard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <h2 class="reveal">Why Choose Sooty?</h2>
+        <div class="benefit-item reveal">
+            <div class="benefit-number">01</div>
+            <div class="benefit-text">
+                <h4>No Physical SIMs</h4>
+                <p>Say goodbye to searching for local SIM cards or waiting for deliveries.</p>
+            </div>
+        </div>
+        <div class="benefit-item reveal">
+            <div class="benefit-number">02</div>
+            <div class="benefit-text">
+                <h4>Global Connectivity</h4>
+                <p>Perfect for trips abroad, ensuring you're always connected where it matters.</p>
+            </div>
+        </div>
+        <div class="benefit-item reveal">
+            <div class="benefit-number">03</div>
+            <div class="benefit-text">
+                <h4>Responsive Support</h4>
+                <p>Our support team is always ready to help you with any questions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="reveal">User Stories</h2>
+        <div class="testimonial-card reveal">
+            <div class="stars">★★★★★</div>
+            <div class="testimonial-content">
+                "I had an amazing experience! The setup process was incredibly smooth. It worked perfectly on my trip abroad, and I didn’t have to worry about finding a local SIM card. Highly recommend this hassle-free solution!"
+            </div>
+            <div style="font-weight: bold; font-size: 14px;">Verified Traveler</div>
+        </div>
+    </section>
+
+    <section id="download" class="cta-section">
+        <h2 class="reveal">Ready to travel?</h2>
+        <p class="reveal" style="text-align: center; margin-bottom: 24px; opacity: 0.8;">Join thousands of happy travelers using Sooty eSIM.</p>
+        <a href="#" class="cta-button reveal">Download Now</a>
+        <div class="badges reveal">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" class="badge-img">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="badge-img">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Sooty eSIM Travel & Internet. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

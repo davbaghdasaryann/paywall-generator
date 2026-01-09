@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Swyped - Welcome</title>
+    <style>
+        :root {
+            --bg-color: rgba(1, 1, 1, 1);
+            --neon-yellow: rgba(224, 254, 70, 1);
+            --white: rgba(255, 255, 255, 1);
+            --black: rgba(0, 0, 0, 1);
+            --button-text: rgba(0, 6, 0, 1);
+            --font-family: "SF UI Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: var(--font-family);
+            overflow: hidden;
+        }
+
+        .main-container {
+            width: 375px;
+            height: 874px;
+            background-color: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Background Decorative Element */
+        .bg-glow {
+            position: absolute;
+            width: 503px; /* 539 * 0.9328 */
+            height: 503px;
+            left: -63px; /* -68 * 0.9328 */
+            top: 95px;   /* 102 * 0.9328 */
+            z-index: 1;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        /* Logo */
+        .logo {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--neon-yellow);
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 36px;
+            letter-spacing: -0.5px;
+            z-index: 10;
+        }
+
+        /* ... */
+
+        .headline {
+            color: var(--white);
+            font-size: 27px;
+            font-weight: 600;
+            line-height: 32px;
+            margin-bottom: 16px;
+            letter-spacing: -0.2px;
+        }
+
+        .subheadline {
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 21px;
+            opacity: 0.9;
+            padding: 0 10px;
+        }
+
+        /* ... */
+
+        .get-started-btn {
+            width: 100%;
+            height: 100%;
+            background-color: var(--neon-yellow);
+            border: none;
+            border-radius: 20px;
+            color: var(--button-text);
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 21px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .get-started-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Using icon2 as the button background if it's meant to be an image button */
+        .btn-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        /* Hide system UI elements if they were accidentally included in images */
+        .system-ui-mask {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Background Element -->
+        <img src="../images/icon1.png" alt="" class="bg-glow">
+
+        <!-- Logo -->
+        <div class="logo">swyped</div>
+
+        <!-- Central Image (Phone) -->
+        <div class="main-image-container">
+            <img src="../images/icon3.png" alt="Sway AI App" class="main-image">
+        </div>
+
+        <!-- Text Content -->
+        <div class="content">
+            <h1 class="headline">Welcome to Sway AI.<br>Get more matches.</h1>
+            <p class="subheadline">Take the first steps towards attracting more matches on Hinge, Bumble, and Tinder.</p>
+        </div>
+
+        <!-- Button -->
+        <div class="button-container">
+            <!-- If icon2 is just the button shape/style, we use it. 
+                 Otherwise we use the styled button. -->
+            <a href="#" class="get-started-btn">
+                Get Started
+            </a>
+            <!-- <img src="../images/icon2.png" alt="" class="btn-image"> -->
+        </div>
+    </div>
+
+    <script>
+        // Any interactive elements can be added here
+        document.querySelector('.get-started-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Button clicked');
+        });
+    </script>
+</body>
+</html>

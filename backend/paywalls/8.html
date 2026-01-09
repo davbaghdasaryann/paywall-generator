@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Free Trial</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Red Hat Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #1D212B;
+            color: #FFFFFF;
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 40px 0 32px;
+        }
+
+        .shield-icon {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #2D2D44 0%, #232336 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .shield-inner {
+            width: 48px;
+            height: 56px;
+            background: white;
+            border-radius: 8px 8px 12px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .crown {
+            font-size: 32px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        /* Plan Cards */
+        .plan-card {
+            background: #1F1F2E;
+            border: 2px solid #2D2D44;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .plan-card.active {
+            border-color: #FFFFFF;
+            background: linear-gradient(131.86deg, rgba(38, 48, 74, 0.03) 27.88%, #26304A 77.04%);
+        }
+
+        .plan-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .plan-icon {
+            font-size: 18px;
+        }
+
+        .plan-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .plan-description {
+            color: #FFFFFFA6;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .plan-description strong {
+            color: #FFFFFFE5;
+            font-weight: 600;
+        }
+
+        /* Ultimate Card */
+        .ultimate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .plan-card.ultimate {
+            border: 1px solid transparent;
+            background: linear-gradient(#1D212B, #1D212B) padding-box,
+                linear-gradient(90deg, #4D3BF1 0%, #B474DE 100%) border-box;
+        }
+
+        .ultimate-badge {
+            background: #3A1F68;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 3px 14px;
+            border-radius: 30px;
+            white-space: nowrap;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5B6FA8 0%, #4A5A8E 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child) .timeline-icon::after {
+            content: '';
+            position: absolute;
+            top: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 20px;
+            background: #5B6FA8;
+        }
+
+        .timeline-item:last-child .timeline-icon::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 12px;
+            background: #5B6FA8;
+        }
+
+        .timeline-text {
+            padding-top: 6px;
+            font-size: 14px;
+        }
+
+        .timeline-text strong {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            background: #1D212B;
+            border: 2px solid #4A5160;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1.3fr 0.85fr 0.85fr;
+            border-bottom: 1px solid #2A2A3E;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-cell {
+            padding: 18px 16px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* First row - Header */
+        .table-row:first-child .table-cell {
+            font-weight: 700;
+            font-size: 16px;
+            padding: 20px 16px;
+        }
+
+        .table-cell:first-child {
+            color: #FFFFFF;
+            padding-left: 20px;
+        }
+
+        .table-cell:nth-child(2) {
+            justify-content: center;
+            color: #FFFFFF;
+        }
+
+        .table-cell:nth-child(3) {
+            justify-content: center;
+            background: linear-gradient(90deg, #48045C 0%, #1A0777 100%);
+            color: #FFFFFF;
+        }
+
+        /* Round corners for Ultimate column */
+        .table-row:first-child .table-cell:nth-child(3) {
+            border-radius: 0 14px 0 0;
+        }
+
+        .table-row:last-child .table-cell:nth-child(3) {
+            border-radius: 0 0 14px 0;
+        }
+
+        /* Feature rows */
+        .table-row:not(:first-child) .table-cell:first-child {
+            color: #FFFFFF;
+        }
+
+        .checkmark {
+            font-size: 20px;
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        /* Did You Know Card */
+        .info-card {
+            background: #2C3240;
+            border: 1px solid #353B48;
+            border-radius: 0 16px 16px 16px;
+            padding: 16px 20px;
+        }
+
+        .info-content {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .info-number {
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1;
+            color: #FFFFFF;
+            letter-spacing: -2px;
+            position: relative;
+            padding-right: 24px;
+        }
+
+        .info-number::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 50px;
+            background: #4A5160;
+        }
+
+        .info-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #FFFFFF;
+            flex: 1;
+        }
+
+        .info-text strong {
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+
+        /* Pricing Options */
+        .pricing-option {
+            background: #2C3240;
+            border: 2px solid #4A5160;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .pricing-option.active {
+            border-color: #FFFFFF;
+            border-width: 3px;
+            padding: 17px 23px;
+        }
+
+        .pricing-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pricing-left h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .pricing-left p {
+            font-size: 14px;
+            /* color: #B8BCC8; */
+            font-weight: 600;
+        }
+
+        .pricing-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pricing-amount {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .radio-check {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #5C5C7A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: transparent;
+        }
+
+        .radio-check .checkmark {
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 700;
+            display: none;
+        }
+
+        .pricing-option.active .radio-check {
+            border-color: #FFFFFF;
+            background: transparent;
+        }
+
+        .pricing-option.active .radio-check .checkmark {
+            display: block;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #27AE60;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 16px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        /* CTA Button */
+        .sticky-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, #1D212B 85%, transparent);
+            padding: 16px 20px 20px;
+        }
+
+        .cta-button {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            background: #4E70D2;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(78, 112, 210, 0.4);
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 24px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .container {
+                padding: 0 12px;
+            }
+
+            .table-row {
+                grid-template-columns: 1.4fr 0.8fr 0.8fr;
+            }
+
+            .table-cell {
+                padding: 16px 12px;
+                font-size: 14px;
+            }
+
+            .table-cell:first-child {
+                padding-left: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <svg style="position: fixed; left: 0; top: 0;" width="175" height="182" viewBox="0 0 175 182" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path opacity="0.04" fill-rule="evenodd" clip-rule="evenodd"
+            d="M3.5 152C81.6483 152 145 88.6483 145 10.5C145 -67.6483 81.6483 -131 3.5 -131C-74.6483 -131 -138 -67.6483 -138 10.5C-138 88.6483 -74.6483 152 3.5 152Z"
+            stroke="white" stroke-width="60" />
+    </svg>
+
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <svg style="margin-bottom: 12px;" width="69" height="81" viewBox="0 0 69 81" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.1"
+                    d="M65.3552 54.0912C63.1774 59.9917 59.8837 65.1222 55.5645 69.3387C50.6481 74.1379 44.2104 77.9515 36.43 80.6719C36.1746 80.7608 35.9082 80.8338 35.6405 80.8875C35.2869 80.9574 34.9272 80.9951 34.5705 81H34.5006C34.1204 81 33.7384 80.9617 33.3595 80.8875C33.0918 80.8338 32.8291 80.7608 32.575 80.6737C24.7853 77.9577 18.3395 74.146 13.4182 69.3467C9.09712 65.1302 5.80407 60.0028 3.62931 54.1024C-0.325185 43.3742 -0.100168 31.5559 0.0809592 22.0588L0.0840501 21.913C0.120523 21.1287 0.144014 20.305 0.156995 19.3953C0.223141 14.9291 3.7752 11.2342 8.24341 10.9852C17.5594 10.4655 24.7661 7.42809 30.9238 1.42811L30.9776 1.37867C32.0001 0.441195 33.2884 -0.0185828 34.5705 0.000574737C35.8068 0.0166423 37.0382 0.475802 38.0242 1.37867L38.0768 1.42811C44.2357 7.42809 51.4425 10.4655 60.7584 10.9852C65.2267 11.2342 68.7787 14.9291 68.8449 19.3953C68.8578 20.3111 68.8813 21.1337 68.9178 21.913L68.9197 21.9748C69.1002 31.4898 69.324 43.3316 65.3552 54.0912Z"
+                    fill="white" />
+                <path opacity="0.2"
+                    d="M59.5447 52.0842C57.7769 56.8847 55.1035 61.0587 51.5976 64.4891C47.6071 68.3936 42.3816 71.4962 36.0664 73.7094C35.8591 73.7818 35.6429 73.8412 35.4256 73.8849C35.1386 73.9417 34.8466 73.9724 34.557 73.9764H34.5003C34.1917 73.9764 33.8817 73.9452 33.5741 73.8849C33.3568 73.8412 33.1435 73.7818 32.9373 73.7109C26.6145 71.5013 21.3826 68.4002 17.388 64.4956C13.8806 61.0652 11.2077 56.8937 9.44245 52.0933C6.23263 43.3652 6.41528 33.7501 6.5623 26.0236L6.5648 25.9049C6.59441 25.2669 6.61348 24.5967 6.62401 23.8566C6.6777 20.2231 9.56087 17.217 13.1877 17.0144C20.7493 16.5916 26.599 14.1204 31.5971 9.23902L31.6407 9.1988C32.4707 8.43609 33.5164 8.06203 34.557 8.07762C35.5606 8.09069 36.5601 8.46425 37.3604 9.1988L37.4031 9.23902C42.4022 14.1204 48.2518 16.5916 55.8135 17.0144C59.4403 17.217 62.3235 20.2231 62.3772 23.8566C62.3877 24.6017 62.4068 25.2709 62.4364 25.9049L62.4379 25.9552C62.5844 33.6964 62.766 43.3305 59.5447 52.0842Z"
+                    fill="white" />
+                <path
+                    d="M54.2519 49.1971C52.8621 52.9727 50.7602 56.2557 48.0038 58.9538C44.8664 62.0247 40.7581 64.465 35.793 66.2057C35.6301 66.2627 35.46 66.3093 35.2892 66.3437C35.0636 66.3884 34.834 66.4125 34.6063 66.4157H34.5618C34.3191 66.4157 34.0753 66.3912 33.8335 66.3437C33.6627 66.3093 33.495 66.2627 33.3329 66.2069C28.3619 64.469 24.2484 62.0299 21.1079 58.9589C18.3503 56.2608 16.2488 52.9799 14.861 49.2042C12.3374 42.3394 12.481 34.777 12.5966 28.6999L12.5986 28.6066C12.6218 28.1048 12.6368 27.5776 12.6451 26.9956C12.6873 24.1377 14.9541 21.7734 17.8055 21.614C23.7506 21.2815 28.3496 19.3379 32.2792 15.4985L32.3135 15.4669C32.966 14.867 33.7882 14.5728 34.6063 14.5851C35.3953 14.5954 36.1812 14.8892 36.8104 15.4669L36.8439 15.4985C40.7743 19.3379 45.3733 21.2815 51.3184 21.614C54.1698 21.7734 56.4366 24.1377 56.4788 26.9956C56.4871 27.5816 56.5021 28.1079 56.5254 28.6066L56.5265 28.6461C56.6417 34.7347 56.7845 42.3121 54.2519 49.1971Z"
+                    fill="white" />
+                <path
+                    d="M37 33C37 33.5303 36.7936 34.0124 36.4568 34.3703L39.0807 37.6502C39.1543 37.7423 39.2822 37.7704 39.3877 37.7176L42.0385 36.3923C42.0132 36.2654 42 36.1343 42 36C42 34.8954 42.8954 34 44 34C45.1046 34 46 34.8954 46 36C46 36.9519 45.335 37.7485 44.4443 37.9505L42.6401 47.5725C42.4849 48.4002 41.7622 49 40.9201 49H29.0799C28.2378 49 27.5151 48.4002 27.3599 47.5725L25.5558 37.9505C24.665 37.7485 24 36.9519 24 36C24 34.8954 24.8954 34 26 34C27.1046 34 28 34.8954 28 36C28 36.1343 27.9868 36.2654 27.9616 36.3922L30.6124 37.7176C30.7178 37.7704 30.8457 37.7423 30.9194 37.6502L33.5433 34.3704C33.2064 34.0124 33 33.5303 33 33C33 31.8954 33.8954 31 35 31C36.1046 31 37 31.8954 37 33ZM35 45C36.1046 45 37 44.1046 37 43C37 41.8954 36.1046 41 35 41C33.8954 41 33 41.8954 33 43C33 44.1046 33.8954 45 35 45Z"
+                    fill="#FFAA45" />
+            </svg>
+            <h1>Start Your Free Trial</h1>
+        </div>
+
+        <!-- Premium Plan Card -->
+        <div class="plan-card active">
+            <div class="plan-header">
+                <div class="plan-icon"><svg style="margin-top: 5px;" width="20" height="20" viewBox="0 0 12 12"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_17_1828)">
+                            <path
+                                d="M10.4617 0.776471H9.36185C9.34036 0.343165 8.9811 0 8.54253 0H3.45146C3.0129 0 2.65368 0.343165 2.63215 0.776471H1.53228C1.0863 0.776471 0.723511 1.14311 0.723511 1.59378V3.67684C0.723511 3.97179 0.867052 4.32339 1.07257 4.53191L1.64472 5.11242C1.85253 5.32334 2.20491 5.47059 2.50156 5.47059H2.62939V5.75382C2.62939 6.16782 2.9001 6.67204 3.2446 6.90169L5.00582 8.07205L4.75368 9.6H3.5985C3.4192 9.6 3.24782 9.73376 3.19985 9.90649L2.72882 11.6031C2.70129 11.7023 2.71893 11.8028 2.77724 11.8795C2.83555 11.9563 2.92802 12 3.03093 12H8.96306C9.06595 12 9.15842 11.9572 9.21676 11.8804C9.27506 11.8037 9.29271 11.7034 9.26518 11.6042L8.79422 9.90618C8.74618 9.73345 8.57479 9.6 8.39553 9.6H7.24025L6.98769 8.07212L8.75239 6.89996C9.0969 6.67031 9.37057 6.16786 9.37057 5.75386V5.47059H9.49244C9.79 5.47059 10.1429 5.32334 10.3503 5.11292L10.9245 4.53187C11.1317 4.32155 11.2765 3.96995 11.2765 3.67684V1.59378C11.2765 1.14311 10.911 0.776471 10.4617 0.776471ZM2.62939 4.41177H2.50622C2.4772 4.40802 2.41851 4.3836 2.39529 4.36564L1.82998 3.79207C1.81113 3.76726 1.78572 3.70391 1.7823 3.67309V1.83529H2.62936V4.41177H2.62939ZM7.80009 3.42138L7.00145 4.00581C6.8758 4.09708 6.81227 4.29469 6.86028 4.4424L7.16525 5.38232C7.21325 5.53002 7.14972 5.57668 7.02408 5.48541L6.22551 4.90542C6.09986 4.81415 5.89428 4.81426 5.76863 4.90553L4.96982 5.48587C4.84417 5.57714 4.78064 5.53101 4.82864 5.38331L5.13372 4.44445C5.18172 4.29674 5.11819 4.10125 4.99255 4.00998L4.19384 3.42134C4.06819 3.33007 4.09248 3.24702 4.24777 3.24702H5.23495C5.39024 3.24702 5.55658 3.13454 5.60458 2.98687L5.90977 2.05214C5.95777 1.90447 6.0363 1.90655 6.0843 2.05426L6.38928 2.98581C6.43724 3.13352 6.60358 3.24702 6.75887 3.24702H7.74612C7.90149 3.24706 7.92573 3.33011 7.80009 3.42138ZM10.2176 3.672C10.2136 3.70324 10.187 3.76677 10.1676 3.79144L9.60051 4.36535C9.57686 4.38346 9.51732 4.40802 9.48789 4.41177H9.37057V1.83529H10.2176V3.672Z"
+                                fill="white" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_17_1828">
+                                <rect width="12" height="12" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                <h2 class="plan-title">Premium</h2>
+            </div>
+            <p class="plan-description">Unlimited Albums, Ad Free Experience...<br>
+                <strong>7 days free, then
+                    $35.99/year ($2.9/mo)</strong>
+            </p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_17_1828)">
+                                <path
+                                    d="M10.4617 0.776471H9.36185C9.34036 0.343165 8.9811 0 8.54253 0H3.45146C3.0129 0 2.65368 0.343165 2.63215 0.776471H1.53228C1.0863 0.776471 0.723511 1.14311 0.723511 1.59378V3.67684C0.723511 3.97179 0.867052 4.32339 1.07257 4.53191L1.64472 5.11242C1.85253 5.32334 2.20491 5.47059 2.50156 5.47059H2.62939V5.75382C2.62939 6.16782 2.9001 6.67204 3.2446 6.90169L5.00582 8.07205L4.75368 9.6H3.5985C3.4192 9.6 3.24782 9.73376 3.19985 9.90649L2.72882 11.6031C2.70129 11.7023 2.71893 11.8028 2.77724 11.8795C2.83555 11.9563 2.92802 12 3.03093 12H8.96306C9.06595 12 9.15842 11.9572 9.21676 11.8804C9.27506 11.8037 9.29271 11.7034 9.26518 11.6042L8.79422 9.90618C8.74618 9.73345 8.57479 9.6 8.39553 9.6H7.24025L6.98769 8.07212L8.75239 6.89996C9.0969 6.67031 9.37057 6.16786 9.37057 5.75386V5.47059H9.49244C9.79 5.47059 10.1429 5.32334 10.3503 5.11292L10.9245 4.53187C11.1317 4.32155 11.2765 3.96995 11.2765 3.67684V1.59378C11.2765 1.14311 10.911 0.776471 10.4617 0.776471ZM2.62939 4.41177H2.50622C2.4772 4.40802 2.41851 4.3836 2.39529 4.36564L1.82998 3.79207C1.81113 3.76726 1.78572 3.70391 1.7823 3.67309V1.83529H2.62936V4.41177H2.62939ZM7.80009 3.42138L7.00145 4.00581C6.8758 4.09708 6.81227 4.29469 6.86028 4.4424L7.16525 5.38232C7.21325 5.53002 7.14972 5.57668 7.02408 5.48541L6.22551 4.90542C6.09986 4.81415 5.89428 4.81426 5.76863 4.90553L4.96982 5.48587C4.84417 5.57714 4.78064 5.53101 4.82864 5.38331L5.13372 4.44445C5.18172 4.29674 5.11819 4.10125 4.99255 4.00998L4.19384 3.42134C4.06819 3.33007 4.09248 3.24702 4.24777 3.24702H5.23495C5.39024 3.24702 5.55658 3.13454 5.60458 2.98687L5.90977 2.05214C5.95777 1.90447 6.0363 1.90655 6.0843 2.05426L6.38928 2.98581C6.43724 3.13352 6.60358 3.24702 6.75887 3.24702H7.74612C7.90149 3.24706 7.92573 3.33011 7.80009 3.42138ZM10.2176 3.672C10.2136 3.70324 10.187 3.76677 10.1676 3.79144L9.60051 4.36535C9.57686 4.38346 9.51732 4.40802 9.48789 4.41177H9.37057V1.83529H10.2176V3.672Z"
+                                    fill="white" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_17_1828">
+                                    <rect width="12" height="12" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="timeline-text"><strong>Today:</strong> start your free trial</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><svg width="15" height="20" viewBox="0 0 11 14" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.4733 9.14L9.92 8.58667C9.54482 8.21195 9.3338 7.70359 9.33333 7.17333V5.33333C9.33333 4.46785 9.05262 3.62572 8.53333 2.93333L7.93333 2.13333C7.74704 1.88494 7.50547 1.68333 7.22776 1.54448C6.95005 1.40562 6.64382 1.33333 6.33333 1.33333H6V0.333333C6 0.244928 5.96488 0.160143 5.90237 0.0976311C5.83986 0.035119 5.75507 0 5.66667 0H5C4.91159 0 4.82681 0.035119 4.7643 0.0976311C4.70179 0.160143 4.66667 0.244928 4.66667 0.333333V1.33333H4.33333C4.02284 1.33333 3.71662 1.40562 3.43891 1.54448C3.1612 1.68333 2.91963 1.88494 2.73333 2.13333L2.13333 2.93333C1.61404 3.62572 1.33333 4.46785 1.33333 5.33333V7.17333C1.33287 7.70359 1.12185 8.21195 0.746667 8.58667L0.193333 9.14C0.0701705 9.26417 0.000736414 9.43177 0 9.60667V10C0 10.1768 0.070238 10.3464 0.195262 10.4714C0.320287 10.5964 0.489856 10.6667 0.666667 10.6667H10C10.1768 10.6667 10.3464 10.5964 10.4714 10.4714C10.5964 10.3464 10.6667 10.1768 10.6667 10V9.60667C10.6659 9.43177 10.5965 9.26417 10.4733 9.14ZM6 8.33333C6 8.42174 5.96488 8.50652 5.90237 8.56904C5.83986 8.63155 5.75507 8.66667 5.66667 8.66667H5C4.91159 8.66667 4.82681 8.63155 4.7643 8.56904C4.70179 8.50652 4.66667 8.42174 4.66667 8.33333V7.66667C4.66667 7.57826 4.70179 7.49348 4.7643 7.43096C4.82681 7.36845 4.91159 7.33333 5 7.33333H5.66667C5.75507 7.33333 5.83986 7.36845 5.90237 7.43096C5.96488 7.49348 6 7.57826 6 7.66667V8.33333ZM5.85333 5.85333C5.84842 5.89398 5.82871 5.93141 5.79797 5.95846C5.76723 5.98551 5.72761 6.0003 5.68667 6H4.98C4.93905 6.0003 4.89943 5.98551 4.86869 5.95846C4.83795 5.93141 4.81825 5.89398 4.81333 5.85333L4.54667 3.70667C4.54098 3.65965 4.54538 3.61197 4.55957 3.56679C4.57376 3.52161 4.59741 3.47998 4.62894 3.44465C4.66048 3.40933 4.69919 3.38113 4.74248 3.36194C4.78576 3.34274 4.83265 3.33299 4.88 3.33333H5.78667C5.83402 3.33299 5.8809 3.34274 5.92419 3.36194C5.96748 3.38113 6.00618 3.40933 6.03772 3.44465C6.06926 3.47998 6.09291 3.52161 6.1071 3.56679C6.12128 3.61197 6.12568 3.65965 6.12 3.70667L5.85333 5.85333ZM5.33333 13.3333C5.68695 13.3333 6.02609 13.1929 6.27614 12.9428C6.52619 12.6928 6.66667 12.3536 6.66667 12H4C4 12.3536 4.14048 12.6928 4.39052 12.9428C4.64057 13.1929 4.97971 13.3333 5.33333 13.3333Z"
+                                fill="white" />
+                        </svg>
+                    </div>
+                    <div class="timeline-text"><strong>Day 5:</strong> get reminder</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><svg width="18" height="18" viewBox="0 0 14 14" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7 0C5.61553 0 4.26215 0.410543 3.11101 1.17971C1.95987 1.94888 1.06266 3.04213 0.532846 4.32121C0.00303299 5.6003 -0.13559 7.00776 0.134506 8.36563C0.404603 9.7235 1.07129 10.9708 2.05026 11.9497C3.02922 12.9287 4.2765 13.5954 5.63437 13.8655C6.99224 14.1356 8.3997 13.997 9.67879 13.4672C10.9579 12.9373 12.0511 12.0401 12.8203 10.889C13.5895 9.73784 14 8.38447 14 7C14 6.08075 13.8189 5.17049 13.4672 4.32121C13.1154 3.47194 12.5998 2.70026 11.9497 2.05025C11.2997 1.40024 10.5281 0.884626 9.67879 0.532843C8.82951 0.18106 7.91925 0 7 0ZM9.1 5.425C9.1 5.51782 9.06313 5.60685 8.99749 5.67249C8.93185 5.73812 8.84283 5.775 8.75 5.775H8.225C8.13218 5.775 8.04315 5.73812 7.97751 5.67249C7.91188 5.60685 7.875 5.51782 7.875 5.425V4.725H6.125V5.341C6.12357 5.36666 6.12858 5.39228 6.13959 5.41551C6.15059 5.43874 6.16724 5.45885 6.188 5.474L8.589 7.455C8.74832 7.58595 8.87674 7.75049 8.96507 7.93684C9.05341 8.1232 9.09948 8.32677 9.1 8.533V9.1C9.1 9.4713 8.9525 9.8274 8.68995 10.0899C8.4274 10.3525 8.07131 10.5 7.7 10.5V10.85C7.7 10.9428 7.66313 11.0318 7.59749 11.0975C7.53185 11.1631 7.44283 11.2 7.35 11.2H6.65C6.55718 11.2 6.46815 11.1631 6.40251 11.0975C6.33688 11.0318 6.3 10.9428 6.3 10.85V10.5C5.9287 10.5 5.5726 10.3525 5.31005 10.0899C5.0475 9.8274 4.9 9.4713 4.9 9.1V8.575C4.9 8.48217 4.93688 8.39315 5.00251 8.32751C5.06815 8.26187 5.15718 8.225 5.25 8.225H5.775C5.86783 8.225 5.95685 8.26187 6.02249 8.32751C6.08813 8.39315 6.125 8.48217 6.125 8.575V9.275H7.875V8.659C7.87644 8.63333 7.87142 8.60772 7.86042 8.58449C7.84941 8.56125 7.83277 8.54115 7.812 8.526L5.411 6.545C5.25169 6.41404 5.12327 6.24951 5.03493 6.06315C4.9466 5.8768 4.90052 5.67323 4.9 5.467V4.9C4.9 4.5287 5.0475 4.1726 5.31005 3.91005C5.5726 3.6475 5.9287 3.5 6.3 3.5V3.15C6.3 3.05717 6.33688 2.96815 6.40251 2.90251C6.46815 2.83687 6.55718 2.8 6.65 2.8H7.35C7.44283 2.8 7.53185 2.83687 7.59749 2.90251C7.66313 2.96815 7.7 3.05717 7.7 3.15V3.5C8.07131 3.5 8.4274 3.6475 8.68995 3.91005C8.9525 4.1726 9.1 4.5287 9.1 4.9V5.425Z"
+                                fill="white" />
+                        </svg>
+                    </div>
+                    <div class="timeline-text"><strong>Day 7:</strong> you will be charged <strong>$35.99/year</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ultimate Plan Card -->
+        <div class="plan-card ultimate">
+            <div class="ultimate-header">
+                <div class="plan-header" style="margin-bottom: 0;">
+                    <div class="plan-icon"><svg width="18" height="15" viewBox="0 0 18 15" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.6364 1.66667C10.6364 2.10858 10.4675 2.51033 10.1919 2.80862L12.3388 5.54184C12.399 5.61855 12.5036 5.64197 12.5899 5.59803L14.7588 4.49355C14.7381 4.38785 14.7273 4.27854 14.7273 4.16667C14.7273 3.24619 15.4599 2.5 16.3636 2.5C17.2674 2.5 18 3.24619 18 4.16667C18 4.95991 17.4559 5.62371 16.7272 5.79207L15.251 13.8104C15.124 14.5002 14.5327 15 13.8437 15H4.15632C3.46731 15 2.87601 14.5002 2.74903 13.8104L1.27293 5.79208C0.544099 5.62373 0 4.95992 0 4.16667C0 3.24619 0.732625 2.5 1.63636 2.5C2.5401 2.5 3.27273 3.24619 3.27273 4.16667C3.27273 4.27854 3.2619 4.38783 3.24127 4.49353L5.41011 5.59803C5.49638 5.64197 5.60106 5.61855 5.66132 5.54184L7.80815 2.80864C7.53251 2.51035 7.36364 2.1086 7.36364 1.66667C7.36364 0.746192 8.09624 0 9 0C9.90376 0 10.6364 0.746192 10.6364 1.66667ZM9 11.6667C9.90376 11.6667 10.6364 10.9205 10.6364 10C10.6364 9.0795 9.90376 8.33333 9 8.33333C8.09624 8.33333 7.36364 9.0795 7.36364 10C7.36364 10.9205 8.09624 11.6667 9 11.6667Z"
+                                fill="white" />
+                        </svg>
+                    </div>
+                    <h2 class="plan-title">Ultimate</h2>
+                </div>
+                <div class="ultimate-badge">Includes Premium benefits</div>
+            </div>
+            <p class="plan-description">Duplicate Detection, Nested Folders...<br><strong>7 days free, then
+                    $149.99/year ($12.49/mo)</strong>
+            </p>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-table">
+            <div class="table-row">
+                <div class="table-cell">What you get</div>
+                <div class="table-cell">Premium</div>
+                <div class="table-cell">Ultimate</div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Unlimited Photo Albums</div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Ad Free Experience</div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Wireless Photo Transfer</div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Decoy Password</div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Pattern lock</div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Break-in Report: Photo & GPS</div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Cloud Vault</div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Face Down Lock</div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">App Disguise</div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">1,000 GB Storage Space</div>
+                <div class="table-cell"></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Nested Folders</div>
+                <div class="table-cell"></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Duplicate Detection</div>
+                <div class="table-cell"></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Custom Animations</div>
+                <div class="table-cell"></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">Alphanumerical Passwords</div>
+                <div class="table-cell"></div>
+                <div class="table-cell"><span class="checkmark">✓</span></div>
+            </div>
+        </div>
+
+        <!-- Did You Know Card -->
+        <div style="margin-bottom: 24px;">
+            <div
+                style="background: #3A4150; padding: 10px 24px; border-radius: 16px 16px 0 0; display: inline-block; margin-bottom: -1px;">
+                <p style="font-size: 18px; font-weight: 600; color: #FFFFFF; margin: 0;">Did you know?</p>
+            </div>
+            <div class="info-card">
+                <div class="info-content">
+                    <div class="info-number">3X</div>
+                    <div class="info-text">Subscribers are <strong>3 times</strong> more likely to hit the trial</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Options -->
+        <div class="pricing-option active">
+            <div class="popular-badge">POPULAR</div>
+            <div class="pricing-content">
+                <div class="pricing-left">
+                    <h3>Yearly Plan</h3>
+                    <p>$35.99/year</p>
+                </div>
+                <div class="pricing-right">
+                    <div class="pricing-amount">$2.99/month</div>
+                    <div class="radio-check">
+                        <span class="checkmark">✓</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pricing-option">
+            <div class="pricing-content">
+                <div class="pricing-left">
+                    <h3>Monthly</h3>
+                </div>
+                <div class="pricing-right">
+                    <div class="pricing-amount">$12.99/month</div>
+                    <div class="radio-check">
+                        <span class="checkmark">✓</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky CTA Button -->
+    <div class="sticky-footer">
+        <button class="cta-button">Start free trial</button>
+    </div>
+
+    <script>
+        document.querySelectorAll('.pricing-option').forEach(option => {
+            option.addEventListener('click', function () {
+                document.querySelectorAll('.pricing-option').forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

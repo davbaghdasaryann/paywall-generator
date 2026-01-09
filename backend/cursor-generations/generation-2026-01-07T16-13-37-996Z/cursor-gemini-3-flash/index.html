@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Varpet Premium</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #D5D4D3;
+            color: #2C3E50;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            background: linear-gradient(180deg, #F8F9FA 0%, #D5D4D3 100%);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Decorative Elements */
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #0398F9 0%, #017BDD 100%);
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: 0;
+            border-radius: 50%;
+        }
+
+        .blob-1 { top: -100px; right: -100px; }
+        .blob-2 { bottom: 100px; left: -100px; }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 24px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+            object-fit: cover;
+        }
+
+        .app-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(135deg, #0398F9 0%, #017BDD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .headline {
+            font-size: 28px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            color: #2C3E50;
+        }
+
+        .subheadline {
+            font-size: 16px;
+            color: #5D6D7E;
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 0 20px;
+        }
+
+        /* Feature List */
+        .features {
+            width: 100%;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease;
+        }
+
+        .feature-icon {
+            width: 22px;
+            height: 22px;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+
+        /* Pricing Tiers */
+        .pricing-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .tier-card {
+            position: relative;
+            width: 100%;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .tier-card.selected {
+            border-color: #0398F9;
+            background: #F0F9FF;
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(3, 152, 249, 0.2);
+        }
+
+        .tier-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tier-name {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #5D6D7E;
+            margin-bottom: 4px;
+        }
+
+        .tier-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: #2C3E50;
+        }
+
+        .tier-desc {
+            font-size: 12px;
+            color: #7F8C8D;
+            margin-top: 2px;
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: #0398F9;
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 5px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(3, 152, 249, 0.3);
+            z-index: 2;
+        }
+
+        .selection-indicator {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #0398F9 0%, #017BDD 100%);
+            color: white;
+            border: none;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(3, 152, 249, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:active {
+            transform: scale(0.96);
+            box-shadow: 0 4px 10px rgba(3, 152, 249, 0.2);
+        }
+
+        /* Footer Links */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: auto;
+            padding-bottom: 32px;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: #7F8C8D;
+            text-decoration: none;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0px rgba(3, 152, 249, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(3, 152, 249, 0); }
+            100% { box-shadow: 0 0 0 0px rgba(3, 152, 249, 0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="container">
+        <header>
+            <img src="../images/icon.jpg" alt="Varpet Icon" class="app-icon" onerror="this.src='https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d4/2b/54/d42b54cb-290f-7530-f464-86311ea12bbe/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/400x400ia-75.jpg'">
+            <h1 class="app-name">Varpet</h1>
+        </header>
+
+        <div class="headline">Go Premium</div>
+        <div class="subheadline">Get the most out of Varpet with exclusive tools and priority support.</div>
+
+        <div class="features">
+            <!-- Features from data.json -->
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="#0398F9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <div class="feature-text">Full access</div>
+            </div>
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="#0398F9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <div class="feature-text">Premium features</div>
+            </div>
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="#0398F9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <div class="feature-text">No ads</div>
+            </div>
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="#0398F9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                </svg>
+                <div class="feature-text">Priority support</div>
+            </div>
+        </div>
+
+        <div class="pricing-container" id="pricing">
+            <!-- Tiers from businessModels -->
+            <div class="tier-card" onclick="selectTier(this, 'Monthly')">
+                <div class="tier-info">
+                    <div class="tier-name">Monthly</div>
+                    <div class="tier-price">$9.99/month</div>
+                    <div class="tier-desc">Get full access to all features</div>
+                </div>
+                <div class="selection-indicator">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D5D4D3" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="tier-card selected" onclick="selectTier(this, 'Annual')">
+                <div class="badge">Best Value</div>
+                <div class="tier-info">
+                    <div class="tier-name">Annual</div>
+                    <div class="tier-price">$79.99/year</div>
+                    <div class="tier-desc">Best value - save 33% with annual plan</div>
+                </div>
+                <div class="selection-indicator">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="#0398F9"/>
+                        <polyline points="8 12 11 15 16 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <button class="cta-button pulse" onclick="handleSubscribe()">Continue</button>
+
+        <div class="footer-links">
+            <a href="#" class="footer-link">Restore</a>
+            <a href="#" class="footer-link">Terms</a>
+            <a href="#" class="footer-link">Privacy</a>
+        </div>
+    </div>
+
+    <script>
+        let selectedPlan = 'Annual';
+
+        function selectTier(element, plan) {
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.classList.remove('selected');
+                const indicator = card.querySelector('.selection-indicator');
+                indicator.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#D5D4D3" stroke-width="2"/>
+                    </svg>
+                `;
+            });
+
+            element.classList.add('selected');
+            const indicator = element.querySelector('.selection-indicator');
+            indicator.innerHTML = `
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#0398F9"/>
+                    <polyline points="8 12 11 15 16 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
+            
+            selectedPlan = plan;
+        }
+
+        function handleSubscribe() {
+            // Processing subscription logic
+            const btn = document.querySelector('.cta-button');
+            const originalText = btn.innerText;
+            btn.innerText = 'Processing...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Success! You are now a Premium member.');
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sway AI Paywall</title>
+    <style>
+        /* 
+           Design System Tokens:
+           Colors: 
+             - Primary Black: rgba(1, 1, 1, 1) -> #010101
+             - Primary Lime: rgba(224, 254, 70, 1) -> #E0FE46
+             - Text White: rgba(255, 255, 255, 1) -> #FFFFFF
+             - Button Dark: rgba(0, 6, 0, 1) -> #000600
+           
+           Fonts (SF UI Display):
+             - Logo: 30px, 700 (Bold)
+             - Title: 27px, 600 (Semi-bold)
+             - Body/Desc: 18px, 300 (Light)
+             - Button: 18px, 700 (Bold)
+        */
+
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "SF UI Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .viewport {
+            width: 375px;
+            height: 815px; /* Scaled height: 874 * (375/402) */
+            overflow: hidden;
+            position: relative;
+            background-color: #010101;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        /* The Canvas matches the 402x874 design exactly from Figma */
+        .canvas {
+            width: 402px;
+            height: 874px;
+            background-color: rgba(1, 1, 1, 1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scale(0.9328358209); /* 375 / 402 to meet the 375px width requirement */
+            transform-origin: top left;
+            overflow: hidden;
+        }
+
+        /* Background Layer - Icon 1 */
+        .icon1 {
+            position: absolute;
+            left: -68px;
+            top: 102px;
+            width: 539px;
+            height: 539px;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        /* Status Bar Simulation */
+        .status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 44px;
+            padding: 12px 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .status-bar .right {
+            display: flex;
+            gap: 6px;
+            font-size: 12px;
+            align-items: center;
+        }
+
+        /* Logo Node 171 */
+        .logo {
+            position: absolute;
+            left: 24px;
+            top: 64px;
+            font-family: inherit;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 36px;
+            color: rgba(224, 254, 70, 1);
+            z-index: 10;
+        }
+
+        /* Main Graphic - Icon 3 */
+        .icon3 {
+            position: absolute;
+            left: 99px;
+            top: 150px;
+            width: 205px;
+            height: 421px;
+            z-index: 5;
+            object-fit: contain;
+        }
+
+        /* Content Group - Nodes 139, 155 */
+        .content {
+            position: absolute;
+            left: 24px;
+            right: 24px;
+            bottom: 135px;
+            z-index: 10;
+        }
+
+        .title {
+            font-family: inherit;
+            font-size: 27px;
+            font-weight: 600;
+            line-height: 32px;
+            color: rgba(255, 255, 255, 1);
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .description {
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 21px;
+            color: rgba(255, 255, 255, 1);
+            opacity: 0.9;
+            letter-spacing: -0.2px;
+        }
+
+        /* Button Section - Node 104, 114, 127 */
+        .button-container {
+            position: absolute;
+            left: 20px;
+            top: 763px;
+            width: 362px;
+            height: 57px;
+            z-index: 20;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(224, 254, 70, 1);
+            border-radius: 20px;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(224, 254, 70, 0.2);
+        }
+
+        .button-container:active {
+            transform: scale(0.96);
+            background-color: rgba(200, 230, 60, 1);
+        }
+
+        /* Icon 2 is specifically positioned at the button's location */
+        .button-background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 21;
+            pointer-events: none;
+            object-fit: cover;
+        }
+
+        .button-text {
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 21px;
+            color: rgba(0, 6, 0, 1);
+            z-index: 22;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="viewport">
+        <div class="canvas">
+            <!-- Background Layer -->
+            <img src="../images/icon1.png" class="icon1" alt="">
+
+            <!-- Status Bar simulation for realism -->
+            <div class="status-bar">
+                <div class="left">9:41</div>
+                <div class="right">
+                    <span>📶</span>
+                    <span>5G</span>
+                    <span>🔋</span>
+                </div>
+            </div>
+
+            <!-- Logo "swyped" -->
+            <div class="logo">swyped</div>
+
+            <!-- Main Feature Image (Phone Graphic) -->
+            <img src="../images/icon3.png" class="icon3" alt="Phone Preview">
+
+            <!-- Title and Description -->
+            <div class="content">
+                <h1 class="title">Welcome to Sway AI.<br>Get more matches.</h1>
+                <p class="description">Take the first steps towards attracting more matches on Hinge, Bumble, and Tinder.</p>
+            </div>
+
+            <!-- Primary Action Button -->
+            <div class="button-container" id="mainButton">
+                <!-- icon2.png is the specific image for the button background/shading -->
+                <img src="../images/icon2.png" class="button-background-image" alt="">
+                <span class="button-text">Get Started</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Button interaction logic
+        document.getElementById('mainButton').addEventListener('click', function() {
+            // Provide visual feedback
+            console.log('Get Started clicked');
+            
+            // In a real app, this would trigger the purchase flow or onboarding
+            // For this demonstration, we'll show a simple alert
+            setTimeout(() => {
+                alert('Success! Starting your journey with Sway AI.');
+            }, 50);
+        });
+
+        // Prevent default touch behavior for a more native feel
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+    </script>
+</body>
+</html>

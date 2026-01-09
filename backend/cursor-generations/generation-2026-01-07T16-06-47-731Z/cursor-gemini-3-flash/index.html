@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>gg - Premium Subscription</title>
+    <style>
+        :root {
+            --primary: #D6D6D6;
+            --secondary: #6F6F6F;
+            --accent: #262626;
+            --background: #EDF0F7;
+            --text: #2C3E50;
+            --gradient: linear-gradient(135deg, #D6D6D6 0%, #6F6F6F 100%);
+            --glass: rgba(255, 255, 255, 0.7);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+            scroll-behavior: smooth;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            padding: 16px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100%;
+            background: var(--background);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Decorative background elements */
+        .decor-blob {
+            position: absolute;
+            z-index: -1;
+            filter: blur(50px);
+            opacity: 0.35;
+            border-radius: 50%;
+        }
+
+        .blob-1 {
+            width: 250px;
+            height: 250px;
+            background: var(--primary);
+            top: -80px;
+            right: -80px;
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            bottom: 20px;
+            left: -120px;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            width: 32px;
+            height: 32px;
+            background: rgba(0,0,0,0.06);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .close-btn:active {
+            background: rgba(0,0,0,0.12);
+        }
+
+        /* App Profile */
+        .app-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .app-icon {
+            width: 92px;
+            height: 92px;
+            border-radius: 22px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            margin-bottom: 16px;
+            object-fit: cover;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .app-name {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin: 0;
+            color: var(--accent);
+        }
+
+        .hero-title {
+            font-size: 30px;
+            font-weight: 900;
+            line-height: 1.1;
+            text-align: center;
+            margin: 8px 0 16px 0;
+            color: var(--accent);
+        }
+
+        /* Features List */
+        .features-container {
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-icon {
+            width: 22px;
+            height: 22px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        .feature-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.2px;
+        }
+
+        /* Pricing Tiers */
+        .tiers-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .tier-card {
+            width: 100%;
+            padding: 20px 24px;
+            border-radius: var(--radius);
+            background: white;
+            border: 2px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .tier-card.selected {
+            border-color: var(--accent);
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+
+        .tier-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tier-name {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            color: var(--accent);
+        }
+
+        .tier-price {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .tier-badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: var(--accent);
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .radio-circle {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #E2E8F0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s;
+        }
+
+        .tier-card.selected .radio-circle {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .radio-inner {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.25s;
+        }
+
+        .tier-card.selected .radio-inner {
+            transform: scale(1);
+        }
+
+        /* Action Button */
+        .cta-button {
+            width: 100%;
+            padding: 20px;
+            border-radius: 100px;
+            background: var(--accent);
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:active {
+            transform: scale(0.97);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: auto;
+            padding-bottom: 24px;
+            width: 100%;
+        }
+
+        .footer-link {
+            font-size: 13px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-link:active {
+            opacity: 1;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: slideUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.15s; opacity: 0; }
+        .delay-2 { animation-delay: 0.3s; opacity: 0; }
+        .delay-3 { animation-delay: 0.45s; opacity: 0; }
+    </style>
+</head>
+<body>
+    <div class="decor-blob blob-1"></div>
+    <div class="decor-blob blob-2"></div>
+
+    <div class="container">
+        <header class="header">
+            <div class="close-btn" onclick="console.log('Dismiss paywall')">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 1L1 13M1 1L13 13" stroke="#2C3E50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </header>
+
+        <section class="app-profile animate">
+            <img src="../images/icon.jpg" alt="gg icon" class="app-icon">
+            <h1 class="app-name">gg</h1>
+            <h2 class="hero-title">Transportation Service</h2>
+        </section>
+
+        <section class="features-container animate delay-1">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <div class="feature-text">Full access</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                    </svg>
+                </div>
+                <div class="feature-text">Premium features</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                    </svg>
+                </div>
+                <div class="feature-text">No ads</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <div class="feature-text">Priority support</div>
+            </div>
+        </section>
+
+        <section class="tiers-container animate delay-2">
+            <!-- Annual Tier (Recommended) -->
+            <div class="tier-card selected" onclick="selectTier(this, 'Annual')">
+                <div class="tier-badge">Best Value</div>
+                <div class="tier-info">
+                    <span class="tier-name">Annual</span>
+                    <span class="tier-price">$79.99/year</span>
+                </div>
+                <div class="radio-circle">
+                    <div class="radio-inner"></div>
+                </div>
+            </div>
+
+            <!-- Monthly Tier -->
+            <div class="tier-card" onclick="selectTier(this, 'Monthly')">
+                <div class="tier-info">
+                    <span class="tier-name">Monthly</span>
+                    <span class="tier-price">$9.99/month</span>
+                </div>
+                <div class="radio-circle">
+                    <div class="radio-inner"></div>
+                </div>
+            </div>
+        </section>
+
+        <button class="cta-button animate delay-3" id="subscribe-btn">
+            Get Started
+        </button>
+
+        <footer class="footer-links animate delay-3">
+            <a href="#" class="footer-link">Restore Purchase</a>
+            <a href="#" class="footer-link">Terms</a>
+            <a href="#" class="footer-link">Privacy Policy</a>
+        </footer>
+    </div>
+
+    <script>
+        let selectedPlan = 'Annual';
+
+        function selectTier(element, plan) {
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            element.classList.add('selected');
+            selectedPlan = plan;
+            
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(15);
+            }
+        }
+
+        document.getElementById('subscribe-btn').addEventListener('click', () => {
+            const btn = document.getElementById('subscribe-btn');
+            const originalText = btn.innerText;
+            btn.innerText = 'Activating...';
+            btn.style.opacity = '0.8';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.opacity = '1';
+                btn.disabled = false;
+                alert('Welcome to gg Premium! Your ' + selectedPlan + ' subscription is active.');
+            }, 1200);
+        });
+    </script>
+</body>
+</html>

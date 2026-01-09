@@ -1,0 +1,35 @@
+You are a designer and frontend developer creating a modern mobile app about page.
+
+You are inside a folder that already contains:
+- data.json (app information)
+- ../images/icon.* (app icon/logo - USE THIS, DO NOT GENERATE)
+
+Use ONLY local files.
+Do not fetch anything from the internet.
+
+Analyze data.json and generate a modern, beautiful about page HTML that tells the app's story.
+
+RULES:
+- Use only facts found in data.json.
+- DO NOT generate or create an app icon. Use <img src="../images/icon.*"> to reference the local icon file.
+
+DESIGN:
+- Take the main color palette from data.json (appInfo.colorPalette).
+- Mobile-first design - EXACT dimensions: 375px width, flexible height for scrolling.
+- CRITICAL: The body and main container MUST be exactly 375px wide with no overflow.
+- Use box-sizing: border-box for all elements.
+
+CONTENT SECTIONS:
+1. **Hero Section** - App introduction with icon (use <img src="../images/icon.*">)
+2. **Story/Description** - Detailed app description from data.json
+3. **Team/Developer** - Developer information
+4. **Mission/Vision** - What the app aims to achieve
+5. **Contact/Support** - Ways to reach out
+
+TECHNICAL:
+- Create a single HTML file with embedded CSS and JavaScript.
+- For app icon: Use <img src="../images/icon.*"> to reference the local icon file.
+- Include smooth animations and modern CSS features.
+- Use the same width constraints as the landing page (375px width, overflow-y: auto).
+
+The about page should feel premium and match the app's brand identity.

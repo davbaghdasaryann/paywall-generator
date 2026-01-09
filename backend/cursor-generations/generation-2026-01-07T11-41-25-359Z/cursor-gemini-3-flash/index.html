@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Swyped - Get More Girls</title>
+    <style>
+        :root {
+            --primary: #7A7E69;
+            --secondary: #464936;
+            --accent: #DFF270;
+            --bg-color: #E0FE47;
+            --text-color: #2C3E50;
+            --white: #ffffff;
+            --black: #1a1a1a;
+            --glass: rgba(255, 255, 255, 0.15);
+            --gradient: linear-gradient(135deg, #7A7E69 0%, #464936 100%);
+            --border-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            position: relative;
+        }
+
+        /* Decorative Background Elements */
+        .bg-blob {
+            position: absolute;
+            z-index: -1;
+            filter: blur(60px);
+            opacity: 0.4;
+            border-radius: 50%;
+        }
+
+        .blob-1 {
+            top: 100px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: var(--primary);
+        }
+
+        .blob-2 {
+            top: 400px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .animate-up {
+            opacity: 0;
+        }
+
+        .animate-up.visible {
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 50px 24px 60px;
+            text-align: center;
+            background: var(--gradient);
+            color: var(--white);
+            border-bottom-left-radius: 48px;
+            border-bottom-right-radius: 48px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(70, 73, 54, 0.3);
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .app-icon {
+            width: 110px;
+            height: 110px;
+            border-radius: 24px;
+            margin: 0 auto 24px;
+            display: block;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            animation: float 5s ease-in-out infinite;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            opacity: 0.95;
+            margin: 16px 0 36px;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--secondary);
+            padding: 18px 40px;
+            border-radius: 40px;
+            font-weight: 800;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(223, 242, 112, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-button:active {
+            transform: scale(0.92);
+        }
+
+        /* Features Section */
+        .section-header {
+            padding: 60px 24px 30px;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0;
+            color: var(--secondary);
+        }
+
+        .section-header p {
+            color: #555;
+            font-size: 16px;
+            margin: 10px 0 0;
+        }
+
+        .features-grid {
+            padding: 0 20px 40px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 28px;
+            border-radius: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--bg-color);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .feature-card h3 {
+            margin: 0 0 12px;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        .feature-card p {
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Screenshots Section */
+        .screenshots-container {
+            padding: 20px 0 60px;
+            overflow-x: auto;
+            display: flex;
+            gap: 20px;
+            padding-left: 24px;
+            padding-right: 24px;
+            scrollbar-width: none;
+        }
+
+        .screenshots-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .screenshot-wrapper {
+            flex: 0 0 240px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border: 6px solid var(--secondary);
+        }
+
+        .screenshot-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 60px 24px;
+            margin: 20px 0;
+            border-radius: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits h2 {
+            color: var(--accent);
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 28px;
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .benefit-check {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(223, 242, 112, 0.4);
+        }
+
+        .benefit-text h4 {
+            margin: 0 0 4px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .benefit-text p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .rating-box {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 32px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 28px;
+            margin-bottom: 12px;
+            letter-spacing: 4px;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 4px;
+            color: var(--secondary);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        /* Pricing/Models Section */
+        .pricing-section {
+            padding: 40px 24px;
+        }
+
+        .price-card {
+            background: var(--accent);
+            color: var(--secondary);
+            padding: 32px;
+            border-radius: 32px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(223, 242, 112, 0.3);
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--secondary);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .price-card h3 {
+            font-size: 24px;
+            margin: 0 0 8px;
+        }
+
+        .price-value {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 80px 24px;
+            text-align: center;
+            background: var(--gradient);
+            color: var(--white);
+            border-top-left-radius: 48px;
+            border-top-right-radius: 48px;
+            margin-top: 40px;
+        }
+
+        .final-cta h2 {
+            font-size: 36px;
+            font-weight: 900;
+            margin: 0 0 20px;
+            line-height: 1.1;
+        }
+
+        .store-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 40px;
+            align-items: center;
+        }
+
+        .store-badge {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 28px;
+            border-radius: 16px;
+            width: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .store-badge:active {
+            transform: scale(0.96);
+        }
+
+        .footer {
+            padding: 40px 24px 60px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            background: #f9f9f9;
+        }
+
+        svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <section class="hero">
+        <div class="hero-pattern"></div>
+        <img src="../images/icon.jpg" alt="Swyped App Icon" class="app-icon visible">
+        <h1 class="animate-up visible">Swyped</h1>
+        <p class="animate-up visible" style="animation-delay: 0.1s">Level up your dating game.</p>
+        <a href="#download" class="cta-button animate-up visible" style="animation-delay: 0.2s">Download Now</a>
+    </section>
+
+    <div class="section-header">
+        <h2 class="animate-up">Master the Swipe</h2>
+        <p class="animate-up">Everything you need to succeed on dating apps.</p>
+    </div>
+    
+    <div class="features-grid">
+        <div class="feature-card animate-up">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 16.5C21 16.88 20.79 17.21 20.47 17.38L12.57 21.82C12.41 21.94 12.21 22 12 22C11.79 22 11.59 21.94 11.43 21.82L3.53 17.38C3.21 17.21 3 16.88 3 16.5V7.5C3 7.12 3.21 6.79 3.53 6.62L11.43 2.18C11.59 2.06 11.79 2 12 2C12.21 2 12.41 2.06 12.57 2.18L20.47 6.62C20.79 6.79 21 7.12 21 7.5V16.5Z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            </div>
+            <h3>Profile Optimizer</h3>
+            <p>We analyze your photos and bio to make sure you stand out from the crowd instantly.</p>
+        </div>
+
+        <div class="feature-card animate-up">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M22 22L15.5 15.5" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            </div>
+            <h3>Smart Match AI</h3>
+            <p>Our AI understands your preferences and finds the profiles you're most likely to connect with.</p>
+        </div>
+
+        <div class="feature-card animate-up">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 15C21 15.53 20.79 16.04 20.41 16.41C20.04 16.79 19.53 17 19 17H7L3 21V5C3 4.47 3.21 3.96 3.59 3.59C3.96 3.21 4.47 3 5 3H19C19.53 3 20.04 3.21 20.41 3.59C20.79 3.96 21 4.47 21 5V15Z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            </div>
+            <h3>Perfect Openers</h3>
+            <p>Stop overthinking. Get personalized icebreakers based on her profile interests.</p>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <h2 class="animate-up">Inside the App</h2>
+    </div>
+
+    <div class="screenshots-container animate-up">
+        <div class="screenshot-wrapper">
+            <img src="../images/screenshot1.webp" alt="App Screenshot 1">
+        </div>
+        <div class="screenshot-wrapper">
+            <img src="../images/screenshot2.jpg" alt="App Screenshot 2">
+        </div>
+        <div class="screenshot-wrapper">
+            <img src="../images/screenshot3.webp" alt="App Screenshot 3">
+        </div>
+    </div>
+
+    <section class="benefits">
+        <h2 class="animate-up">Go Premium</h2>
+        
+        <div class="benefit-item animate-up">
+            <div class="benefit-check">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <div class="benefit-text">
+                <h4>Unlimited Analysis</h4>
+                <p>Optimize every aspect of your dating profile with AI.</p>
+            </div>
+        </div>
+
+        <div class="benefit-item animate-up">
+            <div class="benefit-check">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <div class="benefit-text">
+                <h4>Ad-Free Experience</h4>
+                <p>Focus on your matches without any interruptions.</p>
+            </div>
+        </div>
+
+        <div class="benefit-item animate-up">
+            <div class="benefit-check">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <div class="benefit-text">
+                <h4>Priority Support</h4>
+                <p>Get your questions answered by our experts anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section animate-up">
+        <div class="price-card">
+            <div class="badge">Recommended</div>
+            <h3>Annual Plan</h3>
+            <div class="price-value">$79.99</div>
+            <p>Save 33% compared to monthly</p>
+            <a href="#download" class="cta-button" style="background: var(--secondary); color: var(--accent); margin-top: 10px; width: 100%;">Select Plan</a>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="rating-box animate-up">
+            <div class="stars">★★★★★</div>
+            <span class="stat-number">4.8 / 5</span>
+            <span class="stat-label">Average User Rating</span>
+        </div>
+        
+        <div style="margin-top: 40px;" class="animate-up">
+            <span class="stat-number">100,000+</span>
+            <span class="stat-label">Active Users</span>
+        </div>
+    </section>
+
+    <section id="download" class="final-cta">
+        <h2 class="animate-up">Start Swyping Better Today.</h2>
+        <p class="animate-up">Available on all major platforms.</p>
+        
+        <div class="store-badges animate-up">
+            <a href="#" class="store-badge">
+                <svg viewBox="0 0 24 24" style="margin-right: 12px;"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                App Store
+            </a>
+            <a href="#" class="store-badge">
+                <svg viewBox="0 0 24 24" style="margin-right: 12px;"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L18.81,14.12L14.69,12L16.81,8.88L18.81,9.88C19.7,10.32 20.29,11.11 20.29,12C20.29,12.89 19.7,13.68 18.81,14.12M4.69,22L15.69,16.5L14.41,15.22L4.69,22M4.69,2L14.41,8.78L15.69,7.5L4.69,2Z"/></svg>
+                Google Play
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Tiny Desk Apps Inc.</p>
+        <p style="opacity: 0.6; font-size: 12px; margin-top: 10px;">The developer, Tiny Desk Apps Inc., indicated that the app’s privacy practices may include handling of data. This information has not been verified by Apple.</p>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Add staggered delay to children if it's a grid or container
+                    if (entry.target.classList.contains('features-grid') || entry.target.classList.contains('store-badges')) {
+                         Array.from(entry.target.children).forEach((child, i) => {
+                            child.style.transitionDelay = `${i * 0.1}s`;
+                            child.classList.add('visible');
+                         });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-up, .features-grid, .store-badges').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add class to individual cards for specific control if needed
+        document.querySelectorAll('.feature-card, .benefit-item').forEach(el => {
+            el.classList.add('animate-up');
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

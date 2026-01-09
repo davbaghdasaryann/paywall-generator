@@ -1,0 +1,69 @@
+{
+  "appInfo": {
+    "name": "Swyped - Get More Girls",
+    "description": "The developer, Tiny Desk Apps Inc., indicated that the app’s privacy practices may include handling of data as described below. This information has not been verified by Apple. For more information, see the   developer’s privacy policy   .Learn how the developer lets you   manage your privacy choices   .",
+    "category": "General",
+    "developer": "",
+    "price": "Free",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/65/2b/51/652b510f-066c-7a0c-339a-6f1ee6792180/AppIcon-0-0-1x_U007epad-0-1-0-P3-85-220.png/400x400ia-75.jpg",
+    "screenshots": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/02/11/01/02110131-f991-38b3-cd46-9bc2cbde9182/1.png/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/02/11/01/02110131-f991-38b3-cd46-9bc2cbde9182/1.png/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/61/6a/25/616a258e-436a-891b-d405-7cd173395a95/3.png/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/61/6a/25/616a258e-436a-891b-d405-7cd173395a95/3.png/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d3/52/6d/d3526d53-b6ae-ffe2-bb25-a5c5992aab92/2.png/460x996bb.webp"
+    ],
+    "theme": "General",
+    "colorPalette": {
+      "primary": "#787B68",
+      "secondary": "#444733",
+      "accent": "#DFF270",
+      "background": "#DDFB45",
+      "text": "#2C3E50",
+      "gradient": "linear-gradient(135deg, #787B68 0%, #444733 100%)",
+      "styles": {
+        "borderRadius": "16px",
+        "buttonStyle": "rounded-full",
+        "cardStyle": "glassmorphism",
+        "spacing": "compact",
+        "layout": "horizontal"
+      }
+    }
+  },
+  "businessModels": {
+    "models": [
+      {
+        "type": "subscription",
+        "name": "Premium Subscription",
+        "tiers": [
+          {
+            "name": "Monthly",
+            "price": "$9.99/month",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support"
+            ],
+            "valueProposition": "Get full access to all features"
+          },
+          {
+            "name": "Annual",
+            "price": "$79.99/year",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support",
+              "Save 33%"
+            ],
+            "valueProposition": "Best value - save 33% with annual plan"
+          }
+        ],
+        "recommended": true
+      }
+    ],
+    "recommendations": "Based on the app category, a subscription model is recommended."
+  },
+  "timestamp": "2026-01-07T17:09:42.016Z"
+}

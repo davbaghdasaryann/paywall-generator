@@ -1,0 +1,69 @@
+{
+  "appInfo": {
+    "name": "Varpet",
+    "description": "Dear Samvel SiradeghyanWe reviewed your problem. You can register. It was connection issue  issue.Please again, if you will have any issue please connect with +374 96 99 99 44 or +374 95 99 99 44RegardsVarpet Team",
+    "category": "General",
+    "developer": "",
+    "price": "Free",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d4/2b/54/d42b54cb-290f-7530-f464-86311ea12bbe/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/400x400ia-75.jpg",
+    "screenshots": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dc/33/fa/dc33fae5-857c-325d-6859-b4433824edff/6af5797c-6d39-444b-a9fc-3119a0c59c40_Screen_1.png/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dc/33/fa/dc33fae5-857c-325d-6859-b4433824edff/6af5797c-6d39-444b-a9fc-3119a0c59c40_Screen_1.png/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/88/88/32/888832d3-0f4b-4f98-bd56-be259362e572/69456c35-cb61-4318-9ce1-9087d909533b_Screen_2.png/460x996bb.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/88/88/32/888832d3-0f4b-4f98-bd56-be259362e572/69456c35-cb61-4318-9ce1-9087d909533b_Screen_2.png/460x996bb-60.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/48/5a/e7/485ae76c-7e16-65e8-b3fc-5a0a80961645/cc652770-36b0-4ba4-b243-c06f571a3a23_Screen_3.png/460x996bb.webp"
+    ],
+    "theme": "General",
+    "colorPalette": {
+      "primary": "#017DDF",
+      "secondary": "#029AFB",
+      "accent": "#44B3F6",
+      "background": "#502F34",
+      "text": "#FFFFFF",
+      "gradient": "linear-gradient(135deg, #017DDF 0%, #029AFB 100%)",
+      "styles": {
+        "borderRadius": "16px",
+        "buttonStyle": "rounded-full",
+        "cardStyle": "glassmorphism",
+        "spacing": "compact",
+        "layout": "horizontal"
+      }
+    }
+  },
+  "businessModels": {
+    "models": [
+      {
+        "type": "subscription",
+        "name": "Premium Subscription",
+        "tiers": [
+          {
+            "name": "Monthly",
+            "price": "$9.99/month",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support"
+            ],
+            "valueProposition": "Get full access to all features"
+          },
+          {
+            "name": "Annual",
+            "price": "$79.99/year",
+            "features": [
+              "Full access",
+              "Premium features",
+              "No ads",
+              "Priority support",
+              "Save 33%"
+            ],
+            "valueProposition": "Best value - save 33% with annual plan"
+          }
+        ],
+        "recommended": true
+      }
+    ],
+    "recommendations": "Based on the app category, a subscription model is recommended."
+  },
+  "timestamp": "2026-01-07T16:21:45.568Z"
+}

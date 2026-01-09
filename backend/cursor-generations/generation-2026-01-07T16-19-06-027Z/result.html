@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Varpet - Home Services App</title>
+    <style>
+        :root {
+            --primary: #0198F9;
+            --secondary: #7ED2F8;
+            --accent: #007DDF;
+            --background: #DDD3D5;
+            --text: #2C3E50;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.7);
+            --gradient: linear-gradient(135deg, #0198F9 0%, #7ED2F8 100%);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+            scroll-behavior: smooth;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            line-height: 1.5;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        /* Layout Utilities */
+        .section {
+            padding: 40px 20px;
+            width: 100%;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px; /* rounded-full */
+            border: none;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(1, 152, 249, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.95);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            padding: 60px 20px 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, var(--background), transparent);
+            pointer-events: none;
+        }
+
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 24px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0 0 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-tagline {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .hero-image-container {
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .hero-screenshot {
+            width: 220px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: perspective(1000px) rotateY(-5deg);
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .feature-card {
+            padding: 24px;
+            text-align: left;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 8px;
+        }
+
+        .feature-desc {
+            font-size: 15px;
+            color: #566573;
+            margin: 0;
+        }
+
+        /* Screenshots Section */
+        .screenshots-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 20px 0;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+
+        .screenshots-scroll::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .screenshot-item {
+            flex: 0 0 200px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Benefits Section */
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .benefit-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .benefit-content {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: #f8f9fa;
+        }
+
+        .testimonial-card {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            background: var(--text);
+            color: white;
+            padding: 60px 20px;
+        }
+
+        .cta-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .store-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .store-badge {
+            height: 45px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        h2.section-title {
+            font-size: 26px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            display: block;
+            margin-bottom: 40px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d4/2b/54/d42b54cb-290f-7530-f464-86311ea12bbe/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/400x400ia-75.jpg" alt="Varpet Icon" class="app-icon animate-fade-up">
+        <h1 class="hero-title animate-fade-up" style="animation-delay: 0.1s;">Varpet</h1>
+        <p class="hero-tagline animate-fade-up" style="animation-delay: 0.2s;">Professional Home Services at Your Fingertips</p>
+        <a href="#download" class="btn-primary animate-fade-up" style="animation-delay: 0.3s;">Get Started Free</a>
+        
+        <div class="hero-image-container animate-fade-up" style="animation-delay: 0.4s;">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dc/33/fa/dc33fae5-857c-325d-6859-b4433824edff/6af5797c-6d39-444b-a9fc-3119a0c59c40_Screen_1.png/460x996bb.webp" alt="App Preview" class="hero-screenshot">
+        </div>
+    </section>
+
+    <section class="section" id="features">
+        <h2 class="section-title">Why Varpet?</h2>
+        <div class="features-grid">
+            <div class="feature-card glass-card">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                </div>
+                <h3 class="feature-title">Verified Masters</h3>
+                <p class="feature-desc">All our craftsmen are background-checked and highly skilled professionals.</p>
+            </div>
+
+            <div class="feature-card glass-card">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <h3 class="feature-title">Quick Booking</h3>
+                <p class="feature-desc">Book a service in under 60 seconds. We'll find a master nearby in no time.</p>
+            </div>
+
+            <div class="feature-card glass-card">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                </div>
+                <h3 class="feature-title">Fixed Pricing</h3>
+                <p class="feature-desc">No hidden fees. Know the price before you book and pay securely via the app.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <h2 class="section-title">App Walkthrough</h2>
+        <div class="screenshots-scroll">
+            <div class="screenshot-item"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dc/33/fa/dc33fae5-857c-325d-6859-b4433824edff/6af5797c-6d39-444b-a9fc-3119a0c59c40_Screen_1.png/460x996bb.webp" alt="Screen 1"></div>
+            <div class="screenshot-item"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dc/33/fa/dc33fae5-857c-325d-6859-b4433824edff/6af5797c-6d39-444b-a9fc-3119a0c59c40_Screen_1.png/460x996bb-60.jpg" alt="Screen 2"></div>
+            <div class="screenshot-item"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/88/88/32/888832d3-0f4b-4f98-bd56-be259362e572/69456c35-cb61-4318-9ce1-9087d909533b_Screen_2.png/460x996bb.webp" alt="Screen 3"></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">The Varpet Benefit</h2>
+        <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <div class="benefit-content">Over 100+ categories of services</div>
+        </div>
+        <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <div class="benefit-content">Real-time tracking of your master</div>
+        </div>
+        <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <div class="benefit-content">24/7 Customer Support team</div>
+        </div>
+        <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <div class="benefit-content">Insured and guaranteed work</div>
+        </div>
+    </section>
+
+    <section class="section testimonials">
+        <h2 class="section-title">What Users Say</h2>
+        <div class="testimonial-card glass-card">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"Saved me so much time! Found a plumber in 5 minutes and the job was done perfectly."</p>
+            <p class="testimonial-author">Hayk G.</p>
+        </div>
+        <div class="testimonial-card glass-card">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"The app is so easy to use. I love the transparent pricing model."</p>
+            <p class="testimonial-author">Ani S.</p>
+        </div>
+    </section>
+
+    <section class="cta-section" id="download">
+        <h2 class="cta-title">Ready to fix it?</h2>
+        <p>Join thousands of happy users today.</p>
+        <a href="#" class="btn-primary" style="margin-top: 20px;">Download Varpet</a>
+        
+        <div class="store-badges">
+            <div class="glass-card" style="padding: 10px 20px; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-1.99.76-3.27.82-1.35.05-2.33-1.32-3.17-2.53C4.16 17 2.4 12.5 2.4 8.66c0-3.84 2.51-5.88 4.94-5.91 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91 1.01.04 2.3.41 3.12 1.6-1.11.66-1.85 1.85-1.85 3.22 0 1.63 1.33 2.97 3 2.97.02 0 .04 0 .06 0-.15 2.3-1.2 4.4-2.06 5.91M15.91 1c-1.04.05-2.28.7-3.03 1.6-.75.9-1.37 2.1-1.12 3.29 1.15.1 2.31-.59 3.03-1.56.72-.97 1.2-2.25 1.12-3.33z"/></svg>
+                App Store
+            </div>
+            <div class="glass-card" style="padding: 10px 20px; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L18.81,16.23C19.46,16.59 19.81,17.27 19.81,18C19.81,18.73 19.46,19.41 18.81,19.77L15.44,21.64L14.4,12.72L16.81,15.12M4.6,2.1L14.4,11.28L16.81,8.88L15.44,2.36C15.44,2.36 15.44,2.36 15.44,2.36L18.81,4.23C19.46,4.59 19.81,5.27 19.81,6C19.81,6.73 19.46,7.41 18.81,7.77L16.81,8.88L4.6,2.1M14.4,12.72L4.6,21.9L16.81,15.12L14.4,12.72Z"/></svg>
+                Play Store
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Varpet Team. All rights reserved.</p>
+        <p>Need help? Contact +374 96 99 99 44</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .testimonial-card, .benefit-item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+You are a designer and frontend developer creating a paywall page from a Figma design.
+
+IMPORTANT: All data files and images are in the PARENT directory (one level up).
+Use paths like ../data.json, ../images/main-frame.png
+
+You are inside a folder that already contains:
+- ../data.json (Figma design information and design tokens)
+- ../images/main-frame.png (Complete paywall design from Figma - USE THIS AS YOUR PRIMARY REFERENCE)
+- ../images/icon*.png (Additional images/icons from the design - use as needed)
+
+Use ONLY local files.
+Do not fetch anything from the internet.
+
+Analyze ../images/main-frame.png and ../data.json to create a pixel-perfect HTML page that matches the Figma design.
+
+CRITICAL REQUIREMENTS:
+- Dimensions: 402px × 874px
+- Type: MOBILE
+- Container Width: 402px
+- Use colors, fonts, spacing, and dimensions from designTokens in data.json as a guide
+- Mobile-first design - EXACT dimensions: 375px width. Body and main container MUST be exactly 375px wide with no overflow. Use box-sizing: border-box for all elements. Ensure no horizontal scrolling.
+
+DESIGN GUIDANCE:
+- Study ../images/main-frame.png carefully to understand the layout, colors, typography, and visual style
+- Use designTokens in data.json for colors, fonts, spacing, and other design values
+- Match the visual appearance and layout from the main-frame.png image
+- Use semantic HTML5 elements
+
+IMAGES:
+- Reference ../images/main-frame.png to see where images should be placed
+- Use ../images/icon*.png files where appropriate in the design
+- Match the positioning and layout from the main-frame.png reference
+
+OUTPUT FORMAT:
+- Generate complete, standalone HTML file (index.html) with embedded CSS and JavaScript
+- Use semantic HTML5
+- Include all styles in <style> tag
+- Include all JavaScript in <script> tag
+- Make it visually match the Figma design from main-frame.png
+- Ensure all images reference ../images/ paths correctly
+
+Generate the HTML file now.

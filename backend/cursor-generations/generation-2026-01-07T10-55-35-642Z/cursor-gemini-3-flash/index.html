@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Upgrade to Premium - Coding Game</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            height: 812px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1E253C;
+            color: #FFFFFF;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Decorative Elements */
+        .decor-circle-1 {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(41, 68, 191, 0.4) 0%, rgba(41, 68, 191, 0) 70%);
+            z-index: 0;
+            border-radius: 50%;
+        }
+
+        .decor-circle-2 {
+            position: absolute;
+            bottom: 100px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(238, 185, 76, 0.15) 0%, rgba(238, 185, 76, 0) 70%);
+            z-index: 0;
+            border-radius: 50%;
+        }
+
+        /* Content Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .close-btn {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .app-identity {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            margin-bottom: 16px;
+            object-fit: cover;
+        }
+
+        .app-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .app-tagline {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 280px;
+        }
+
+        /* Features */
+        .features-list {
+            margin-bottom: 32px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 16px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .feature-item:active {
+            transform: scale(0.98);
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Plans */
+        .plans-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .plan-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .plan-card.selected {
+            background: rgba(41, 68, 191, 0.2);
+            border-color: #2944BF;
+            box-shadow: 0 0 20px rgba(41, 68, 191, 0.3);
+        }
+
+        .plan-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plan-name {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .plan-price {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .plan-value {
+            font-size: 12px;
+            color: #EEB94C;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #EEB94C;
+            color: #1E253C;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(238, 185, 76, 0.3);
+        }
+
+        .selection-indicator {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .plan-card.selected .selection-indicator {
+            background: #2944BF;
+            border-color: #2944BF;
+        }
+
+        .plan-card.selected .selection-indicator::after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: #FFFFFF;
+            border-radius: 50%;
+        }
+
+        /* Footer Section */
+        .footer-section {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .cta-button {
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(135deg, #2944BF 0%, #EEB94C 100%);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(41, 68, 191, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-button:active {
+            transform: scale(0.96);
+            box-shadow: 0 5px 10px rgba(41, 68, 191, 0.2);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding-bottom: 12px;
+        }
+
+        .legal-link {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .legal-link:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Custom Scrollbar (though we hide it) */
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="decor-circle-1"></div>
+    <div class="decor-circle-2"></div>
+
+    <div class="container">
+        <header class="header">
+            <div class="close-btn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 1L1 13M1 1L13 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5);">RESTORE</div>
+        </header>
+
+        <section class="app-identity">
+            <img src="../images/icon.jpg" alt="App Icon" class="app-icon" onerror="this.src='https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/46/c6/5d/46c65d34-fd0d-b843-58d5-2b7896ca0009/AppIcon-0-0-1x_U007ephone-0-0-sRGB-85-220.png/400x400ia-75.jpg'">
+            <h1 class="app-name">Coding game: Python Java Learn</h1>
+            <p class="app-tagline">Unlock your full coding potential with premium courses and no limits.</p>
+        </section>
+
+        <section class="features-list">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="12" fill="#2944BF" fill-opacity="0.2"/>
+                        <path d="M17 8L10 15L7 12" stroke="#2944BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="feature-text">Full access to all programming languages</span>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="12" fill="#EEB94C" fill-opacity="0.2"/>
+                        <path d="M12 7L14.09 11.23L18.76 11.91L15.38 15.21L16.18 19.86L12 17.66L7.82 19.86L8.62 15.21L5.24 11.91L9.91 11.23L12 7Z" stroke="#EEB94C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="feature-text">Premium interactive lessons & challenges</span>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="12" fill="#2944BF" fill-opacity="0.2"/>
+                        <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="#2944BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="feature-text">Ad-free experience with priority support</span>
+            </div>
+        </section>
+
+        <section class="plans-container" id="plans">
+            <div class="plan-card" onclick="selectPlan(this, 'monthly')">
+                <div class="plan-info">
+                    <span class="plan-name">Monthly Plan</span>
+                    <span class="plan-price">$9.99/month</span>
+                    <span class="plan-value">Full access, cancel anytime</span>
+                </div>
+                <div class="selection-indicator"></div>
+            </div>
+
+            <div class="plan-card selected" onclick="selectPlan(this, 'annual')">
+                <div class="badge">BEST VALUE</div>
+                <div class="plan-info">
+                    <span class="plan-name">Annual Plan</span>
+                    <span class="plan-price">$79.99/year</span>
+                    <span class="plan-value">Save 33% • Only $6.67/month</span>
+                </div>
+                <div class="selection-indicator"></div>
+            </div>
+        </section>
+
+        <div class="footer-section">
+            <button class="cta-button" id="subscribe-btn">CONTINUE</button>
+            <div class="legal-links">
+                <a href="#" class="legal-link">Terms of Service</a>
+                <a href="#" class="legal-link">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedPlanId = 'annual';
+
+        function selectPlan(element, planId) {
+            // Remove selected class from all cards
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked card
+            element.classList.add('selected');
+            selectedPlanId = planId;
+            
+            // Haptic feedback simulation
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(10);
+            }
+        }
+
+        document.getElementById('subscribe-btn').addEventListener('click', function() {
+            const btn = this;
+            const originalText = btn.innerText;
+            
+            // Loading state
+            btn.disabled = true;
+            btn.innerText = 'PROCESSING...';
+            btn.style.opacity = '0.8';
+            
+            setTimeout(() => {
+                btn.innerText = 'SUCCESS!';
+                btn.style.background = '#4CAF50';
+                
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerText = originalText;
+                    btn.style.background = 'linear-gradient(135deg, #2944BF 0%, #EEB94C 100%)';
+                    btn.style.opacity = '1';
+                }, 2000);
+            }, 1500);
+        });
+
+        // Prevent scrolling on mobile
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+    </script>
+</body>
+</html>

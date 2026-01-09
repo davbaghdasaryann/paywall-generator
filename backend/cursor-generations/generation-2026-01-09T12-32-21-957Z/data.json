@@ -1,0 +1,226 @@
+{
+  "figmaInfo": {
+    "fileKey": "u8goHFgxvfeQgYhfE3fnOn",
+    "nodeId": "1-20",
+    "nodeName": "Unknown"
+  },
+  "designTokens": {
+    "colors": [
+      "rgba(1,1,1,1)",
+      "rgba(255,255,255,1)",
+      "rgba(0,0,0,1)",
+      "rgba(224,254,70,1)",
+      "rgba(0,6,0,1)"
+    ],
+    "fonts": [
+      {
+        "f": "SF UI Display",
+        "s": 18,
+        "w": 700,
+        "lh": 21
+      },
+      {
+        "f": "SF UI Display",
+        "s": 27,
+        "w": 600,
+        "lh": 32
+      },
+      {
+        "f": "SF UI Display",
+        "s": 18,
+        "w": 300,
+        "lh": 21
+      },
+      {
+        "f": "SF UI Display",
+        "s": 30,
+        "w": 700,
+        "lh": 36
+      }
+    ],
+    "spacing": [],
+    "borderRadius": [
+      100,
+      4,
+      3,
+      20
+    ],
+    "nodes": [
+      {
+        "n": "39",
+        "t": "FRAME",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(1,1,1,1)"
+      },
+      {
+        "n": "Cap",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)"
+      },
+      {
+        "n": "Cellular-Connection-path",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(0,0,0,1)"
+      },
+      {
+        "n": "Cellular-Connection-path",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(0,0,0,1)"
+      },
+      {
+        "n": "Cellular-Connection-path",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(0,0,0,1)"
+      },
+      {
+        "n": "Cellular-Connection-path",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(0,0,0,1)"
+      },
+      {
+        "n": "Button",
+        "t": "INSTANCE",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(224,254,70,1)",
+        "br": 20
+      },
+      {
+        "n": "Continue",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(0,6,0,1)",
+        "font": {
+          "f": "SF UI Display",
+          "s": 18,
+          "w": 700,
+          "lh": 21
+        },
+        "txt": "Get Started"
+      },
+      {
+        "n": "image 9",
+        "t": "VECTOR",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "img": true
+      },
+      {
+        "n": "Welcome to Sway AI. Get more matches.",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)",
+        "font": {
+          "f": "SF UI Display",
+          "s": 27,
+          "w": 600,
+          "lh": 32
+        },
+        "txt": "Welcome to Sway AI.\nGet more matches."
+      },
+      {
+        "n": "Take the first steps towards attracting more matches on Hinge, Bumble, and Tinder.",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(255,255,255,1)",
+        "font": {
+          "f": "SF UI Display",
+          "s": 18,
+          "w": 300,
+          "lh": 21
+        },
+        "txt": "Take the first steps towards attracting more matches on Hinge, Bumble, and Tinder."
+      },
+      {
+        "n": "swyped",
+        "t": "TEXT",
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0,
+        "bg": "rgba(224,254,70,1)",
+        "font": {
+          "f": "SF UI Display",
+          "s": 30,
+          "w": 700,
+          "lh": 36
+        },
+        "txt": "swyped"
+      }
+    ]
+  },
+  "dimensions": {
+    "width": 402,
+    "height": 874,
+    "isMobile": true
+  },
+  "imageReferences": [
+    {
+      "index": 1,
+      "name": "icon1.png",
+      "path": "images/icon1.png",
+      "nodeId": "1:21",
+      "x": -68,
+      "y": 102,
+      "width": 539,
+      "height": 539
+    },
+    {
+      "index": 2,
+      "name": "icon2.png",
+      "path": "images/icon2.png",
+      "nodeId": "1:37",
+      "x": 20,
+      "y": 763,
+      "width": 362,
+      "height": 57
+    },
+    {
+      "index": 3,
+      "name": "icon3.png",
+      "path": "images/icon3.png",
+      "nodeId": "1:38",
+      "x": 99,
+      "y": 150,
+      "width": 205,
+      "height": 421
+    }
+  ],
+  "timestamp": "2026-01-09T12:32:21.964Z"
+}

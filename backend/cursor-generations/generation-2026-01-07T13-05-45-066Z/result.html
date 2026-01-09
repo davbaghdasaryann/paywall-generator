@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Coding Game: Python Java Learn</title>
+    <style>
+        /* Base Styling */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #E09826;
+            --secondary: #2943BF;
+            --background: #1D233A;
+            --text: #FFFFFF;
+            --accent: #EDEDED;
+            --gradient: linear-gradient(135deg, #E09826 0%, #2943BF 100%);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --radius: 16px;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            position: relative;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        p {
+            line-height: 1.5;
+            opacity: 0.8;
+            font-size: 15px;
+        }
+
+        /* Layout Helpers */
+        .section {
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 20px;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(224, 152, 38, 0.15), transparent),
+                        radial-gradient(circle at bottom left, rgba(41, 67, 191, 0.15), transparent);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .app-name {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            color: var(--accent);
+            max-width: 300px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 100px; /* rounded-full */
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(224, 152, 38, 0.2);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .cta-button:active {
+            transform: scale(0.96);
+            filter: brightness(1.1);
+        }
+
+        /* Screenshots Slider */
+        .screenshots-container {
+            width: 375px;
+            margin-left: -20px;
+            overflow-x: auto;
+            padding: 30px 20px;
+            display: flex;
+            gap: 12px;
+            scrollbar-width: none;
+        }
+
+        .screenshots-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .screenshot {
+            width: 180px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
+            border: 1px solid var(--glass-border);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        /* Features Section */
+        .features {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .section-title {
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 16px;
+            border-radius: var(--radius);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center; /* horizontal layout as per data.json */
+            gap: 16px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        .feature-info h3 {
+            font-size: 17px;
+            margin-bottom: 2px;
+        }
+
+        .feature-info p {
+            font-size: 13px;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            text-align: center;
+        }
+
+        .pricing-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.recommended {
+            border: 2px solid var(--primary);
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: var(--primary);
+            color: white;
+            padding: 4px 40px;
+            font-size: 10px;
+            font-weight: bold;
+            transform: rotate(45deg);
+        }
+
+        .price {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 12px 0;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: var(--background);
+        }
+
+        .benefit-item {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 20px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.02), transparent);
+            border-radius: var(--radius);
+        }
+
+        .benefit-number {
+            font-size: 48px;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.15;
+            margin-bottom: -25px;
+            display: block;
+        }
+
+        .benefit-item h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            background: var(--glass);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .social-proof h2 {
+            font-size: 18px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .stat-item h4 {
+            font-size: 28px;
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .stat-item p {
+            font-size: 11px;
+            margin: 4px 0 0;
+            opacity: 0.6;
+            font-weight: 600;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .badge-placeholder {
+            height: 40px;
+            width: 135px;
+            background: #000;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            border: 1px solid #333;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Decorative Elements */
+        .blob {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: var(--primary);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        .blob-1 { top: 10%; left: -50px; }
+        .blob-2 { bottom: 10%; right: -50px; background: var(--secondary); }
+
+    </style>
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/46/c6/5d/46c65d34-fd0d-b843-58d5-2b7896ca0009/AppIcon-0-0-1x_U007ephone-0-0-sRGB-85-220.png/400x400ia-75.jpg" alt="App Icon" class="app-icon">
+        <h1 class="app-name">Coding Game</h1>
+        <p class="tagline">Master Python and Java through interactive gameplay. The most engaging way to start your developer journey.</p>
+        <a href="#download" class="cta-button">Start Learning Now</a>
+        
+        <div class="screenshots-container">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/03/cd/92/03cd928d-4943-9b8e-b5de-a282865fdf6e/291f6c37-25b1-4448-a5af-74438de9dbba_Screenshot01.jpg/460x998bb.webp" alt="Screenshot 1" class="screenshot">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/03/cd/92/03cd928d-4943-9b8e-b5de-a282865fdf6e/291f6c37-25b1-4448-a5af-74438de9dbba_Screenshot01.jpg/460x998bb-60.jpg" alt="Screenshot 2" class="screenshot">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/80/29/08/802908e3-583c-bdc0-ff1a-ab0d5ab5bc50/84871089-8f76-4bca-bb8f-ab73bc97460c_Screenshot02.jpg/460x998bb.webp" alt="Screenshot 3" class="screenshot">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features">
+        <h2 class="section-title">Learn by Playing</h2>
+        
+        <div class="feature-card fade-in">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z"/></svg>
+            </div>
+            <div class="feature-info">
+                <h3>Gamified Challenges</h3>
+                <p>Unlock new levels as you master Python and Java concepts through play.</p>
+            </div>
+        </div>
+
+        <div class="feature-card fade-in">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12L9.4 7.4L8 6L2 12L8 18L9.4 16.6ZM14.6 16.6L19.2 12L14.6 7.4L16 6L22 12L16 18L14.6 16.6Z"/></svg>
+            </div>
+            <div class="feature-info">
+                <h3>Hands-on Coding</h3>
+                <p>Write real code in our integrated mobile editor. No setup required.</p>
+            </div>
+        </div>
+
+        <div class="feature-card fade-in">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+            </div>
+            <div class="feature-info">
+                <h3>Video Walkthroughs</h3>
+                <p>Get expert guidance when you're stuck on a difficult level or concept.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section pricing">
+        <h2 class="section-title">Unlock Full Access</h2>
+        
+        <div class="pricing-card fade-in">
+            <h3>Monthly</h3>
+            <div class="price">$9.99<span style="font-size: 14px; opacity: 0.6;">/mo</span></div>
+            <ul class="pricing-features">
+                <li>Full access to all languages</li>
+                <li>Premium coding challenges</li>
+                <li>No annoying ads</li>
+                <li>Priority support</li>
+            </ul>
+            <a href="#download" class="cta-button" style="width: 100%; text-align: center;">Get Started</a>
+        </div>
+
+        <div class="pricing-card recommended fade-in">
+            <div class="badge">SAVE 33%</div>
+            <h3>Annual</h3>
+            <div class="price">$79.99<span style="font-size: 14px; opacity: 0.6;">/yr</span></div>
+            <ul class="pricing-features">
+                <li>Everything in Monthly</li>
+                <li>Exclusive bonus projects</li>
+                <li>Offline access mode</li>
+                <li>Personalized learning path</li>
+            </ul>
+            <a href="#download" class="cta-button" style="width: 100%; text-align: center;">Choose Annual</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section benefits">
+        <div class="benefit-item fade-in">
+            <span class="benefit-number">01</span>
+            <h3>Learn Anywhere</h3>
+            <p>Turn your commute or wait time into productive coding sessions. 10 minutes a day is all you need.</p>
+        </div>
+        <div class="benefit-item fade-in">
+            <span class="benefit-number">02</span>
+            <h3>Build Projects</h3>
+            <p>Go beyond syntax. Build real-world applications and games that you can show off.</p>
+        </div>
+        <div class="benefit-item fade-in">
+            <span class="benefit-number">03</span>
+            <h3>Join a Community</h3>
+            <p>Connect with millions of learners worldwide. Share tips, compete, and grow together.</p>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <h2>Trusted by Beginners & Pros</h2>
+        <div class="stats">
+            <div class="stat-item">
+                <h4>4.8/5</h4>
+                <p>App Store Rating</p>
+            </div>
+            <div class="stat-item">
+                <h4>1M+</h4>
+                <p>Active Learners</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section final-cta" id="download">
+        <h2 class="section-title">Ready to level up?</h2>
+        <p>Start your coding journey today for free. No credit card required.</p>
+        <a href="#" class="cta-button">Download Now</a>
+        <div class="badges">
+            <div class="badge-placeholder">Download on the<br><strong>App Store</strong></div>
+            <div class="badge-placeholder">Get it on<br><strong>Google Play</strong></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: 20px; text-align: center; opacity: 0.5; font-size: 12px; border-top: 1px solid var(--glass-border);">
+        <p>&copy; 2026 Coding Game: Python Java Learn. All rights reserved.</p>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px;">
+            <a href="#" style="color: white; text-decoration: none;">Privacy</a>
+            <a href="#" style="color: white; text-decoration: none;">Terms</a>
+            <a href="#" style="color: white; text-decoration: none;">Support</a>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Screenshot scaling on scroll
+        const scrollContainer = document.querySelector('.screenshots-container');
+        const screenshots = document.querySelectorAll('.screenshot');
+
+        scrollContainer.addEventListener('scroll', () => {
+            const containerCenter = scrollContainer.scrollLeft + scrollContainer.offsetWidth / 2;
+            
+            screenshots.forEach(img => {
+                const imgCenter = img.offsetLeft + img.offsetWidth / 2;
+                const distance = Math.abs(containerCenter - imgCenter);
+                const scale = Math.max(0.85, 1 - (distance / 400));
+                img.style.transform = `scale(${scale})`;
+            });
+        });
+
+        // Initialize first screenshot scale
+        scrollContainer.dispatchEvent(new Event('scroll'));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

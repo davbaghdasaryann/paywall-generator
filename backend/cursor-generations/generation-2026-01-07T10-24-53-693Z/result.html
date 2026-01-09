@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Swyped Premium</title>
+    <style>
+        :root {
+            --primary: #474A38;
+            --secondary: #7C8069;
+            --accent: #E0F270;
+            --bg-color: #DFFC46;
+            --text-color: #2C3E50;
+            --card-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--bg-color);
+            background: linear-gradient(135deg, #474A38 0%, #7C8069 100%);
+            color: #FFFFFF;
+            width: 375px;
+            height: 812px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Decorative Background Elements */
+        .decor-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .decor-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent);
+            top: -50px;
+            right: -100px;
+            animation: float 10s infinite alternate;
+        }
+
+        .decor-2 {
+            width: 250px;
+            height: 250px;
+            background: #DFFC46;
+            bottom: 50px;
+            left: -100px;
+            animation: float 15s infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 30px); }
+        }
+
+        .container {
+            z-index: 1;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+            margin-top: 20px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 2px solid var(--glass-border);
+        }
+
+        .app-name {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .app-tagline {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* Features Section */
+        .features-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .icon-wrapper {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Subscription Tiers */
+        .tiers-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .tier-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tier-card.selected {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.02);
+        }
+
+        .tier-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tier-name {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            opacity: 0.8;
+        }
+
+        .tier-price {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .tier-price span {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: var(--primary);
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-bottom-left-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Footer / CTA */
+        .cta-section {
+            margin-top: auto;
+            padding-bottom: 20px;
+            text-align: center;
+            animation: fadeInUp 1.4s ease-out;
+        }
+
+        .main-button {
+            background: var(--accent);
+            color: var(--primary);
+            width: 100%;
+            border: none;
+            padding: 18px;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(224, 242, 112, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .main-button:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 10px rgba(224, 242, 112, 0.2);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        .legal-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Selection Indicator */
+        .check-circle {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .tier-card.selected .check-circle {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .tier-card.selected .check-circle svg {
+            stroke: var(--primary);
+        }
+
+        /* Trust indicator */
+        .trust-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            opacity: 0.8;
+            font-size: 13px;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 20px 0;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="decor-circle decor-1"></div>
+    <div class="decor-circle decor-2"></div>
+
+    <div class="container">
+        <!-- Close Button (Visual only) -->
+        <div style="position: absolute; top: 20px; right: 20px; opacity: 0.5;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </div>
+
+        <header class="header">
+            <img src="../images/icon.jpg" alt="Swyped Icon" class="app-icon" onerror="this.src='https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/65/2b/51/652b510f-066c-7a0c-339a-6f1ee6792180/AppIcon-0-0-1x_U007epad-0-1-0-P3-85-220.png/400x400ia-75.jpg'">
+            <h1 class="app-name">Swyped Premium</h1>
+            <p class="app-tagline">Complete dating transformation with expert guidance</p>
+        </header>
+
+        <section class="features-card">
+            <div class="feature-item">
+                <div class="icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E0F270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <span class="feature-text">Unlimited profile optimization</span>
+            </div>
+            <div class="feature-item">
+                <div class="icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E0F270" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                    </svg>
+                </div>
+                <span class="feature-text">Advanced conversation starters</span>
+            </div>
+            <div class="feature-item">
+                <div class="icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E0F270" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </div>
+                <span class="feature-text">Personalized dating strategy</span>
+            </div>
+            <div class="feature-item">
+                <div class="icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E0F270" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <span class="feature-text">Photo analysis & suggestions</span>
+            </div>
+            <div class="feature-item">
+                <div class="icon-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E0F270" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                    </svg>
+                </div>
+                <span class="feature-text">Success tracking & analytics</span>
+            </div>
+        </section>
+
+        <div class="tiers-container">
+            <div class="tier-card" onclick="selectTier(this, 'monthly')">
+                <div class="tier-info">
+                    <span class="tier-name">Monthly</span>
+                    <div class="tier-price">$9.99 <span>/ month</span></div>
+                </div>
+                <div class="check-circle">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="tier-card selected" onclick="selectTier(this, 'yearly')">
+                <div class="badge">Best Value</div>
+                <div class="tier-info">
+                    <span class="tier-name">Yearly</span>
+                    <div class="tier-price">$59.99 <span>/ year</span></div>
+                    <div style="font-size: 11px; margin-top: 4px; color: var(--accent); font-weight: 600;">SAVE 50%</div>
+                </div>
+                <div class="check-circle">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <div class="trust-indicator">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E0F270" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                7-day money-back guarantee
+            </div>
+            
+            <button class="main-button" id="subscribe-btn">Unlock Premium Access</button>
+            
+            <div class="legal-links">
+                <a href="#">Terms of Use</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Restore</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectTier(element, type) {
+            // Remove selected class from all tiers
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked tier
+            element.classList.add('selected');
+            
+            // Update button text or state if needed
+            const btn = document.getElementById('subscribe-btn');
+            if (type === 'yearly') {
+                btn.innerText = 'Start Yearly Plan';
+            } else {
+                btn.innerText = 'Start Monthly Plan';
+            }
+        }
+
+        // Add some subtle interaction
+        document.getElementById('subscribe-btn').addEventListener('click', () => {
+            const btn = document.getElementById('subscribe-btn');
+            const originalText = btn.innerText;
+            btn.innerText = 'Processing...';
+            btn.style.opacity = '0.8';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerText = 'Welcome to Swyped Premium!';
+                btn.style.background = '#4CAF50';
+                btn.style.color = 'white';
+                btn.style.boxShadow = '0 8px 20px rgba(76, 175, 80, 0.3)';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

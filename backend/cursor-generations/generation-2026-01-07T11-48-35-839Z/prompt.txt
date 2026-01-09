@@ -1,0 +1,19 @@
+You are a designer and frontend developer creating a modern mobile app about page.
+
+You are inside a folder that already contains:
+- data.json (app information)
+- ../images/icon.* (app icon/logo - USE THIS, DO NOT GENERATE)
+
+Use ONLY local files.
+Do not fetch anything from the internet.
+
+Analyze data.json and generate a modern, beautiful about page HTML that tells the app's story.
+
+CONTENT SECTIONS:
+1. **Hero Section** - App introduction with icon
+2. **Story/Description** - Detailed app description from data.json
+3. **Team/Developer** - Developer information
+4. **Mission/Vision** - What the app aims to achieve
+5. **Contact/Support** - Ways to reach out
+
+Use the same design constraints and styling as the landing page prompt.

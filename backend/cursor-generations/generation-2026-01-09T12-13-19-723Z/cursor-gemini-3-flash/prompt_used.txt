@@ -1,0 +1,45 @@
+Recreate ../images/main-frame.png as pixel-perfect HTML/CSS.
+
+Files: ../images/main-frame.png, ../data.json, ../images/icon*.png
+
+CRITICAL: Width must be EXACTLY 402px. No horizontal overflow.
+
+Required CSS base:
+```css
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { 
+  width: 100%; 
+  height: 100%; 
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #ffffff;
+  min-height: 100vh;
+}
+.container {
+  width: 402px;
+  max-width: 402px;
+  min-height: 874px;
+  position: relative;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+```
+
+Steps:
+1. Create HTML with <div class="container"> wrapper
+2. Ignore iPhone status bar (top) and home indicator (bottom) - only recreate app content
+3. Use flexbox/grid for layout - match the structure from main-frame.png
+4. Apply colors, fonts, spacing from data.json
+5. Use ../images/ paths for images
+6. Ensure everything fits within 402px width
+
+Generate index.html with <style> and <script> tags. Match main-frame.png exactly.

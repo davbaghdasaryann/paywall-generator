@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Swyped Premium</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #2C3E50;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: #4A4D3C; /* Using Primary color as base */
+        }
+
+        /* Decorative Background Elements */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4A4D3C 0%, #81856C 100%);
+            z-index: -2;
+        }
+
+        .bg-shape-1 {
+            position: absolute;
+            top: -100px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: #E0FD46;
+            filter: blur(100px);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .bg-shape-2 {
+            position: absolute;
+            bottom: 100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: #E0F370;
+            filter: blur(120px);
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            padding: 40px 24px 20px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        .app-icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0 0 10px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #FFFFFF, #E0F370);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.8;
+            line-height: 1.4;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        /* Features Section */
+        .features-container {
+            padding: 0 24px 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            transition: transform 0.2s ease;
+        }
+
+        .feature-item:active {
+            transform: scale(0.98);
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-text {
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 0 24px 40px;
+            margin-top: auto;
+        }
+
+        .tier-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tier-card.selected {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #E0FD46;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(224, 253, 70, 0.2);
+        }
+
+        .tier-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .tier-name {
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .tier-price {
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .tier-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #E0FD46;
+            color: #4A4D3C;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* CTA Button */
+        .cta-button {
+            width: 100%;
+            height: 64px;
+            background: #E0FD46;
+            color: #4A4D3C;
+            border: none;
+            border-radius: 32px;
+            font-size: 18px;
+            font-weight: 800;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(224, 253, 70, 0.3);
+        }
+
+        .cta-button:active {
+            transform: scale(0.96);
+            box-shadow: 0 5px 15px rgba(224, 253, 70, 0.2);
+        }
+
+        /* Footer Links */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 24px 40px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* SVG Colors */
+        .icon-accent { fill: #E0F370; }
+        .icon-white { fill: #FFFFFF; }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="bg-shape-1"></div>
+    <div class="bg-shape-2"></div>
+
+    <header class="animate-fade-in">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/65/2b/51/652b510f-066c-7a0c-339a-6f1ee6792180/AppIcon-0-0-1x_U007epad-0-1-0-P3-85-220.png/400x400ia-75.jpg" alt="App Icon" class="app-icon">
+        <h1>Swyped Pro</h1>
+        <p class="subtitle">Get more matches, better conversations, and real results today.</p>
+    </header>
+
+    <div class="features-container">
+        <!-- Using SVG Icons as requested -->
+        <div class="feature-item animate-fade-in delay-1">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path class="icon-accent" d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z" />
+                </svg>
+            </div>
+            <div class="feature-text">Full access to all tools</div>
+        </div>
+
+        <div class="feature-item animate-fade-in delay-2">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path class="icon-accent" d="M12,1L9,9L1,9L7,14L4,22L12,17L20,22L17,14L23,9L15,9L12,1Z" />
+                </svg>
+            </div>
+            <div class="feature-text">Premium features unlocked</div>
+        </div>
+
+        <div class="feature-item animate-fade-in delay-3">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path class="icon-accent" d="M12,2C13,2 22,2 22,2V11C22,17 12,22 12,22C12,22 2,17 2,11V2H12M12,7L9.5,8.2L10,10.9L8,12.8L10.7,13.2L12,15.6L13.3,13.2L16,12.8L14,10.9L14.5,8.2L12,7Z" />
+                </svg>
+            </div>
+            <div class="feature-text">Completely Ad-Free</div>
+        </div>
+
+        <div class="feature-item animate-fade-in delay-4">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path class="icon-accent" d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5Z" />
+                </svg>
+            </div>
+            <div class="feature-text">24/7 Priority Support</div>
+        </div>
+    </div>
+
+    <div class="pricing-section animate-fade-in delay-5">
+        <!-- Pricing data from data.json -->
+        <div class="tier-card" onclick="selectTier(this, 'annual')">
+            <div class="badge">Best Value</div>
+            <div class="tier-header">
+                <span class="tier-name">Annual</span>
+                <span class="tier-price">$79.99/year</span>
+            </div>
+            <p class="tier-desc">Best value - save 33% with annual plan</p>
+        </div>
+
+        <div class="tier-card selected" onclick="selectTier(this, 'monthly')">
+            <div class="tier-header">
+                <span class="tier-name">Monthly</span>
+                <span class="tier-price">$9.99/month</span>
+            </div>
+            <p class="tier-desc">Get full access to all features</p>
+        </div>
+
+        <button class="cta-button" onclick="handleSubscribe()">
+            Continue
+        </button>
+
+        <div class="footer-links">
+            <a href="#" class="footer-link">Restore</a>
+            <a href="#" class="footer-link">Terms</a>
+            <a href="#" class="footer-link">Privacy</a>
+        </div>
+    </div>
+
+    <script>
+        let selectedPlan = 'monthly';
+
+        function selectTier(element, plan) {
+            // Remove selected class from all cards
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked card
+            element.classList.add('selected');
+            selectedPlan = plan;
+
+            // Haptic feedback simulation
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(10);
+            }
+        }
+
+        function handleSubscribe() {
+            const button = document.querySelector('.cta-button');
+            const originalText = button.innerText;
+            
+            button.innerText = 'Processing...';
+            button.style.opacity = '0.8';
+            button.disabled = true;
+
+            // Simulate purchase process
+            setTimeout(() => {
+                button.innerText = 'Success!';
+                button.style.background = '#4CAF50';
+                button.style.color = '#FFFFFF';
+                
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.background = '#E0FD46';
+                    button.style.color = '#4A4D3C';
+                    button.style.opacity = '1';
+                    button.disabled = false;
+                    alert('Thank you for subscribing to ' + selectedPlan + ' plan!');
+                }, 1500);
+            }, 2000);
+        }
+
+        // Add some subtle parallax or scroll effects if needed
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const shapes = document.querySelectorAll('.bg-shape-1, .bg-shape-2');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.1;
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

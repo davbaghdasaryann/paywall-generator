@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Upgrade to Pro - Coding Game</title>
+    <style>
+        :root {
+            --primary: #E09825;
+            --secondary: #2944BF;
+            --accent: #EDEDEC;
+            --background: #1E253C;
+            --text: #FFFFFF;
+            --text-dim: rgba(255, 255, 255, 0.7);
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --gradient: linear-gradient(135deg, #E09825 0%, #2944BF 100%);
+            --border-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Background Decorative Elements */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(60px);
+            opacity: 0.4;
+            border-radius: 50%;
+        }
+
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: -100px;
+            right: -100px;
+            animation: float 10s infinite alternate;
+        }
+
+        .blob-2 {
+            width: 250px;
+            height: 250px;
+            background: var(--secondary);
+            bottom: -50px;
+            left: -50px;
+            animation: float 15s infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(20px, 40px) scale(1.1); }
+        }
+
+        /* Container */
+        .container {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            background: var(--glass);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            z-index: 10;
+        }
+
+        /* App Icon & Header */
+        .app-header {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border: 2px solid var(--glass-border);
+        }
+
+        .app-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.5px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .app-tagline {
+            font-size: 16px;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 32px;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-dim);
+        }
+
+        /* Feature List */
+        .features {
+            width: 100%;
+            margin-bottom: 32px;
+            display: grid;
+            gap: 16px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            background: var(--glass);
+            padding: 14px 18px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.2s ease;
+        }
+
+        .feature-item:active {
+            transform: scale(0.98);
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Pricing Tiers */
+        .pricing {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .tier {
+            position: relative;
+            width: 100%;
+            background: var(--glass);
+            border: 2px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tier.selected {
+            border-color: var(--primary);
+            background: rgba(224, 152, 37, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .tier-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tier-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .tier-desc {
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        .tier-price-box {
+            text-align: right;
+        }
+
+        .tier-price {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--primary);
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Action Button */
+        .cta-container {
+            width: 100%;
+            position: sticky;
+            bottom: 0;
+            padding: 20px 24px 40px;
+            background: linear-gradient(to top, var(--background) 80%, transparent);
+            z-index: 5;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 18px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(224, 152, 37, 0.4);
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:active {
+            transform: scale(0.96);
+            box-shadow: 0 5px 15px rgba(224, 152, 37, 0.4);
+        }
+
+        /* Footer Links */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--text);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="close-btn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 1L1 13M1 1L13 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <div class="container">
+        <header class="app-header">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/46/c6/5d/46c65d34-fd0d-b843-58d5-2b7896ca0009/AppIcon-0-0-1x_U007ephone-0-0-sRGB-85-220.png/400x400ia-75.jpg" alt="App Icon" class="app-icon" onerror="this.src='https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/46/c6/5d/46c65d34-fd0d-b843-58d5-2b7896ca0009/AppIcon-0-0-1x_U007ephone-0-0-sRGB-85-220.png/400x400ia-75.jpg'">
+            <h2 class="app-name">Coding Game</h2>
+            <div class="app-tagline">Python & Java Mastery</div>
+        </header>
+
+        <section class="hero">
+            <h1>Master Coding Through Play</h1>
+            <p>Unlock your full potential with interactive lessons and real-world coding challenges.</p>
+        </section>
+
+        <section class="features">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E09825" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <div class="feature-text">Unlimited Interactive Lessons</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E09825" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </div>
+                <div class="feature-text">Python & Java Mastery Tracks</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E09825" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <div class="feature-text">Ad-Free Learning Experience</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E09825" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                    </svg>
+                </div>
+                <div class="feature-text">Real-world Project Access</div>
+            </div>
+        </section>
+
+        <section class="pricing" id="pricing-tiers">
+            <!-- Tiers will be injected here if dynamic, or hardcoded for speed -->
+            <div class="tier" onclick="selectTier(this)" data-tier="monthly">
+                <div class="tier-info">
+                    <div class="tier-name">Monthly</div>
+                    <div class="tier-desc">Billed monthly</div>
+                </div>
+                <div class="tier-price-box">
+                    <div class="tier-price">$9.99/month</div>
+                </div>
+            </div>
+
+            <div class="tier selected" onclick="selectTier(this)" data-tier="yearly">
+                <div class="badge">Best Value</div>
+                <div class="tier-info">
+                    <div class="tier-name">Yearly</div>
+                    <div class="tier-desc">Billed annually (Save 17%)</div>
+                </div>
+                <div class="tier-price-box">
+                    <div class="tier-price">$99.99/year</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-container">
+            <button class="cta-button" id="continue-btn">Continue</button>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Restore</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectTier(element) {
+            document.querySelectorAll('.tier').forEach(t => t.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            // Haptic-like feedback if supported
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(10);
+            }
+        }
+
+        document.getElementById('continue-btn').addEventListener('click', function() {
+            const selectedTier = document.querySelector('.tier.selected .tier-name').innerText;
+            console.log('Selected tier:', selectedTier);
+            
+            // Add a small loading state animation
+            this.innerText = 'Processing...';
+            this.style.opacity = '0.8';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.innerText = 'Success!';
+                this.style.background = '#4CAF50';
+                this.style.boxShadow = '0 10px 25px rgba(76, 175, 80, 0.4)';
+            }, 1500);
+        });
+
+        // Add some subtle scroll interaction
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            const blobs = document.querySelectorAll('.blob');
+            blobs.forEach((blob, index) => {
+                const speed = (index + 1) * 0.1;
+                blob.style.transform = `translateY(${scrollPos * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

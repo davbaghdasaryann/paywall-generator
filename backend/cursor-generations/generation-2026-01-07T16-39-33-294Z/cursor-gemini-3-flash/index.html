@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Upgrade to Premium - Sooty eSIM</title>
+    <style>
+        :root {
+            --primary: #47464A;
+            --secondary: #6F6F72;
+            --accent: #B1B0B2;
+            --background: #D5DCDD;
+            --text-dark: #2C3E50;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #47464A 0%, #6F6F72 100%);
+            --glass: rgba(255, 255, 255, 0.7);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 375px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text-dark);
+            height: 100%;
+        }
+
+        body {
+            max-width: 375px;
+            width: 100%;
+            min-height: 812px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Background Decorative Elements */
+        .bg-decor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: -100px;
+            right: -100px;
+            animation: move 20s infinite alternate;
+        }
+
+        .shape-2 {
+            width: 250px;
+            height: 250px;
+            background: var(--accent);
+            bottom: -50px;
+            left: -100px;
+            animation: move 15s infinite alternate-reverse;
+        }
+
+        @keyframes move {
+            from { transform: translate(0, 0); }
+            to { transform: translate(20px, 40px); }
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 24px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .app-icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            margin-bottom: 16px;
+            object-fit: cover;
+        }
+
+        .app-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--secondary);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features {
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Pricing Tiers */
+        .pricing-tiers {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .tier-card {
+            width: 100%;
+            padding: 18px;
+            background: var(--white);
+            border-radius: var(--radius);
+            border: 2px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        }
+
+        .tier-card.selected {
+            border-color: var(--primary);
+            background: var(--white);
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .tier-card.recommended {
+            border-color: var(--accent);
+        }
+
+        .tier-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tier-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .tier-desc {
+            font-size: 13px;
+            color: var(--secondary);
+            margin-top: 2px;
+        }
+
+        .tier-price-box {
+            text-align: right;
+        }
+
+        .tier-price {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .tier-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* CTA Button */
+        .cta-button {
+            width: 100%;
+            height: 60px;
+            background: var(--gradient);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(71, 70, 74, 0.3);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+            box-shadow: 0 5px 10px rgba(71, 70, 74, 0.2);
+        }
+
+        /* Footer Links */
+        .footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding-bottom: 40px;
+            animation: fadeIn 1s ease-out 0.8s both;
+        }
+
+        .footer-link {
+            color: var(--secondary);
+            font-size: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* SVG Icons */
+        .icon-check {
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-star {
+            fill: var(--accent);
+        }
+        
+        .radio-circle {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            margin-left: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .tier-card.selected .radio-circle {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+
+        .radio-inner {
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            display: none;
+        }
+
+        .tier-card.selected .radio-inner {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decor">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <div class="close-btn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L13 13M1 13L13 1" stroke="#47464A" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <img src="../images/icon.jpg" alt="Sooty eSIM" class="app-icon">
+            <h1 class="app-name">Sooty eSIM</h1>
+            <div class="tagline">Premium Travel & Internet</div>
+        </header>
+
+        <section class="features">
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#B1B0B2" opacity="0.2"/>
+                    <path d="M8 12.5L10.5 15L16 9" class="icon-check"/>
+                </svg>
+                <span class="feature-text">Full access</span>
+            </div>
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#B1B0B2" opacity="0.2"/>
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" class="icon-star"/>
+                </svg>
+                <span class="feature-text">Premium features</span>
+            </div>
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#B1B0B2" opacity="0.2"/>
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#47464A" stroke-width="2"/>
+                    <path d="M8 8L16 16M8 16L16 8" stroke="#47464A" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="feature-text">No ads</span>
+            </div>
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#B1B0B2" opacity="0.2"/>
+                    <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1Z" fill="none" stroke="#47464A" stroke-width="2"/>
+                </svg>
+                <span class="feature-text">Priority support</span>
+            </div>
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#B1B0B2" opacity="0.2"/>
+                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#47464A"/>
+                </svg>
+                <span class="feature-text">Save up to 33%</span>
+            </div>
+        </section>
+
+        <div class="pricing-tiers" id="pricing-tiers">
+            <!-- Monthly Tier -->
+            <div class="tier-card" onclick="selectTier(this, 'monthly')">
+                <div class="tier-info">
+                    <div class="tier-name">Monthly</div>
+                    <div class="tier-desc">Get full access to all features</div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <div class="tier-price-box">
+                        <div class="tier-price">$9.99</div>
+                        <div style="font-size: 11px; color: var(--secondary);">per month</div>
+                    </div>
+                    <div class="radio-circle">
+                        <div class="radio-inner"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Annual Tier -->
+            <div class="tier-card recommended selected" onclick="selectTier(this, 'annual')">
+                <div class="tier-badge">Best Value</div>
+                <div class="tier-info">
+                    <div class="tier-name">Annual</div>
+                    <div class="tier-desc">Best value - save 33% with annual plan</div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <div class="tier-price-box">
+                        <div class="tier-price">$79.99</div>
+                        <div style="font-size: 11px; color: var(--secondary);">per year</div>
+                    </div>
+                    <div class="radio-circle">
+                        <div class="radio-inner"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="cta-button" onclick="handleSubscribe()">
+            Continue
+        </button>
+
+        <footer class="footer">
+            <a href="#" class="footer-link">Restore</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Privacy Policy</a>
+        </footer>
+    </div>
+
+    <script>
+        let selectedPlan = 'annual';
+
+        function selectTier(element, plan) {
+            // Remove selected class from all cards
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked card
+            element.classList.add('selected');
+            selectedPlan = plan;
+
+            // Haptic feedback simulation
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(10);
+            }
+        }
+
+        function handleSubscribe() {
+            const button = document.querySelector('.cta-button');
+            const originalText = button.innerText;
+            
+            button.innerText = 'Processing...';
+            button.style.opacity = '0.8';
+            button.disabled = true;
+
+            setTimeout(() => {
+                button.innerText = 'Success!';
+                button.style.background = '#27ae60';
+                
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.background = 'var(--gradient)';
+                    button.style.opacity = '1';
+                    button.disabled = false;
+                }, 2000);
+            }, 1500);
+        }
+
+        // Interaction for close button
+        document.querySelector('.close-btn').onclick = function() {
+            this.style.opacity = '0.5';
+            setTimeout(() => this.style.opacity = '1', 200);
+        };
+    </script>
+</body>
+</html>
